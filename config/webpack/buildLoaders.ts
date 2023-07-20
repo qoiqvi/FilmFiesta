@@ -24,6 +24,20 @@ export function buildLoaders ({ isDev }: BuildOptions): RuleSetRule[] {
     ]
   }
 
+  const babelLoader = {
+    test: /\.(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [
+          [isDev && require.resolve("react-refresh/babel")].filter(Boolean)
+        ]
+      }
+    }
+  }
+
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -32,7 +46,7 @@ export function buildLoaders ({ isDev }: BuildOptions): RuleSetRule[] {
         loader: 'css-loader',
         options: {
           modules: {
-            auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+            auto: (resPath: string) => resPath.includes('.module.'),
             localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
           }
         }
@@ -46,9 +60,10 @@ export function buildLoaders ({ isDev }: BuildOptions): RuleSetRule[] {
     exclude: /node_modules/
   }
   return [
-    svgLoader, //
     fileLoader,
+    cssLoader,
+    babelLoader,
+    svgLoader, //
     tsLoader,
-    cssLoader
   ]
 }

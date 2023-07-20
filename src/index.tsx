@@ -1,7 +1,8 @@
-import { App } from "./app/App"
-import { createRoot } from "react-dom/client"
+import { router } from "./app/providers/Router/router"
 import "./app/styles/index.scss"
+import { createRoot } from "react-dom/client"
+import { RouterProvider } from "react-router-dom"
 
 const container = document.getElementById("root")
 const root = createRoot(container as HTMLElement)
-root.render(<App />)
+root.render(<RouterProvider router={router} />)
