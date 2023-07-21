@@ -1,4 +1,24 @@
 .Navbar {
-	background: forestgreen;
+	height: var(--navbar-height);
 	width: 100%;
+	background: var(--primary-color);
+	display: flex;
+	// justify-content: center;
+	align-items: center;
+	margin: 0;
+}
+
+.title {
+	color: var(--bg-color);
+	font-size: 50px;
+	margin-left: 15px;
+	margin-right: auto;
+	line-height: 60px;
+	letter-spacing: 2px;
+	font-family: "Bebas Neue", sans-serif;
+}
+
+.icon {
+	margin-right: 5px;
+	// margin-left: 10px;
 }

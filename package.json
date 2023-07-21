@@ -3,6 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"resolutions": {
+		"@types/react": "18.2.0",
+		"@types/react-dom": "18.2.0"
+	},
 	"scripts": {
 		"start": "webpack serve --env port=3000",
 		"build:prod": "webpack --env mode=production",
@@ -25,7 +29,9 @@
 		"@types/node": "^20.4.2",
 		"@types/react": "^18.2.15",
 		"@types/react-dom": "^18.2.7",
+		"@types/react-router-dom": "^5.3.3",
 		"@types/webpack": "^5.28.1",
+		"@types/webpack-dev-server": "^4.7.2",
 		"@typescript-eslint/eslint-plugin": "^6.1.0",
 		"@typescript-eslint/parser": "^6.1.0",
 		"css-loader": "^6.8.1",
@@ -46,8 +52,12 @@
 		"webpack-dev-server": "^4.15.1"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "^1.9.5",
+		"axios": "^1.4.0",
+		"rambler-ui": "^5.14.17",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-redux": "^8.1.1",
 		"react-router-dom": "^6.14.2"
 	}
 }

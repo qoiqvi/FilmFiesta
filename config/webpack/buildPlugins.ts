@@ -17,7 +17,7 @@ export function buildPlugins ({ paths, isDev }: BuildOptions): WebpackPluginInst
     }),
 
     new DefinePlugin({
-      _IS_DEV: JSON.stringify(isDev)
+      _IS_DEV_: JSON.stringify(isDev)
     }),
   ]
   if (isDev) {

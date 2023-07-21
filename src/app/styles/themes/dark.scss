@@ -1,3 +1,13 @@
-:root {
-	// background: #000;
+.app_dark_theme {
+	--bg-color: #000227;
+	--inverted-bg-color: #e6e6e6;
+	--secondary-color: #99ff9e;
+	--primary-color: #00fe2c;
+	--inverted-primary-color: #303594;
+	--inverted-secondary-color: #000227;
+	--skeleton-color: #373b88;
+	--skeleton-shadow: #2a2c4e;
+	--code-bg: #0c0f3f;
+	--card-bg: #373b88;
+	--listbox-bg: #373b88;
 }
