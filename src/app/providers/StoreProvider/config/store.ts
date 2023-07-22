@@ -2,7 +2,7 @@ import { configureStore, CombinedState, ReducersMapObject, Reducer, getDefaultMi
 import { StateSchema } from "./stateSchema"
 import { createReducerManager } from "./reducerManager"
 import { CounterSliceReducer } from "shared/ui/Counter/CounterSlice"
-import { $api } from "shared/api/api"
+import { Api } from "shared/api/api"
 
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
 	const rootReducers: ReducersMapObject<StateSchema> = {
@@ -19,7 +19,7 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
 			getDefaultMiddleware({
 				thunk: {
 					extraArgument: {
-						api: $api,
+						api: Api,
 					},
 				},
 			}),

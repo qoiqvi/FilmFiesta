@@ -1,3 +1,4 @@
+import { FilmByNamePage } from "pages/FilmByNamePage"
 import { FilmsPage } from "pages/FilmsPage"
 import { MainPage } from "pages/MainPage"
 import { NotFoundPage } from "pages/NotFoundPage"
@@ -5,9 +6,9 @@ import { ProfilePage } from "pages/ProfilePage"
 import { RouteProps } from "react-router-dom"
 
 export enum AppRoutes {
-	MAIN = "main",
-	PROFILE = "profile",
 	FILMS = "films",
+	FILM_BY_NAME = "film",
+	PROFILE = "profile",
 	NOT_FOUND = "not_found",
 }
 
@@ -16,16 +17,16 @@ export type AppRoutesProps = RouteProps & {
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-	[AppRoutes.MAIN]: "/",
 	[AppRoutes.FILMS]: "/films",
+	[AppRoutes.FILM_BY_NAME]: "/film/:enName",
 	[AppRoutes.PROFILE]: "/profile",
 	[AppRoutes.NOT_FOUND]: "*",
 }
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
-	[AppRoutes.MAIN]: {
-		element: <MainPage />,
-		path: RoutePath.main,
+	[AppRoutes.FILM_BY_NAME]: {
+		element: <FilmByNamePage />,
+		path: RoutePath.film,
 		authOnly: false,
 	},
 	[AppRoutes.FILMS]: {

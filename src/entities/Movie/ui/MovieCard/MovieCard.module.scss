@@ -1,0 +1,12 @@
+.MovieCard {
+	border: 1px solid black;
+	position: relative;
+}
+
+.rating {
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	background: var(--accent-green);
+	color: white;
+}

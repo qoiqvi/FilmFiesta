@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import { getMoviesByGenre, getMoviesByGenreError, getMoviesByGenreIsLoading } from "../../model/selectors"
 import { Text } from "shared/ui/Text"
 import { Movie, MovieCardsList } from "entities/Movie"
-import { $api } from "shared/api/api"
+import { Api } from "shared/api/api"
 import { Data } from "entities/Movie/model/types/Movie"
 
 export interface MoviesByGenreProps {
@@ -19,14 +19,11 @@ export interface MoviesByGenreProps {
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre, title } = props
 	const [movies, setMovies] = useState<Movie[]>([])
-	const dispatch = useAppDispatch()
-	// const movies = useSelector(getMoviesByGenre)
-	const isLoading = useSelector(getMoviesByGenreIsLoading)
 	const error = useSelector(getMoviesByGenreError)
 
 	useEffect(() => {
 		;(async () => {
-			const respone = await $api.get<Data<Movie>>(`/movie?limit=5&page=1&genres.name=${genre}`)
+			const respone = await Api.get<Data<Movie>>(`/movie?limit=5&page=1&genres.name=${genre}`)
 			setMovies(respone.data.docs)
 		})()
 	}, [genre])
@@ -34,7 +31,7 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Text title={title} />
-			<MovieCardsList movies={movies} isLoading={isLoading} />
+			<MovieCardsList movies={movies} isLoading={false} />
 		</div>
 	)
 })
