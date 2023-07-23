@@ -12,9 +12,9 @@ const FilmsPage = (props: FilmsPageProps) => {
 	return (
 		<div className={classNames(cls.FilmsPage, {}, [className])}>
 			<MoviesByGenre genre={"комедия"} title="Комедия" />
-			<MoviesByGenre genre={"боевик"} title="Боевик" />
+			{/* <MoviesByGenre genre={"боевик"} title="Боевик" />
 			<MoviesByGenre genre={"биография"} title="Биография" />
-			<MoviesByGenre genre={"триллер"} title="Биография" />
+			<MoviesByGenre genre={"триллер"} title="Биография" /> */}
 		</div>
 	)
 }

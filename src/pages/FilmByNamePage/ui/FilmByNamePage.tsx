@@ -11,22 +11,27 @@ export interface FilmByNamePageProps {
 
 const FilmByNamePage = (props: FilmByNamePageProps) => {
 	const { className } = props
-	const { enName } = useParams<{ enName: string }>()
-	const [movie, setMovie] = useState<Movie>()
+	const { name } = useParams<{ name: string }>()
+	const [movie, setMovie] = useState<Movie[]>()
 	useEffect(() => {
 		;(async () => {
-			const response = await Api.get(`/movie?page=1&limit=1&enName=${enName}`)
-			setMovie(response.data)
+			const response = await Api.get(`/movie?page=1&limit=1&name=${name}`)
+			console.log(response.data.docs)
+			setMovie(response.data.docs)
 		})()
 	}, [])
 
 	return (
 		<div className={classNames(cls.FilmByNamePage, {}, [className])}>
-			<h1>{movie?.name}</h1>
-			<h2>{movie?.enName}</h2>
-			<img src={movie?.poster?.url as string} />
+			{movie?.map((elem) => (
+				<div>
+					<h1>{elem.name}</h1>
+					<h2>{elem?.enName}</h2>
+					<img src={elem?.poster?.url as string} />
+				</div>
+			))}
 		</div>
 	)
 }
 
-export default memo(FilmByNamePage)
+export default FilmByNamePage
