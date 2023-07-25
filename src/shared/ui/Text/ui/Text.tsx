@@ -1,38 +1,39 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./Text.module.scss"
 
-export enum TextTheme {
-	PRIMARY = "primary",
-	INVERTED = "inverted",
-	ERROR = "error",
-}
+export type TextTheme = "primary" | "inverted" | "error"
 
-export enum TextAlingn {
-	RIGHT = "right",
-	LEFT = "left",
-	CENTER = "center",
-}
+export type TextAlign = "right" | "left" | "center"
 
-export enum TextSize {
-	M = "size_m",
-	L = "size_l",
-}
+export type TextSize = "size_s" | "size_m" | "size_l"
 
-export interface TextProps {
+interface TextProps {
 	className?: string
 	title?: string
 	text?: string
 	theme?: TextTheme
-	align?: TextAlingn
+	align?: TextAlign
 	size?: TextSize
 }
 
+type HeaderTagType = "h1" | "h2" | "h3"
+
+const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+	size_s: "h3",
+	size_m: "h2",
+	size_l: "h1",
+}
+
 export const Text = (props: TextProps) => {
-	const { className, text, title, theme = TextTheme.PRIMARY, align = TextAlingn.LEFT, size = TextSize.M } = props
+	const { className, text, title, theme = "primary", align = "left", size = "size_m" } = props
+	const additional = [className, cls[theme], cls[align], cls[size]]
+	const HeaderTag = mapSizeToHeaderTag[size]
 	return (
-		<div className={classNames(cls.Text, {}, [className, cls[theme], cls[align], cls[size]])}>
-			{title && <p className={cls.title}>{title}</p>}
-			{text && <p className={cls.text}>{text}</p>}
+		<div className={classNames(cls.Text, {}, additional)}>
+			{title && <HeaderTag className={cls.title}>{title}</HeaderTag>}
+			{text && ( //
+				<p className={cls.text}>{text}</p>
+			)}
 		</div>
 	)
 }

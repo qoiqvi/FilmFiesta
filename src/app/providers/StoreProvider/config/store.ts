@@ -3,11 +3,13 @@ import { StateSchema } from "./stateSchema"
 import { createReducerManager } from "./reducerManager"
 import { CounterSliceReducer } from "shared/ui/Counter/CounterSlice"
 import { Api } from "shared/api/api"
+import { rtkApi } from "shared/api/rtkApi"
 
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
 	const rootReducers: ReducersMapObject<StateSchema> = {
 		...asyncReducers,
 		counter: CounterSliceReducer,
+		[rtkApi.reducerPath]: rtkApi.reducer,
 	}
 	const reducerManager = createReducerManager(rootReducers)
 
@@ -22,7 +24,7 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
 						api: Api,
 					},
 				},
-			}),
+			}).concat(rtkApi.middleware),
 	})
 	//@ts-ignore
 	store.reducerManager = reducerManager

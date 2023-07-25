@@ -1,0 +1,61 @@
+.FilmByNamePage {
+	max-width: 1200px;
+	height: 100%;
+	border: 1px solid black;
+	margin: 30px auto;
+}
+
+.movieHeader {
+	margin: 10px;
+	display: flex;
+}
+
+.movieImg {
+	width: 180px;
+	min-width: 180px;
+	height: 252px;
+	border-radius: 5px;
+}
+
+.info {
+	// margin-left: 20px;
+	margin: auto 20px;
+}
+
+.block {
+	display: flex;
+	gap: 10px;
+}
+
+.starIcon {
+}
+
+.mainRating {
+	display: flex;
+	gap: 7px;
+}
+
+.mainRating > * {
+	justify-content: center;
+}
+
+.ratingBlock {
+	display: flex;
+	align-items: center;
+}
+
+.ratingBlock > div {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.btnContainer {
+	display: flex;
+	gap: 15px;
+	align-items: flex-end;
+}
+
+.description {
+	margin-top: 10px;
+}

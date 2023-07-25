@@ -152,9 +152,9 @@ export interface Rating {
 
 export interface Votes {
 	/** @example 60000 */
-	kp?: string | null
+	kp?: number | null
 	/** @example 50000 */
-	imdb?: string | null
+	imdb?: number | null
 	/** @example 10000 */
 	tmdb?: number | null
 	/**

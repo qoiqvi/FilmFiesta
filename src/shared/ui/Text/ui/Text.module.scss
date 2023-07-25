@@ -1,5 +1,4 @@
 .title {
-	font: var(--font-l);
 	color: var(--primary-color);
 }
 
@@ -27,34 +26,44 @@
 	}
 }
 
-.center {
-	text-align: center;
+.left {
+	text-align: left;
 }
 
 .right {
 	text-align: right;
 }
 
-.left {
-	text-align: left;
+.center {
+	text-align: center;
 }
 
-.size_m {
-	.text {
+.size_s {
+	.title {
 		font: var(--font-m);
 	}
 
+	.text {
+		font: var(--font-s);
+	}
+}
+
+.size_m {
 	.title {
 		font: var(--font-l);
+	}
+
+	.text {
+		font: var(--font-m);
 	}
 }
 
 .size_l {
-	.text {
-		font: var(--font-l);
-	}
-
 	.title {
 		font: var(--font-xl);
+	}
+
+	.text {
+		font: var(--font-l);
 	}
 }
