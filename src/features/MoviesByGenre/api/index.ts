@@ -10,7 +10,7 @@ const MoviesByGenreApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		fetchMoviesByGenre: build.query({
 			query: ({ limit, genre }: MoviesByGenreApiProps) => ({
-				url: `/movie?limit=${limit}&page=1&genre=${genre}`,
+				url: `/movie?limit=${limit}&page=1&genres.name=${genre}`,
 			}),
 		}),
 	}),

@@ -1,1 +1,1 @@
-export { FilmByNamePageAsync as FilmByNamePage } from "./ui/FilmByNamePage.async"
+export { FilmByIdPageAsync as FilmByIdPage } from "./ui/FilmByIdPage.async"

@@ -13,7 +13,7 @@ export interface MovieCardProps {
 export const MovieCard = memo((props: MovieCardProps) => {
 	const { className, movie } = props
 	return (
-		<Link to={`${RoutePath.film_by_name}${movie.name}`}>
+		<Link to={`${RoutePath.film_by_id}${movie.id}`}>
 			<div className={classNames(cls.MovieCard, {}, [className])}>
 				<img width={200} height={200} src={movie.poster?.previewUrl as string} className={cls.poster} />
 				<h3 className={cls.rating}>{movie.rating?.kp?.toFixed(1)}</h3>

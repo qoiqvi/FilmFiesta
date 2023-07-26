@@ -17,7 +17,6 @@ export interface MoviesByGenreProps {
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre, title } = props
 	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre as MovieGenres, limit: 5 })
-	console.log(movies)
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${genre}`}>
