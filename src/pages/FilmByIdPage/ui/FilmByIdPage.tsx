@@ -19,9 +19,7 @@ export interface FilmByIdPageProps {
 const FilmByIdPage = (props: FilmByIdPageProps) => {
 	const { className } = props
 	const { id } = useParams<{ id: string }>()
-	const { isError, isLoading, data } = useFilmByIdQuery(id)
-	const movie = data?.docs[0]
-	console.log(movie)
+	const { isError, isLoading, data: movie } = useFilmByIdQuery(id)
 	const countries = useMemo(
 		() => movie?.countries?.map((country) => <Text key={country.name} text={country.name} />),
 		[movie]
@@ -70,7 +68,7 @@ const FilmByIdPage = (props: FilmByIdPageProps) => {
 					))}
 				{/* https://api.kinopoisk.dev/v1/person?page=1&limit=10&movies.name=1%2B1 */}
 			</div>
-			<SimilarMovies movieId={movie?.id} />
+			<SimilarMovies similarMovies={movie?.similarMovies} />
 			<Watchability resources={movie?.watchability?.items} />
 		</div>
 	)

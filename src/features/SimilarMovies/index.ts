@@ -1,1 +1,1 @@
-export { SimilarMovies } from "./ui/SimilarMovies"
+export { SimilarMovies } from "./ui/SimilarMovie/SimilarMovies"

@@ -3,7 +3,7 @@ import { rtkApi } from "shared/api/rtkApi"
 
 const FilmByIdApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		filmById: build.query<Data<Movie>, string | undefined>({
+		filmById: build.query<Movie, string | undefined>({
 			query: (id) => ({
 				url: `movie/${id}`,
 			}),
