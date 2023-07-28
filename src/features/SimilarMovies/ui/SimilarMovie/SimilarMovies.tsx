@@ -1,8 +1,6 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./SimilarMovies.module.scss"
 import { memo } from "react"
-import { Data, Movie } from "entities/Movie/model/types/Movie"
-import { Api } from "shared/api/api"
 import { SimilarMovie } from "../../model/types"
 import { SimilarMovieItem } from "../SimilarMovieItem/SimilarMovieItem"
 

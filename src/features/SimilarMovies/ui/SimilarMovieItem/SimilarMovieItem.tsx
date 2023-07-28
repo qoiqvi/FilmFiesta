@@ -4,6 +4,8 @@ import { memo } from "react"
 import { SimilarMovie } from "../../model/types"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
+import { Text } from "shared/ui/Text"
+import { useHover } from "shared/hooks/useHover/useHover"
 
 export interface SimilarMovieItemProps {
 	className?: string
@@ -12,9 +14,11 @@ export interface SimilarMovieItemProps {
 
 export const SimilarMovieItem = memo((props: SimilarMovieItemProps) => {
 	const { className, movie } = props
+	const [isHover, bind] = useHover()
 	return (
 		<Link to={`${RoutePath.film_by_id}${movie.id}`} className={classNames(cls.SimilarMovieItem, {}, [className])}>
-			<div className={cls.MovieCard}>
+			<div className={cls.MovieCard} {...bind}>
+				{/* {isHover && <Text size="size_m" text={movie.name} className={cls.name} />} */}
 				<img src={movie.poster.url as string} className={cls.poster} />
 			</div>
 		</Link>

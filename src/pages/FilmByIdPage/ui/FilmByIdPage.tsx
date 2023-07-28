@@ -11,6 +11,7 @@ import { Data } from "entities/Movie/model/types/Movie"
 import { Api } from "shared/api/api"
 import { SimilarMovies } from "features/SimilarMovies"
 import { useFilmByIdQuery } from "../api"
+import { ActorsList } from "features/ActorsList"
 
 export interface FilmByIdPageProps {
 	className?: string
@@ -59,14 +60,7 @@ const FilmByIdPage = (props: FilmByIdPageProps) => {
 				<Text text={movie?.description as string} />
 			</div>
 			<div className={cls.actors}>
-				{movie?.persons &&
-					movie?.persons.map((person) => (
-						<h1>
-							{person.name}
-							{person.description}
-						</h1>
-					))}
-				{/* https://api.kinopoisk.dev/v1/person?page=1&limit=10&movies.name=1%2B1 */}
+				<ActorsList actors={movie?.persons} />
 			</div>
 			<SimilarMovies similarMovies={movie?.similarMovies} />
 			<Watchability resources={movie?.watchability?.items} />
