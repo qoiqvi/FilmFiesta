@@ -3,6 +3,7 @@ import { FilmsPage } from "pages/FilmsPage"
 import { MainPage } from "pages/MainPage"
 import { MoviesByGenrePage } from "pages/MoviesByGenrePage"
 import { NotFoundPage } from "pages/NotFoundPage"
+import { PersonByIdPage } from "pages/PersonByIdPage"
 import { ProfilePage } from "pages/ProfilePage"
 import { SearchMoviePage } from "pages/SearchMoviePage"
 import { RouteProps } from "react-router-dom"
@@ -10,6 +11,7 @@ import { RouteProps } from "react-router-dom"
 export enum AppRoutes {
 	FILMS = "films",
 	FILM_BY_ID = "film_by_id",
+	PERSON_BY_ID = "person_by_id",
 	PROFILE = "profile",
 	SEARCH = "search",
 	MOVIES_BY_GENRE = "movies_by_genre",
@@ -23,6 +25,7 @@ export type AppRoutesProps = RouteProps & {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.FILMS]: "/films",
 	[AppRoutes.FILM_BY_ID]: "/film/",
+	[AppRoutes.PERSON_BY_ID]: "/person/",
 	[AppRoutes.PROFILE]: "/profile",
 	[AppRoutes.SEARCH]: "/search",
 	[AppRoutes.MOVIES_BY_GENRE]: "/movies/",
@@ -33,6 +36,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.FILM_BY_ID]: {
 		element: <FilmByIdPage />,
 		path: RoutePath.film_by_id + ":id",
+		authOnly: false,
+	},
+	[AppRoutes.PERSON_BY_ID]: {
+		element: <PersonByIdPage />,
+		path: RoutePath.person_by_id + ":id",
 		authOnly: false,
 	},
 	[AppRoutes.FILMS]: {

@@ -4,11 +4,13 @@ import { createReducerManager } from "./reducerManager"
 import { CounterSliceReducer } from "shared/ui/Counter/CounterSlice"
 import { Api } from "shared/api/api"
 import { rtkApi } from "shared/api/rtkApi"
+import { SaveScrollSliceReducer } from "widgets/Page"
 
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
 	const rootReducers: ReducersMapObject<StateSchema> = {
 		...asyncReducers,
 		counter: CounterSliceReducer,
+		saveScroll: SaveScrollSliceReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	}
 	const reducerManager = createReducerManager(rootReducers)

@@ -5,7 +5,7 @@ const FilmByIdApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		filmById: build.query<Movie, string | undefined>({
 			query: (id) => ({
-				url: `movie/${id}`,
+				url: `v1.3/movie/${id}`,
 			}),
 		}),
 	}),

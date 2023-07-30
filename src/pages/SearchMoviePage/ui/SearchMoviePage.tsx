@@ -9,6 +9,7 @@ import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByParams } from "features/MovieSearch"
 import { useSearchParams } from "react-router-dom"
 import { composeInitialProps } from "react-i18next"
+import { Page } from "widgets/Page"
 
 export interface SearchMoviePageProps {
 	className?: string
@@ -30,13 +31,13 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	}, [dispatch])
 	return (
 		<DynamicModuleLoader reducers={reducer}>
-			<div className={classNames(cls.SearchMoviePage, {}, [className])}>
+			<Page className={classNames(cls.SearchMoviePage, {}, [className])}>
 				<h1>MOVIE SEARCH PAGE</h1>
 				<MovieFiltersList />
 				<Button className={cls.searchBtn} type="primary" onClick={searchMovie}>
 					Найти
 				</Button>
-			</div>
+			</Page>
 		</DynamicModuleLoader>
 	)
 })

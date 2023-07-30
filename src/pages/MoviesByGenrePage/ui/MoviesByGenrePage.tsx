@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import { MovieGenres } from "features/MovieSearch/model/types/MovieSearchSchema"
 import { Movie, MovieCardsList } from "entities/Movie"
 import { useFetchMoviesByGenreQuery } from "features/MoviesByGenre"
+import { Page } from "widgets/Page"
 
 export interface MoviesByGenrePageProps {
 	className?: string
@@ -17,9 +18,9 @@ const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
 	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre as MovieGenres, limit: 20 })
 
 	return (
-		<div className={classNames(cls.MoviesByGenrePage, {}, [className])}>
+		<Page className={classNames(cls.MoviesByGenrePage, {}, [className])}>
 			<MovieCardsList movies={movies} isLoading={isLoading} />
-		</div>
+		</Page>
 	)
 })
 
