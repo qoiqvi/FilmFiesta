@@ -10,6 +10,15 @@
 	border-radius: 5px;
 }
 
+.block {
+	display: flex;
+	gap: 5px;
+}
+
+// .block > * {
+// word-spacing: 0rem;
+// }
+
 .info {
 	// margin-left: 20px;
 	margin: auto 20px;

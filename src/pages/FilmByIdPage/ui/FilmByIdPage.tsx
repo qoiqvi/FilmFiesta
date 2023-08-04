@@ -1,9 +1,7 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./FilmByIdPage.module.scss"
-import { useMemo } from "react"
 import { useParams } from "react-router-dom"
 import { Text } from "shared/ui/Text"
-import { Button, StarIcon } from "rambler-ui"
 import { Watchability } from "features/Watchability"
 import { SimilarMovies } from "features/SimilarMovies"
 import { useFilmByIdQuery } from "../api"
@@ -19,6 +17,7 @@ const FilmByIdPage = (props: FilmByIdPageProps) => {
 	const { className } = props
 	const { id } = useParams<{ id: string }>()
 	const { isError, isLoading, data: movie } = useFilmByIdQuery(id)
+	console.log(movie?.videos)
 	return (
 		<Page className={classNames(cls.FilmByIdPage, {}, [className])}>
 			<FilmByIdMainBlock movie={movie} />

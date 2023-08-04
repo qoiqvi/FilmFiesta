@@ -1,4 +1,9 @@
 .PersonsList {
 	display: flex;
-	gap: 15px;
+	gap: 20px;
+	overflow: auto;
+}
+
+.title {
+	margin: 20px 0;
 }

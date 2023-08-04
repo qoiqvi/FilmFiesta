@@ -17,7 +17,9 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 		() => movie?.countries?.map((country) => <Text key={country.name} text={country.name} />),
 		[movie]
 	)
+
 	const genres = useMemo(() => movie?.genres?.map((genre) => <Text key={genre.name} text={genre.name} />), [movie])
+
 	return (
 		<div className={cls.movieHeader}>
 			<img className={cls.movieImg} src={movie?.poster?.url as string} />
@@ -29,7 +31,7 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 					{movie?.movieLength && <Text text={String(movie?.movieLength + " " + "мин")} />}
 					{movie?.genres && genres}
 					{movie?.countries && countries}
-					{movie?.ageRating && <Text text={String(movie?.ageRating)} />}
+					{movie?.ageRating && <Text text={`${String(movie?.ageRating)}+`} />}
 				</div>
 				<div className={cls.ratingBlock}>
 					<div className={cls.mainRating}>
@@ -48,3 +50,13 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 		</div>
 	)
 })
+
+// const getCountries = useMemo(() => {
+// 	let countries: string[] = []
+// 	for (let i = 0; i < (movie?.countries?.length || 0); i++) {
+// 		const element = movie?.countries?.[0].name
+// 		countries.push(element + ",")
+// 	}
+// 	return countries.join(" ")
+// movie?.countries?.map((country) => counry.push(country.name))
+// }, [])

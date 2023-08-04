@@ -3,6 +3,7 @@ import cls from "./SimilarMovies.module.scss"
 import { memo } from "react"
 import { SimilarMovie } from "../../model/types"
 import { SimilarMovieItem } from "../SimilarMovieItem/SimilarMovieItem"
+import { Text } from "shared/ui/Text"
 
 export interface SimilarMoviesProps {
 	className?: string
@@ -12,10 +13,13 @@ export interface SimilarMoviesProps {
 export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 	const { className, similarMovies } = props
 	return (
-		<div className={classNames(cls.SimilarMovies, {}, [className])}>
-			{similarMovies?.map((movie) => (
-				<SimilarMovieItem movie={movie} />
-			))}
-		</div>
+		<>
+			<Text title="Похожие фильмы:" className={cls.title} />
+			<div className={classNames(cls.SimilarMovies, {}, [className])}>
+				{similarMovies?.map((movie) => (
+					<SimilarMovieItem movie={movie} />
+				))}
+			</div>
+		</>
 	)
 })
