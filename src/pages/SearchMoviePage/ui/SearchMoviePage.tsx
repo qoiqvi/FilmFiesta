@@ -7,8 +7,6 @@ import { MovieSearchSliceReducer } from "features/MovieSearch/model/slice/MovieS
 import { Button } from "rambler-ui"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByParams } from "features/MovieSearch"
-import { useSearchParams } from "react-router-dom"
-import { composeInitialProps } from "react-i18next"
 import { Page } from "widgets/Page"
 
 export interface SearchMoviePageProps {
@@ -34,7 +32,11 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 			<Page className={classNames(cls.SearchMoviePage, {}, [className])}>
 				<h1>MOVIE SEARCH PAGE</h1>
 				<MovieFiltersList />
-				<Button className={cls.searchBtn} type="primary" onClick={searchMovie}>
+				<Button
+					className={cls.searchBtn}
+					type="primary"
+					onClick={searchMovie}
+				>
 					Найти
 				</Button>
 			</Page>
