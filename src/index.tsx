@@ -1,6 +1,6 @@
 import "./app/styles/index.scss"
 import { createRoot } from "react-dom/client"
-import { BrowserRouter, RouterProvider } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import { StoreProvider } from "app/providers/StoreProvider"
 import { App } from "app/App"
 

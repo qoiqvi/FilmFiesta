@@ -25,7 +25,10 @@ const FilmByIdPage = (props: FilmByIdPageProps) => {
 				<Text text={movie?.description as string} />
 			</div>
 			<PersonsList persons={movie?.persons} />
-			<SimilarMovies similarMovies={movie?.similarMovies} />
+			<SimilarMovies
+				isLoading={isLoading}
+				similarMovies={movie?.similarMovies}
+			/>
 			<Watchability resources={movie?.watchability?.items} />
 		</Page>
 	)

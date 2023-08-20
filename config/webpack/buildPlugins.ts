@@ -2,8 +2,6 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 import webpack, { DefinePlugin, HotModuleReplacementPlugin, type WebpackPluginInstance } from "webpack"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import { type BuildOptions } from "./types/config"
-// import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
 
 export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
