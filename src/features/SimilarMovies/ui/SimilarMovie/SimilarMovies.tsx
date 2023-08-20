@@ -14,8 +14,8 @@ export interface SimilarMoviesProps {
 }
 
 export const SimilarMovies = memo((props: SimilarMoviesProps) => {
-	const { className, similarMovies, isLoading = true } = props
-	if (true) {
+	const { className, similarMovies, isLoading } = props
+	if (isLoading) {
 		return (
 			<div className={cls.SimilarMovies}>
 				<>{getSkeletonsArray({ length: 10, height: 200, width: 300 })}</>
