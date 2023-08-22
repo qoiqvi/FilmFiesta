@@ -1,6 +1,6 @@
 import cls from "./MovieFiltersItem.module.scss"
 import { classNames } from "shared/lib/classNames/classNames"
-import { ChangeEvent, ChangeEventHandler, memo, useState } from "react"
+import { ChangeEvent, memo, useState } from "react"
 import { Text } from "shared/ui/Text"
 import { Option } from "shared/types"
 import { Button } from "rambler-ui"
@@ -12,7 +12,6 @@ export interface MovieFiltersItemProps {
 	options?: Option<MovieGenres>[]
 	onChange: (value: MovieGenres) => void
 	defaultValue?: MovieGenres
-	// onChange?: (value: any) => void
 }
 
 export const MovieFiltersItem = memo((props: MovieFiltersItemProps) => {
@@ -27,19 +26,30 @@ export const MovieFiltersItem = memo((props: MovieFiltersItemProps) => {
 		<div className={classNames(cls.MovieFiltersItem, {}, [className])}>
 			{collapsed ? (
 				<div>
-					<Button type="flat" onClick={() => setCollapsed(!collapsed)}>
+					<Button
+						type="flat"
+						onClick={() => setCollapsed(!collapsed)}
+					>
 						<Text title={title} />
 					</Button>
 				</div>
 			) : (
 				<div>
-					<Button type="flat" onClick={() => setCollapsed(!collapsed)}>
+					<Button
+						type="flat"
+						onClick={() => setCollapsed(!collapsed)}
+					>
 						<Text title={title} />
 					</Button>
-					<select defaultValue={defaultValue} onChange={onChangeHandler}>
+					<select
+						defaultValue={defaultValue}
+						onChange={onChangeHandler}
+					>
 						{options?.map((item) => (
-							// <option onClick={() => onChange(item.value as MovieGenres)} value={item.value}>
-							<option key={item.value} value={item.value}>
+							<option
+								key={item.value}
+								value={item.value}
+							>
 								{item.content}
 							</option>
 						))}

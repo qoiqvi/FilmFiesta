@@ -55,6 +55,8 @@
 		"webpack-dev-server": "^4.15.1"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.17",
+		"@heroicons/react": "^2.0.18",
 		"@reduxjs/toolkit": "^1.9.5",
 		"axios": "^1.4.0",
 		"rambler-ui": "^5.14.17",
