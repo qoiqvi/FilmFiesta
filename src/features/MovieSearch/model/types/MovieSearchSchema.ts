@@ -14,8 +14,8 @@ export type SortDirection = "1" | "-1"
 export type type = "movie" | "tv-series " | "cartoon" | "anime" | "animated-series " | "tv-show"
 
 export interface queryParams {
-	sortBy?: SortBy
-	sortDirection?: SortDirection
+	sortField?: SortBy
+	sortType?: SortDirection
 	genres?: MovieGenres | MovieGenres[]
 	type?: type
 	page?: number
@@ -23,8 +23,8 @@ export interface queryParams {
 	countries?: string | string[]
 	ageRating?: string
 	movieLength?: number
-	kpRating?: number
-	year?: number
+	rating?: string
+	year?: string
 	top250?: "!null"
 }
 

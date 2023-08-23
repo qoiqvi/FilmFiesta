@@ -33,7 +33,15 @@ const getAllGenres = {
 	ceremoniya: "церемония",
 }
 
-export const allGenres = [
+export type allGenresType = keyof typeof getAllGenres
+
+interface allGenresInterface {
+	value: allGenresType
+	content: string
+	disabled: boolean
+}
+
+export const allGenres: allGenresInterface[] = [
 	{ value: "boevik", content: "Боевик", disabled: false },
 	{ value: "fentezi", content: "Фэнтези", disabled: false },
 	{ value: "fantastika", content: "Фантастика", disabled: false },

@@ -1,8 +1,11 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./GenresFilter.module.scss"
-import { memo } from "react"
+import { memo, useCallback, useState } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
-import { allGenres } from "shared/lib/consts/getAllGenres"
+import { allGenres, allGenresType } from "shared/lib/consts/getAllGenres"
+import { Select } from "shared/ui/Select"
+import { queryParams } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { ratings, years } from "features/MovieSearch/model/config"
 
 export interface GenresFilterProps {
 	className?: string
@@ -11,14 +14,5 @@ export interface GenresFilterProps {
 export const GenresFilter = memo((props: GenresFilterProps) => {
 	const { className } = props
 
-	return (
-		<div className={classNames(cls.GenresFilter, {}, [className])}>
-			<SearchSelect
-				options={allGenres}
-				label="Жанры"
-				notFound="Такого жанра нет"
-				value=""
-			/>
-		</div>
-	)
+	return <div className={classNames(cls.GenresFilter, {}, [className])}></div>
 })
