@@ -14,8 +14,14 @@ export interface PersonCardProps {
 export const PersonCard = memo((props: PersonCardProps) => {
 	const { className, person } = props
 	return (
-		<Link to={RoutePath.person_by_id + person.id} className={classNames(cls.PersonCard, {}, [className])}>
-			<img src={person.photo as string} className={cls.personPhoto} />
+		<Link
+			to={RoutePath.person_by_id + person.id}
+			className={classNames(cls.PersonCard, {}, [className])}
+		>
+			<img
+				src={person.photo as string}
+				className={cls.personPhoto}
+			/>
 			<Text text={person.name as string} />
 		</Link>
 	)

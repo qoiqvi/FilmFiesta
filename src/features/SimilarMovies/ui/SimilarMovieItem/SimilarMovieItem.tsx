@@ -16,10 +16,19 @@ export const SimilarMovieItem = memo((props: SimilarMovieItemProps) => {
 	const { className, movie } = props
 	const [isHover, bind] = useHover()
 	return (
-		<Link to={`${RoutePath.film_by_id}${movie.id}`} className={classNames(cls.SimilarMovieItem, {}, [className])}>
-			<div className={cls.MovieCard} {...bind}>
+		<Link
+			to={`${RoutePath.film_by_id}${movie.id}`}
+			className={classNames(cls.SimilarMovieItem, {}, [className])}
+		>
+			<div
+				className={cls.MovieCard}
+				{...bind}
+			>
 				{/* {isHover && <Text size="size_m" text={movie.name} className={cls.name} />} */}
-				<img src={movie.poster.url as string} className={cls.poster} />
+				<img
+					src={movie.poster.url as string}
+					className={cls.poster}
+				/>
 			</div>
 		</Link>
 	)

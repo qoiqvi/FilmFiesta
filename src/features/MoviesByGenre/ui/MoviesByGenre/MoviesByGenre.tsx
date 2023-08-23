@@ -22,7 +22,10 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 			<Link to={`${RoutePath.movies_by_genre}${genre}`}>
 				<Text title={title} />
 			</Link>
-			<MovieCardsList movies={movies} isLoading={false} />
+			<MovieCardsList
+				movies={movies}
+				isLoading={false}
+			/>
 		</div>
 	)
 })

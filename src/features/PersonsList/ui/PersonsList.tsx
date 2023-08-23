@@ -15,7 +15,10 @@ export const PersonsList = memo((props: PersonsListProps) => {
 	const [collapsed, setCollapsed] = useState(true)
 	return (
 		<>
-			<Text title="Актеры в фильме" className={cls.title} />
+			<Text
+				title="Актеры в фильме"
+				className={cls.title}
+			/>
 			<div className={classNames(cls.PersonsList, {}, [className])}>
 				{persons?.map((person) => (
 					<PersonCard person={person} />

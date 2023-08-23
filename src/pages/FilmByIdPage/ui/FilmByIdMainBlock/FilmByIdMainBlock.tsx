@@ -14,18 +14,44 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 	const { className, movie } = props
 
 	const countries = useMemo(
-		() => movie?.countries?.map((country) => <Text key={country.name} text={country.name} />),
+		() =>
+			movie?.countries?.map((country) => (
+				<Text
+					key={country.name}
+					text={country.name}
+				/>
+			)),
 		[movie]
 	)
 
-	const genres = useMemo(() => movie?.genres?.map((genre) => <Text key={genre.name} text={genre.name} />), [movie])
+	const genres = useMemo(
+		() =>
+			movie?.genres?.map((genre) => (
+				<Text
+					key={genre.name}
+					text={genre.name}
+				/>
+			)),
+		[movie]
+	)
 
 	return (
 		<div className={cls.movieHeader}>
-			<img className={cls.movieImg} src={movie?.poster?.url as string} />
+			<img
+				className={cls.movieImg}
+				src={movie?.poster?.url as string}
+			/>
 			<div className={cls.info}>
-				<Text size="size_l" title={movie?.name as string}></Text>
-				{movie?.enName && <Text size="size_m" title={movie?.enName as string}></Text>}
+				<Text
+					size="size_l"
+					title={movie?.name as string}
+				></Text>
+				{movie?.enName && (
+					<Text
+						size="size_m"
+						title={movie?.enName as string}
+					></Text>
+				)}
 				<div className={cls.block}>
 					{movie?.year && <Text text={String(movie?.year)} />}
 					{movie?.movieLength && <Text text={String(movie?.movieLength + " " + "мин")} />}
@@ -35,7 +61,11 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 				</div>
 				<div className={cls.ratingBlock}>
 					<div className={cls.mainRating}>
-						<StarIcon className={cls.starIcon} color="#315efb" size={30} />
+						<StarIcon
+							className={cls.starIcon}
+							color="#315efb"
+							size={30}
+						/>
 						<Text title={String(movie?.rating?.kp?.toFixed(1))} />
 						{movie?.rating?.imdb && <Text text={`imdb: ${movie.rating.imdb.toFixed(1)}`} />}
 						{movie?.rating?.tmdb && <Text text={`imdb: ${movie.rating.tmdb.toFixed(1)}`} />}

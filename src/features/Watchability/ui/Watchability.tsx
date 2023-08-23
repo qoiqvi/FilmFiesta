@@ -16,9 +16,18 @@ export const Watchability = memo((props: WatchabilityProps) => {
 		<div className={classNames(cls.Watchability, {}, [className])}>
 			<Text title="Смотреть на других ресурсах" />
 			{resources?.map((resource, ind) => (
-				<Link to={resource.url} key={ind}>
-					<Text size="size_m" title={resource.name as string} />
-					<img sizes="25" src={resource.logo as string} />
+				<Link
+					to={resource.url}
+					key={ind}
+				>
+					<Text
+						size="size_m"
+						title={resource.name as string}
+					/>
+					<img
+						sizes="25"
+						src={resource.logo as string}
+					/>
 				</Link>
 			))}
 		</div>
