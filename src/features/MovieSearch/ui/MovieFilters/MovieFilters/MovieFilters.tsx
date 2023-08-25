@@ -3,13 +3,14 @@ import cls from "./MovieFilters.module.scss"
 import { memo, useCallback, useState } from "react"
 import type { queryParams } from "../../../model/types/MovieSearchSchema"
 import { SearchSelect } from "shared/ui/SearchSelect"
-import { years, ratings, allGenres } from "features/MovieSearch/model/config"
+import { years, ratings, allGenres, allCountries } from "features/MovieSearch/model/config"
 import { Button } from "rambler-ui"
 import { useMovieByParamsQuery } from "features/MovieSearch/model/api"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
 import { useSelector } from "react-redux"
 import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
+import { MovieCard, MovieCardsList } from "entities/Movie"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -20,7 +21,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const dispatch = useAppDispatch()
 	const movies = useSelector(getMoviesDataByParams)
 	const [searchParams, setSearchParams] = useState<queryParams>({
-		sortField: "rating.kp",
+		// sortField: "rating.imdb",
 		sortType: "-1",
 		page: 1,
 		limit: 10,
@@ -28,7 +29,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 		"countries.name": undefined,
 		ageRating: undefined,
 		movieLength: undefined,
-		"rating.kp": undefined,
+		"rating.imdb": undefined,
 		year: undefined,
 	})
 
@@ -56,6 +57,13 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 		[setSearchParams]
 	)
 
+	const onChangeCountry = useCallback(
+		(value: string) => {
+			setSearchParams((prev) => ({ ...prev, "countries.name": value }))
+		},
+		[setSearchParams]
+	)
+
 	// const searchMovie = () => {
 	// 	const reqArr: string[] = []
 	// 	Object.entries(searchParams).map(([query, value], index) => {
@@ -76,33 +84,43 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	}
 
 	return (
-		<div className={classNames(cls.MovieFilters, {}, [className])}>
-			<SearchSelect
-				placeholder="Жанр"
-				notFound="Такого жанра нет"
-				options={allGenres}
-				onChange={onChangeGenre}
-				value={(searchParams["genres.name"] as string) ?? ""}
-			/>
-			<SearchSelect
-				placeholder="Год релиза"
-				notFound="Не найдено"
-				options={years}
-				onChange={onChangeYear}
-				value={searchParams.year ?? ""}
-			/>
-			<SearchSelect
-				placeholder="Рейтинг"
-				notFound="Не найдено"
-				options={ratings}
-				onChange={onChangeRating}
-				value={searchParams["rating.kp"] ?? ""}
-			/>
-			<Button onClick={searchMovie}>Найти</Button>
+		<div>
+			<div className={classNames(cls.MovieFilters, {}, [className])}>
+				<SearchSelect
+					placeholder="Жанр"
+					notFound="Такого жанра нет"
+					options={allGenres}
+					onChange={onChangeGenre}
+					value={(searchParams["genres.name"] as string) ?? ""}
+				/>
+				<SearchSelect
+					placeholder="Год релиза"
+					notFound="Не найдено"
+					options={years}
+					onChange={onChangeYear}
+					value={searchParams.year ?? ""}
+				/>
+				<SearchSelect
+					placeholder="Рейтинг"
+					notFound="Не найдено"
+					options={ratings}
+					onChange={onChangeRating}
+					value={searchParams["rating.imdb"] ?? ""}
+				/>
+				<SearchSelect
+					placeholder="Страна"
+					notFound="Не найдено"
+					options={allCountries}
+					onChange={onChangeCountry}
+					value={searchParams["countries.name"] ?? ""}
+				/>
+				<Button onClick={searchMovie}>Найти</Button>
+			</div>
 			<div>
-				{movies?.docs.map((elem) => (
-					<h1 key={elem.id}>{elem.name}</h1>
-				))}
+				<MovieCardsList
+					isLoading={false}
+					movies={movies}
+				/>
 			</div>
 		</div>
 	)
