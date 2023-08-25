@@ -6,11 +6,11 @@ import { Data } from "entities/Movie/model/types/Movie"
 
 export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, queryParams, ThunkConfig<string>>(
 	"movieSearch/fetchMoviesByParams",
-	async (params, { extra, rejectWithValue, getState }) => {
+	async (params, { extra, rejectWithValue }) => {
 		try {
 			const Sparams: string[] = []
 			Object.entries(params).map(([query, value], index) => {
-				if (value !== undefined) {
+				if (value !== undefined && value !== "") {
 					if (index === 0) {
 						Sparams.push(`?${query}=${value}`)
 					} else {
