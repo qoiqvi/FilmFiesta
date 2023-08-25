@@ -1,18 +1,11 @@
 import { type PayloadAction, createSlice, AnyAction } from "@reduxjs/toolkit"
 import { MovieSearchSchema } from "../types/MovieSearchSchema"
+import { fetchMoviesByParams } from "../services/fetchMovieByParams"
+import { Movie } from "entities/Movie"
+import { Data } from "entities/Movie/model/types/Movie"
 
 const initialState: MovieSearchSchema = {
-	queryParams: {
-		sortField: "rating.kp",
-		sortType: "-1",
-		page: 1,
-		limit: 10,
-		countries: undefined,
-		ageRating: undefined,
-		movieLength: undefined,
-		rating: undefined,
-		year: undefined,
-	},
+	movies: undefined,
 	isLoading: false,
 	error: undefined,
 }
@@ -20,13 +13,21 @@ const initialState: MovieSearchSchema = {
 export const MovieSearchSlice = createSlice({
 	name: "MovieSearchSlice",
 	initialState,
-	reducers: {
-		changeField: (state, action: PayloadAction<any>) => {
-			state.queryParams = {
-				...state.queryParams,
-				...action.payload,
-			}
-		},
+	reducers: {},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchMoviesByParams.pending, (state) => {
+				state.error = undefined
+				state.isLoading = true
+			})
+			.addCase(fetchMoviesByParams.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.movies = action.payload
+			})
+			.addCase(fetchMoviesByParams.rejected, (state, action) => {
+				state.isLoading = false
+				state.error = action.payload
+			})
 	},
 })
 

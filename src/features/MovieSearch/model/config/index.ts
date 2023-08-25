@@ -1,12 +1,44 @@
 import { SelectOption } from "shared/ui/Select/Select"
 
-// export const sort: [] = [
-// 	{ value: "", content: "Рекомендуемые" },
-// 	{ value: SortEnum.Rating, content: "По рейтингу" },
-// 	{ value: SortEnum.Year, content: "По дате выхода" },
-// ]
+interface allGenresInterface {
+	value: string
+	content: string
+}
 
-type rating = keyof (typeof ratings)[0]
+export const allGenres: allGenresInterface[] = [
+	{ value: "боевик", content: "Боевик" },
+	{ value: "фэнтези", content: "Фэнтези" },
+	{ value: "фантастика", content: "Фантастика" },
+	{ value: "триллер", content: "Триллер" },
+	{ value: "военный", content: "Военный" },
+	{ value: "детектив", content: "Детектив" },
+	{ value: "комедия", content: "Комедия" },
+	{ value: "драма", content: "Драма" },
+	{ value: "ужасы", content: "Ужасы" },
+	{ value: "криминал", content: "Криминал" },
+	{ value: "мелодрама", content: "Мелодрама" },
+	{ value: "вестерн", content: "Вестерн" },
+	{ value: "биография", content: "Биография" },
+	{ value: "аниме", content: "Аниме" },
+	{ value: "детский", content: "Детский" },
+	{ value: "мультфильм", content: "Мультфильм" },
+	{ value: "фильм-нуар", content: "Фильм-нуар" },
+	{ value: "для взрослых", content: "Для взрослых" },
+	{ value: "документальный", content: "Документальный" },
+	{ value: "игра", content: "Игра" },
+	{ value: "история", content: "История" },
+	{ value: "концерт", content: "Концерт" },
+	{ value: "короткометражка", content: "Короткометражка" },
+	{ value: "музыка", content: "Музыка" },
+	{ value: "мюзикл", content: "Мюзикл" },
+	{ value: "новости", content: "Новости" },
+	{ value: "приключения", content: "Приключения" },
+	{ value: "реальное ТВ", content: "Реальное ТВ" },
+	{ value: "семейный", content: "Семейный" },
+	{ value: "спорт", content: "Спорт" },
+	{ value: "ток-шоу", content: "Ток-шоу" },
+	{ value: "церемония", content: "Церемония" },
+]
 
 export const ratings: SelectOption<string>[] = [
 	{ value: "", content: "Любой рейтинг" },

@@ -1,9 +1,8 @@
-import { MovieGenres } from "features/MovieSearch/model/types/MovieSearchSchema"
 import { rtkApi } from "shared/api/rtkApi"
 
 interface MoviesByGenreApiProps {
 	limit: number
-	genre: MovieGenres
+	genre: string | undefined
 }
 
 const MoviesByGenreApi = rtkApi.injectEndpoints({

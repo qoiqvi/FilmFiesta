@@ -23,9 +23,9 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	const reducer: ReducersList = {
 		movieSearch: MovieSearchSliceReducer,
 	}
-	const searchMovie = useCallback(() => {
-		dispatch(fetchMoviesByParams())
-	}, [dispatch])
+	// const searchMovie = useCallback(() => {
+	// 	dispatch(fetchMoviesByParams())
+	// }, [dispatch])
 	return (
 		<DynamicModuleLoader reducers={reducer}>
 			<Page className={classNames(cls.SearchMoviePage, {}, [className])}>

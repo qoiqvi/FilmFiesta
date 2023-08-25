@@ -3,7 +3,6 @@ import { Combobox, Transition } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import cls from "./SearchSelect.module.scss"
 import { Text } from "shared/ui/Text"
-import { allGenresType } from "shared/lib/consts/getAllGenres"
 
 export interface SearchSelectOption<T extends string> {
 	value: T
@@ -28,7 +27,7 @@ export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>)
 	const [query, setQuery] = useState("")
 
 	const onChangeHandler = (item: SearchSelectOption<T>) => {
-		onChange?.(item?.content)
+		onChange?.(item?.value)
 		setSelected((item as any) ?? "")
 	}
 

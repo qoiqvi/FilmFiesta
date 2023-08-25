@@ -2,30 +2,28 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
 import { Movie } from "entities/Movie"
 import { queryParams } from "../types/MovieSearchSchema"
+import { Data } from "entities/Movie/model/types/Movie"
 
-export const fetchMoviesByParams = createAsyncThunk<Movie[], void, ThunkConfig<string>>(
+export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, queryParams, ThunkConfig<string>>(
 	"movieSearch/fetchMoviesByParams",
-	async (_, { extra, rejectWithValue, getState }) => {
+	async (params, { extra, rejectWithValue, getState }) => {
 		try {
-			// const queryParams: queryParams = getMovieSearchQueryParams(getState())
-			//@ts-ignore
-			const queryParams: queryParams = []
-			const params: string[] = []
-			Object.entries(queryParams).map(([query, value], index) => {
+			const Sparams: string[] = []
+			Object.entries(params).map(([query, value], index) => {
 				if (value !== undefined) {
 					if (index === 0) {
-						params.push(`?${query}=${value}`)
+						Sparams.push(`?${query}=${value}`)
 					} else {
-						params.push(`&${query}=${value}`)
+						Sparams.push(`&${query}=${value}`)
 					}
 				}
 			})
-			params.join("")
-			const response = await extra.api(`/movie${params.join("")}`)
+			console.log(Sparams)
+			const response = await extra.api(`v1.3/movie${Sparams.join("")}`)
 			if (!response.data) {
 				throw new Error()
 			}
-			return response.data.docs
+			return response.data
 		} catch (error) {
 			return rejectWithValue("error")
 		}

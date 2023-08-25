@@ -6,6 +6,8 @@ export const rtkApi = createApi({
 		baseUrl: "https://api.kinopoisk.dev/",
 		headers: {
 			"X-API-KEY": "TJS8T17-DKXMJSB-GM8Y32K-GMJ2BXS",
+			"Access-Control-Allow-Origin": "*",
+			"Content-Type": "application/json",
 		},
 	}),
 	endpoints: (builder) => ({}),

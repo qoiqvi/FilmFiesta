@@ -6,17 +6,16 @@ import { MovieCardsList } from "entities/Movie"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { useFetchMoviesByGenreQuery } from "features/MoviesByGenre/api"
-import { MovieGenres } from "features/MovieSearch/model/types/MovieSearchSchema"
 
 export interface MoviesByGenreProps {
 	className?: string
-	genre: string | string[]
+	genre: string
 	title?: string
 }
 
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre, title } = props
-	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre as MovieGenres, limit: 5 })
+	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre, limit: 5 })
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${genre}`}>

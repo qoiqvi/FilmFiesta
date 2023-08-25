@@ -1,13 +1,5 @@
-export type MovieGenres =
-	| "комедия"
-	| "триллер"
-	| "мюзикл"
-	| "биография"
-	| "документальный"
-	| "мелодрама"
-	| "ужасы"
-	| "боевик"
-	| "фэнтази"
+import { Movie } from "entities/Movie"
+import { Data } from "entities/Movie/model/types/Movie"
 
 export type SortBy = "year" | "rating.kp" | "votes.kp"
 export type SortDirection = "1" | "-1"
@@ -16,20 +8,20 @@ export type type = "movie" | "tv-series " | "cartoon" | "anime" | "animated-seri
 export interface queryParams {
 	sortField?: SortBy
 	sortType?: SortDirection
-	genres?: MovieGenres | MovieGenres[]
+	"genres.name"?: string
 	type?: type
 	page?: number
 	limit?: number
-	countries?: string | string[]
+	"countries.name"?: string | string[]
 	ageRating?: string
 	movieLength?: number
-	rating?: string
+	"rating.kp"?: string
 	year?: string
 	top250?: "!null"
 }
 
 export interface MovieSearchSchema {
-	queryParams: queryParams
+	movies: Data<Movie> | undefined
 	isLoading: boolean
 	error?: string
 }
