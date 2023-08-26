@@ -1,6 +1,17 @@
 .comboboxContainer {
-	width: 300px;
 	position: relative;
+}
+
+.small {
+	width: 200px;
+}
+
+.medium {
+	width: 300px;
+}
+
+.large {
+	width: 400px;
 }
 
 .checkedIcon {

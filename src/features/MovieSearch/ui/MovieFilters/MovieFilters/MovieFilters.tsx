@@ -1,7 +1,120 @@
+// import { classNames } from "shared/lib/classNames/classNames"
+// import cls from "./MovieFilters.module.scss"
+// import { memo, useCallback, useState } from "react"
+// import type { QueryParams } from "../../../model/types/MovieSearchSchema"
+// import { SearchSelect } from "shared/ui/SearchSelect"
+// import { years, ratings, allGenres, allCountries } from "features/MovieSearch/model/config"
+// import { Button } from "rambler-ui"
+// import { useMovieByParamsQuery } from "features/MovieSearch/model/api"
+// import { useAppDispatch } from "shared/hooks/useAppDispatch"
+// import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
+// import { useSelector } from "react-redux"
+// import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
+// import { MovieCard, MovieCardsList } from "entities/Movie"
+
+// export interface MovieFiltersProps {
+// 	className?: string
+// }
+
+// export const MovieFilters = memo((props: MovieFiltersProps) => {
+// 	const { className } = props
+// 	const dispatch = useAppDispatch()
+// 	const movies = useSelector(getMoviesDataByParams)
+// 	const [searchParams, setSearchParams] = useState<QueryParams>({
+// 		// sortField: "rating.imdb",
+// 		sortType: "-1",
+// 		page: 1,
+// 		limit: 10,
+// 		"genres.name": undefined,
+// 		"countries.name": undefined,
+// 		ageRating: undefined,
+// 		movieLength: undefined,
+// 		"rating.imdb": undefined,
+// 		year: undefined,
+// 	})
+
+// 	// let params: string = "?sortField=rating.kp&sortType=-1&page=1&limit=10"
+
+// 	// const { isError, isLoading, data: movies } = useMovieByParamsQuery(params, { refetchOnMountOrArgChange: true })
+// 	const onChangeGenre = useCallback(
+// 		(value: string) => {
+// 			setSearchParams((prev) => ({ ...prev, "genres.name": value }))
+// 		},
+// 		[setSearchParams]
+// 	)
+
+// 	const onChangeYear = useCallback(
+// 		(value: string) => {
+// 			setSearchParams((prev) => ({ ...prev, year: value }))
+// 		},
+// 		[setSearchParams]
+// 	)
+
+// 	const onChangeRating = useCallback(
+// 		(value: string) => {
+// 			setSearchParams((prev) => ({ ...prev, "rating.kp": value }))
+// 		},
+// 		[setSearchParams]
+// 	)
+
+// 	const onChangeCountry = useCallback(
+// 		(value: string) => {
+// 			setSearchParams((prev) => ({ ...prev, "countries.name": value }))
+// 		},
+// 		[setSearchParams]
+// 	)
+
+// 	const searchMovie = useCallback(() => {
+// 		dispatch(fetchMoviesByParams(searchParams))
+// 	}, [searchParams])
+
+// 	return (
+// 		<div>
+// 			<div className={classNames(cls.MovieFilters, {}, [className])}>
+// 				<SearchSelect
+// 					placeholder="Жанр"
+// 					notFound="Такого жанра нет"
+// 					options={allGenres}
+// 					onChange={onChangeGenre}
+// 					width="small"
+// 				/>
+// 				<SearchSelect
+// 					placeholder="Год релиза"
+// 					notFound="Не найдено"
+// 					options={years}
+// 					onChange={onChangeYear}
+// 					width="small"
+// 				/>
+// 				<SearchSelect
+// 					placeholder="Рейтинг"
+// 					notFound="Не найдено"
+// 					options={ratings}
+// 					onChange={onChangeRating}
+// 					width="small"
+// 					defaultValue={ratings[0].content}
+// 				/>
+// 				<SearchSelect
+// 					placeholder="Страна"
+// 					notFound="Не найдено"
+// 					options={allCountries}
+// 					onChange={onChangeCountry}
+// 					width="small"
+// 				/>
+// 				<Button onClick={searchMovie}>Найти</Button>
+// 			</div>
+// 			<div>
+// 				<MovieCardsList
+// 					isLoading={false}
+// 					movies={movies}
+// 				/>
+// 			</div>
+// 		</div>
+// 	)
+// })
+
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MovieFilters.module.scss"
-import { memo, useCallback, useState } from "react"
-import type { queryParams } from "../../../model/types/MovieSearchSchema"
+import { memo, useCallback } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
 import { years, ratings, allGenres, allCountries } from "features/MovieSearch/model/config"
 import { Button } from "rambler-ui"
@@ -11,6 +124,8 @@ import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMo
 import { useSelector } from "react-redux"
 import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
 import { MovieCard, MovieCardsList } from "entities/Movie"
+import { useParams, useSearchParams } from "react-router-dom"
+import { QueryParams } from "features/MovieSearch/model/types/MovieSearchSchema"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -20,68 +135,38 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const { className } = props
 	const dispatch = useAppDispatch()
 	const movies = useSelector(getMoviesDataByParams)
-	const [searchParams, setSearchParams] = useState<queryParams>({
-		// sortField: "rating.imdb",
-		sortType: "-1",
-		page: 1,
-		limit: 10,
-		"genres.name": undefined,
-		"countries.name": undefined,
-		ageRating: undefined,
-		movieLength: undefined,
-		"rating.imdb": undefined,
-		year: undefined,
-	})
+	const [searchParams, setSearchParams] = useSearchParams()
 
-	// let params: string = "?sortField=rating.kp&sortType=-1&page=1&limit=10"
-
-	// const { isError, isLoading, data: movies } = useMovieByParamsQuery(params, { refetchOnMountOrArgChange: true })
 	const onChangeGenre = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...prev, "genres.name": value }))
+			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "genres.name": value }))
 		},
-		[setSearchParams]
+		[searchParams]
 	)
-
 	const onChangeYear = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...prev, year: value }))
+			setSearchParams((prev) => ({ ...Object.fromEntries(prev), year: value }))
 		},
-		[setSearchParams]
+		[searchParams]
 	)
 
 	const onChangeRating = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...prev, "rating.kp": value }))
+			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "rating.kp": value }))
 		},
-		[setSearchParams]
+		[searchParams]
 	)
 
 	const onChangeCountry = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...prev, "countries.name": value }))
+			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "countries.name": value }))
 		},
-		[setSearchParams]
+		[searchParams]
 	)
 
-	// const searchMovie = () => {
-	// 	const reqArr: string[] = []
-	// 	Object.entries(searchParams).map(([query, value], index) => {
-	// 		if (value !== undefined) {
-	// 			if (index === 0) {
-	// 				reqArr.push(`?${query}=${value}`)
-	// 			} else {
-	// 				reqArr.push(`&${query}=${value}`)
-	// 			}
-	// 		}
-	// 	})
-	// 	params = reqArr.join("")
-	// 	console.log(params)
-	// }
-	const searchMovie = async () => {
-		let a = await dispatch(fetchMoviesByParams(searchParams))
-		console.log(a.payload)
-	}
+	const searchMovie = useCallback(() => {
+		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
+	}, [searchParams])
 
 	return (
 		<div>
@@ -91,28 +176,32 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 					notFound="Такого жанра нет"
 					options={allGenres}
 					onChange={onChangeGenre}
-					value={(searchParams["genres.name"] as string) ?? ""}
+					width="small"
+					value={searchParams.get("genres.name") || ""}
 				/>
 				<SearchSelect
 					placeholder="Год релиза"
 					notFound="Не найдено"
 					options={years}
 					onChange={onChangeYear}
-					value={searchParams.year ?? ""}
+					width="small"
+					value={searchParams.get("year") || ""}
 				/>
 				<SearchSelect
 					placeholder="Рейтинг"
 					notFound="Не найдено"
 					options={ratings}
 					onChange={onChangeRating}
-					value={searchParams["rating.imdb"] ?? ""}
+					width="small"
+					value={searchParams.get("rating.kp") || ""}
 				/>
 				<SearchSelect
 					placeholder="Страна"
 					notFound="Не найдено"
 					options={allCountries}
 					onChange={onChangeCountry}
-					value={searchParams["countries.name"] ?? ""}
+					width="small"
+					value={searchParams.get("countries.name") || ""}
 				/>
 				<Button onClick={searchMovie}>Найти</Button>
 			</div>

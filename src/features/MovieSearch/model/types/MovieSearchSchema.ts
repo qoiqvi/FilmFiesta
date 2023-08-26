@@ -5,7 +5,7 @@ export type SortBy = "year" | "rating.imdb" | "votes.kp"
 export type SortDirection = "1" | "-1"
 export type type = "movie" | "tv-series " | "cartoon" | "anime" | "animated-series " | "tv-show"
 
-export interface queryParams {
+export interface QueryParams {
 	sortField?: SortBy
 	sortType?: SortDirection
 	"genres.name"?: string

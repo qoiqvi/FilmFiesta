@@ -9,8 +9,13 @@ const AppRouter = () => {
 				<>{route.element}</>
 			</Suspense>
 		)
-
-		return <Route path={route.path} key={route.path} element={element} />
+		return (
+			<Route
+				path={route.path}
+				key={route.path}
+				element={element}
+			/>
+		)
 	}, [])
 	return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
 }

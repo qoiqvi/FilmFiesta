@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
 import { Movie } from "entities/Movie"
-import { queryParams } from "../types/MovieSearchSchema"
+import { QueryParams } from "../types/MovieSearchSchema"
 import { Data } from "entities/Movie/model/types/Movie"
 
-export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, queryParams, ThunkConfig<string>>(
+export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, QueryParams, ThunkConfig<string>>(
 	"movieSearch/fetchMoviesByParams",
 	async (params, { extra, rejectWithValue }) => {
 		try {

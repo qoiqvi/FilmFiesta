@@ -6,6 +6,7 @@ interface allGenresInterface {
 }
 
 export const allGenres: allGenresInterface[] = [
+	{ value: "", content: "Любой" },
 	{ value: "боевик", content: "Боевик" },
 	{ value: "фэнтези", content: "Фэнтези" },
 	{ value: "фантастика", content: "Фантастика" },
