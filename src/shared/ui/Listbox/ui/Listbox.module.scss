@@ -1,0 +1,68 @@
+/* Стиль для контейнера Listbox */
+.Listbox {
+	position: relative;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для кнопки, открывающей список */
+.Listbox-button {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #fff;
+	transition: background-color 0.2s, border-color 0.2s;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для текста в кнопке */
+.Listbox-label {
+	flex-grow: 1;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для стрелочки в кнопке */
+.Listbox-arrow {
+	margin-left: 10px;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для выпадающего списка (подсказки) */
+.Listbox-options {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	max-height: 200px; /* Максимальная высота списка */
+	overflow-y: auto; /* Включение вертикальной прокрутки при необходимости */
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-top: none;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для элементов списка */
+.Listbox-option {
+	padding: 10px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для активного (выбранного) элемента списка */
+.Listbox-option[aria-selected="true"] {
+	background-color: #007bff;
+	color: #fff;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для фокуса на элементе списка */
+.Listbox-option:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+	/* Добавьте стили, если нужно */
+}

@@ -3,15 +3,15 @@
 }
 
 .small {
-	width: 200px;
+	width: 150px;
 }
 
 .medium {
-	width: 300px;
+	width: 150px;
 }
 
 .large {
-	width: 400px;
+	width: 200px;
 }
 
 .checkedIcon {
@@ -37,15 +37,6 @@
 	font-size: 1rem;
 	outline: none;
 	font: var(--font-m);
-}
-
-.comboboxButton {
-	position: relative;
-	right: 0px;
-	top: 27px;
-	display: flex;
-	align-items: center;
-	padding-right: 0.5rem;
 }
 
 .label {

@@ -1,4 +1,11 @@
 .MovieFilters {
 	display: flex;
 	justify-content: space-between;
+	gap: 20px;
+}
+
+.sortContainer {
+	display: flex;
+	gap: 10px;
+	margin-left: auto;
 }

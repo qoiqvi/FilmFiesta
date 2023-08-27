@@ -30,7 +30,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
 		() =>
 			options?.map((opt) => (
 				<option
-					className={cls.option}
+					className={cls.selectOption}
 					value={opt.value}
 					key={opt.value}
 				>
@@ -44,10 +44,9 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
 
 	return (
 		<div className={classNames(cls.Wrapper, mods, [className])}>
-			{label && <span className={cls.label}>{`${label}>`}</span>}
 			<select
 				disabled={readonly}
-				className={cls.select}
+				className={cls.selectOptions}
 				value={value}
 				onChange={onChangeHandler}
 			>

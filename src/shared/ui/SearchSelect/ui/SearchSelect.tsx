@@ -16,8 +16,6 @@ export type SearchSelectWidth = "small" | "medium" | "large"
 
 export interface SearchSelectProps<T extends string> {
 	options: SearchSelectOption<T>[]
-	label?: string
-	placeholder: string
 	notFound: string
 	readonly?: boolean
 	onChange?: (value: string) => void
@@ -27,7 +25,7 @@ export interface SearchSelectProps<T extends string> {
 }
 
 export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>) => {
-	const { options, notFound, label, onChange, readonly, value, placeholder, width = "medium" } = props
+	const { options, notFound, onChange, readonly, value, width = "medium" } = props
 	const [selected, setSelected] = useState("")
 	const [query, setQuery] = useState("")
 
@@ -51,17 +49,8 @@ export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>)
 				value={selected}
 				onChange={(item) => onChangeHandler(item as any)}
 			>
-				{label && (
-					<Combobox.Label>
-						<Text
-							className={cls.label}
-							title={label}
-						/>
-					</Combobox.Label>
-				)}
 				<div>
 					<Combobox.Input
-						placeholder={placeholder}
 						className={cls.comboboxInput}
 						displayValue={(option: SearchSelectOption<T>) => option?.content}
 						onChange={(event) => setQuery(event?.target?.value)}

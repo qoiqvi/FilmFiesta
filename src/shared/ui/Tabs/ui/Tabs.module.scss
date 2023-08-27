@@ -1,0 +1,36 @@
+/* Основной контейнер для компонента Tab */
+.TabGroup {
+	/* Добавьте стили, если нужно */
+}
+
+/* Список вкладок (Tab.List) */
+.TabList {
+	display: flex;
+	gap: 10px; /* Расстояние между вкладками */
+	/* Добавьте стили, если нужно */
+}
+
+/* Оформление неактивных вкладок (Tab) */
+.Tab {
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	transition: background-color 0.2s, border-color 0.2s;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для активной вкладки (Tab) */
+.Tab[aria-selected="true"] {
+	background-color: #007bff;
+	color: #fff;
+	/* Добавьте стили, если нужно */
+}
+
+/* Стиль для фокуса вкладки (Tab) */
+.Tab:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+	/* Добавьте стили, если нужно */
+}

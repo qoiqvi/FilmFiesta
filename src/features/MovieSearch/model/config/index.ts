@@ -1,4 +1,4 @@
-import { SelectOption } from "shared/ui/Select/Select"
+import { SelectOption } from "shared/ui/Select/ui/Select"
 
 interface allGenresInterface {
 	value: string
@@ -305,4 +305,30 @@ export const allCountries: SelectOption<string>[] = [
 	{ value: "Югославия (ФР)", content: "Югославия (ФР)" },
 	{ value: "Ямайка", content: "Ямайка" },
 	{ value: "Япония", content: "Япония" },
+]
+
+export const allSortFields: SelectOption<string>[] = [
+	{
+		value: "year",
+		content: "По дате релиза",
+	},
+	{
+		value: "kp.rating",
+		content: "Рейтингу Кинопоиска",
+	},
+	{
+		value: "rating.filmCritics",
+		content: "Рейтингу критиков",
+	},
+]
+
+export const allSortType: SelectOption<string>[] = [
+	{
+		value: "-1",
+		content: "Убыванию",
+	},
+	{
+		value: "1",
+		content: "Возрастанию",
+	},
 ]
