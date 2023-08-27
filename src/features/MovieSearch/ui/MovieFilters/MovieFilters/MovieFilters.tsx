@@ -1,18 +1,11 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MovieFilters.module.scss"
-import { memo, useCallback } from "react"
+import { memo, useCallback, useEffect } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
 import { years, ratings, allGenres, allCountries, allSortFields, allSortType } from "features/MovieSearch/model/config"
-import { Button } from "rambler-ui"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
-import { useSelector } from "react-redux"
-import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
-import { MovieCardsList } from "entities/Movie"
 import { useSearchParams } from "react-router-dom"
-// import { Select } from "shared/ui/Select"
-import { Tabs } from "shared/ui/Tabs"
-import { Select } from "shared/ui/Listbox/ui/Listbox"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -21,31 +14,28 @@ export interface MovieFiltersProps {
 export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const { className } = props
 	const dispatch = useAppDispatch()
-	const movies = useSelector(getMoviesDataByParams)
 	const [searchParams, setSearchParams] = useSearchParams()
+
+	useEffect(() => {
+		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
+	}, [dispatch, searchParams])
 
 	const onChangeGenre = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "genres.name": value }))
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(movies)
 		},
 		[searchParams]
 	)
 	const onChangeYear = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), year: value }))
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(movies)
 		},
 		[searchParams]
 	)
 
 	const onChangeRating = useCallback(
-		async (value: string) => {
+		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "rating.kp": value }))
-			const a = await dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(a)
 		},
 		[searchParams]
 	)
@@ -53,8 +43,6 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const onChangeCountry = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "countries.name": value }))
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(movies)
 		},
 		[searchParams]
 	)
@@ -62,8 +50,6 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const onChangeSortType = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), sortType: value }))
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(movies)
 		},
 		[searchParams]
 	)
@@ -71,8 +57,6 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const onChangeSortField = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), sortField: value }))
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
-			console.log(movies)
 		},
 		[searchParams]
 	)

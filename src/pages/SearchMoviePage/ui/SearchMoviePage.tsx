@@ -9,6 +9,9 @@ import { Page } from "widgets/Page"
 import { MovieFilters } from "features/MovieSearch/ui/MovieFilters/MovieFilters/MovieFilters"
 import { useSearchParams } from "react-router-dom"
 import { Button } from "rambler-ui"
+import { MovieCardsList } from "entities/Movie"
+import { useSelector } from "react-redux"
+import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
 
 export interface SearchMoviePageProps {
 	className?: string
@@ -23,6 +26,8 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [isSearch, setIsSearch] = useState(searchParams.size > 0)
 	const dispatch = useAppDispatch()
+	const movies = useSelector(getMoviesDataByParams)
+
 	const searchMovie = useCallback(() => {
 		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
 	}, [searchParams])
@@ -31,7 +36,7 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 		<DynamicModuleLoader reducers={reducer}>
 			<Page className={classNames(cls.SearchMoviePage, {}, [className])}>
 				<MovieFilters />
-				{isSearch ? (
+				{/* {isSearch ? (
 					<div>
 						<Button onClick={searchMovie}>Найти</Button>
 					</div>
@@ -39,7 +44,11 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 					<div>
 						<Button onClick={searchMovie}>Найти</Button>
 					</div>
-				)}
+				)} */}
+				<MovieCardsList
+					isLoading={false}
+					movies={movies}
+				/>
 			</Page>
 		</DynamicModuleLoader>
 	)

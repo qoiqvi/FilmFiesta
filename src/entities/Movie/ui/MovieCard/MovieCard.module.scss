@@ -1,12 +1,18 @@
 .MovieCard {
-	border: 1px solid black;
 	position: relative;
+	transition: transform 0.3s;
 }
 
-.rating {
-	position: absolute;
-	left: 10px;
-	top: 5px;
-	background: var(--accent-green);
-	color: white;
+.MovieCard:hover {
+	transform: scale(1.01);
+}
+
+.hovered {
+	.rating {
+		position: absolute;
+		left: 10px;
+		top: 5px;
+		background: var(--accent-green);
+		color: white;
+	}
 }

@@ -1,4 +1,14 @@
 .MovieCardsList {
-	display: flex;
-	gap: 15px;
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(6, 1fr);
+	@media (max-width: 1024px) {
+		gap: 15px;
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	@media (max-width: 768px) {
+		gap: 12px;
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
