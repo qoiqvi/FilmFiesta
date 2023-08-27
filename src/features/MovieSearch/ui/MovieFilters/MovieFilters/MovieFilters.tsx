@@ -22,6 +22,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			param[1] === "" ? newSearchParams.delete(param[0]) : null
 		)
 		setSearchParams(newSearchParams.toString())
+		searchParams.append("limit", "42")
 		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
 	}, [dispatch, searchParams])
 

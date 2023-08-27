@@ -8,10 +8,13 @@ import { fetchMoviesByParams } from "features/MovieSearch"
 import { Page } from "widgets/Page"
 import { MovieFilters } from "features/MovieSearch/ui/MovieFilters/MovieFilters/MovieFilters"
 import { useSearchParams } from "react-router-dom"
-import { Button } from "rambler-ui"
 import { MovieCardsList } from "entities/Movie"
 import { useSelector } from "react-redux"
-import { getMoviesDataByParams } from "features/MovieSearch/model/selectors"
+import {
+	getMoviesDataByParams,
+	getMoviesDataByParamsHasMore,
+	getMoviesDataByParamsIsLoading,
+} from "features/MovieSearch/model/selectors"
 import { Text } from "shared/ui/Text"
 import { MoviesByGenre } from "features/MoviesByGenre"
 
@@ -29,14 +32,11 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	const [isSearch, setIsSearch] = useState(searchParams.size > 0)
 	const dispatch = useAppDispatch()
 	const movies = useSelector(getMoviesDataByParams)
+	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
+	const hasMore = useSelector(getMoviesDataByParamsHasMore)
 
 	useEffect(() => {
 		setIsSearch(Boolean(searchParams.size))
-	}, [searchParams])
-
-	console.log(searchParams, searchParams.size)
-	const searchMovie = useCallback(() => {
-		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
 	}, [searchParams])
 
 	const title = useMemo(() => {
@@ -54,9 +54,31 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 		return "Фильмы"
 	}, [searchParams])
 
+	const infiniteScrollFunc = useCallback(() => {
+		if (!isLoading && !hasMore) {
+			Object.entries(Object.fromEntries(searchParams)).map((param) => {
+				if (param[0] === "page") {
+					setSearchParams((prev) => ({
+						...Object.fromEntries(prev),
+						page: (Number(param[1]) + 1).toString(),
+					}))
+				} else {
+					setSearchParams((prev) => ({
+						...Object.fromEntries(prev),
+						page: "2",
+					}))
+				}
+			})
+			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
+		}
+	}, [searchParams, dispatch])
+
 	return (
 		<DynamicModuleLoader reducers={reducer}>
-			<Page className={classNames(cls.SearchMoviePage, {}, [className])}>
+			<Page
+				className={classNames(cls.SearchMoviePage, {}, [className])}
+				onScrollEnd={infiniteScrollFunc}
+			>
 				<Text title={title} />
 				<MovieFilters />
 				{isSearch ? (

@@ -3,11 +3,9 @@ import type { AxiosInstance } from "axios"
 import type { MoviesByGenreSchema } from "features/MoviesByGenre"
 import type { MovieSearchSchema } from "features/MovieSearch"
 import { rtkApi } from "shared/api/rtkApi"
-import type { CounterStateSchema } from "shared/ui/Counter/CounterSlice"
 import { SaveScrollSchema } from "widgets/Page"
 
 export interface StateSchema {
-	counter: CounterStateSchema
 	saveScroll: SaveScrollSchema
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 	getMovieByGenere?: MoviesByGenreSchema

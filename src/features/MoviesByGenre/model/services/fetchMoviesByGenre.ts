@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
-import { Movie } from "entities/Movie"
+import { Data, Movie } from "entities/Movie"
 
-export const fetchMoviesByGenre = createAsyncThunk<Movie[], string | string[], ThunkConfig<string>>(
+export const fetchMoviesByGenre = createAsyncThunk<Data<Movie[]>, string | string[], ThunkConfig<string>>(
 	"moviesByGenre/fetchMoviesByGenre",
 	async (genre, { extra, rejectWithValue }) => {
 		try {
@@ -11,7 +11,7 @@ export const fetchMoviesByGenre = createAsyncThunk<Movie[], string | string[], T
 			if (!response.data) {
 				throw new Error()
 			}
-			return response.data.docs
+			return response.data
 		} catch (error) {
 			return rejectWithValue("error")
 		}

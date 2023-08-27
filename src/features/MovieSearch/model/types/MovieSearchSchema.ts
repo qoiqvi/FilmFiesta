@@ -24,4 +24,5 @@ export interface MovieSearchSchema {
 	movies: Data<Movie> | undefined
 	isLoading: boolean
 	error?: string
+	hasMore: boolean
 }

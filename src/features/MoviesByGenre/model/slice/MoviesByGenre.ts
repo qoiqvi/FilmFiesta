@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { MoviesByGenreSchema } from "../types/moviesByGenre"
 import { fetchMoviesByGenre } from "../services/fetchMoviesByGenre"
-import { Movie } from "entities/Movie"
+import { Data, Movie } from "entities/Movie"
 
 const initialState: MoviesByGenreSchema = {
-	movies: [],
+	movies: null,
 	isLoading: false,
 	error: undefined,
+	hasMore: true,
 }
 
 export const MoviesByGenreSlice = createSlice({
@@ -19,9 +20,8 @@ export const MoviesByGenreSlice = createSlice({
 				state.isLoading = true
 				state.error = undefined
 			})
-			.addCase(fetchMoviesByGenre.fulfilled, (state, action: PayloadAction<Movie[]>) => {
+			.addCase(fetchMoviesByGenre.fulfilled, (state, action: PayloadAction<Data<Movie[]>>) => {
 				state.isLoading = false
-				console.log(action.payload)
 				state.movies = action.payload
 			})
 			.addCase(fetchMoviesByGenre.rejected, (state, action) => {
