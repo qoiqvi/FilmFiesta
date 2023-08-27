@@ -17,6 +17,11 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	useEffect(() => {
+		const newSearchParams = new URLSearchParams(searchParams)
+		Object.entries(Object.fromEntries(searchParams)).map((param) =>
+			param[1] === "" ? newSearchParams.delete(param[0]) : null
+		)
+		setSearchParams(newSearchParams.toString())
 		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
 	}, [dispatch, searchParams])
 
@@ -26,6 +31,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 		},
 		[searchParams]
 	)
+
 	const onChangeYear = useCallback(
 		(value: string) => {
 			setSearchParams((prev) => ({ ...Object.fromEntries(prev), year: value }))
@@ -62,52 +68,50 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	)
 
 	return (
-		<div>
-			<div className={classNames(cls.MovieFilters, {}, [className])}>
+		<div className={classNames(cls.MovieFilters, {}, [className])}>
+			<SearchSelect
+				notFound="Такого жанра нет"
+				options={allGenres}
+				onChange={onChangeGenre}
+				width="small"
+				value={searchParams.get("genres.name") || ""}
+			/>
+			<SearchSelect
+				notFound="Не найдено"
+				options={years}
+				onChange={onChangeYear}
+				width="small"
+				value={searchParams.get("year") || ""}
+			/>
+			<SearchSelect
+				notFound="Не найдено"
+				options={ratings}
+				onChange={onChangeRating}
+				width="small"
+				value={searchParams.get("rating.kp") || ""}
+			/>
+			<SearchSelect
+				notFound="Не найдено"
+				options={allCountries}
+				onChange={onChangeCountry}
+				width="small"
+				value={searchParams.get("countries.name") || ""}
+			/>
+			<div className={cls.sortContainer}>
 				<SearchSelect
-					notFound="Такого жанра нет"
-					options={allGenres}
-					onChange={onChangeGenre}
+					notFound="Не найдено"
+					options={allSortFields}
 					width="small"
-					value={searchParams.get("genres.name") || ""}
+					onChange={onChangeSortField}
+					value={searchParams.get("sortField") || ""}
 				/>
 				<SearchSelect
 					notFound="Не найдено"
-					options={years}
-					onChange={onChangeYear}
+					options={allSortType}
 					width="small"
-					value={searchParams.get("year") || ""}
+					onChange={onChangeSortType}
+					value={searchParams.get("sortType") || ""}
 				/>
-				<SearchSelect
-					notFound="Не найдено"
-					options={ratings}
-					onChange={onChangeRating}
-					width="small"
-					value={searchParams.get("rating.kp") || ""}
-				/>
-				<SearchSelect
-					notFound="Не найдено"
-					options={allCountries}
-					onChange={onChangeCountry}
-					width="small"
-					value={searchParams.get("countries.name") || ""}
-				/>
-				<div className={cls.sortContainer}>
-					<SearchSelect
-						notFound="Не найдено"
-						options={allSortFields}
-						width="small"
-						onChange={onChangeSortField}
-						value={searchParams.get("sortField") || ""}
-					/>
-					<SearchSelect
-						notFound="Не найдено"
-						options={allSortType}
-						width="small"
-						onChange={onChangeSortType}
-						value={searchParams.get("sortType") || ""}
-					/>
-				</div>
 			</div>
 		</div>
 	)
