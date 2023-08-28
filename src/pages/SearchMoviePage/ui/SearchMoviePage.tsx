@@ -43,12 +43,15 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	}, [searchParams])
 
 	const infiniteScrollFunc = useCallback(() => {
-		if (!isLoading && !hasMore) {
+		console.log(!isLoading, hasMore)
+		if (!isLoading && hasMore) {
+			console.log("infininte")
 			if (page !== undefined) {
+				console.log(page)
 				dispatch(fetchMoviesByParams({ params: Object.fromEntries(searchParams), limit: 42, page: page + 1 }))
 			}
 		}
-	}, [searchParams, dispatch])
+	}, [searchParams, page, dispatch])
 
 	return (
 		<DynamicModuleLoader reducers={reducer}>

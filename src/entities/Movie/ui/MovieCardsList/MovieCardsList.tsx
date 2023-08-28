@@ -6,7 +6,7 @@ import { MovieCard } from "../MovieCard/MovieCard"
 
 export interface MovieCardsListProps {
 	className?: string
-	movies: Data<Movie> | undefined
+	movies: Movie[] | undefined
 	isLoading: boolean | undefined
 }
 
@@ -15,7 +15,7 @@ export const MovieCardsList = memo((props: MovieCardsListProps) => {
 	return (
 		<div className={classNames(cls.MovieCardsList, {}, [className])}>
 			{movies &&
-				movies.docs.map((movie) => (
+				movies.map((movie) => (
 					<MovieCard
 						movie={movie}
 						key={movie.id}
