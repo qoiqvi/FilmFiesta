@@ -16,3 +16,21 @@
 		color: white;
 	}
 }
+
+.gray {
+	.rating {
+		background-color: gainsboro;
+	}
+}
+
+.green {
+	.rating {
+		background: var(--accent-green);
+	}
+}
+
+.red {
+	.rating {
+		background: var(--accent-red);
+	}
+}

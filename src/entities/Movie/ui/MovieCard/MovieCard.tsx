@@ -12,12 +12,35 @@ export interface MovieCardProps {
 	movie: Movie
 }
 
+type RatingColor = "green" | "red" | "gray"
+
 export const MovieCard = memo((props: MovieCardProps) => {
 	const { className, movie } = props
 	const [isHover, binds] = useHover()
 
 	const mods: Mods = {
 		[cls["hovered"]]: isHover,
+	}
+
+	// let ratingColor: RatingColor
+	// if (movie.rating?.kp !== null && movie.rating?.kp !== undefined) {
+	// 	ratingColor = movie.rating.kp > 7 ? "green" : "red"
+	// }
+
+	let ratingColor: RatingColor = "gray"
+	const rating = movie.rating?.kp
+	if (rating !== null && rating !== undefined) {
+		switch (true) {
+			case rating > 7:
+				ratingColor = "green"
+				break
+			case rating > 5:
+				ratingColor = "gray"
+				break
+			default:
+				ratingColor = "red"
+				break
+		}
 	}
 
 	return (
@@ -36,7 +59,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 					<Text
 						color="white"
 						align="center"
-						className={cls.rating}
+						className={classNames(cls.rating, {}, [cls[ratingColor]])}
 						text={movie.rating?.kp?.toFixed(1)}
 					/>
 				)}
