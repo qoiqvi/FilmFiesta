@@ -14,9 +14,11 @@ import {
 	getMoviesDataByParams,
 	getMoviesDataByParamsHasMore,
 	getMoviesDataByParamsIsLoading,
+	getMoviesDataByParamsPage,
 } from "features/MovieSearch/model/selectors"
 import { Text } from "shared/ui/Text"
 import { MoviesByGenre } from "features/MoviesByGenre"
+import { SearchMoviePageTitle } from "./SearchMoviePageTitle/SearchMoviePageTitle"
 
 export interface SearchMoviePageProps {
 	className?: string
@@ -34,42 +36,17 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	const movies = useSelector(getMoviesDataByParams)
 	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
 	const hasMore = useSelector(getMoviesDataByParamsHasMore)
+	const page = useSelector(getMoviesDataByParamsPage)
 
 	useEffect(() => {
 		setIsSearch(Boolean(searchParams.size))
 	}, [searchParams])
 
-	const title = useMemo(() => {
-		let string = []
-		console.log("title")
-		if (searchParams.get("genres.name")) {
-			string.push(searchParams.get("genres.name"))
-		}
-		if (searchParams.get("year")) {
-			string.push(searchParams.get("year"))
-		}
-		if (string.length) {
-			return `Фильмы: ${string.join(", ")}`
-		}
-		return "Фильмы"
-	}, [searchParams])
-
 	const infiniteScrollFunc = useCallback(() => {
 		if (!isLoading && !hasMore) {
-			Object.entries(Object.fromEntries(searchParams)).map((param) => {
-				if (param[0] === "page") {
-					setSearchParams((prev) => ({
-						...Object.fromEntries(prev),
-						page: (Number(param[1]) + 1).toString(),
-					}))
-				} else {
-					setSearchParams((prev) => ({
-						...Object.fromEntries(prev),
-						page: "2",
-					}))
-				}
-			})
-			dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
+			if (page !== undefined) {
+				dispatch(fetchMoviesByParams({ params: Object.fromEntries(searchParams), limit: 42, page: page + 1 }))
+			}
 		}
 	}, [searchParams, dispatch])
 
@@ -79,7 +56,7 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 				className={classNames(cls.SearchMoviePage, {}, [className])}
 				onScrollEnd={infiniteScrollFunc}
 			>
-				<Text title={title} />
+				<SearchMoviePageTitle searchParams={searchParams} />
 				<MovieFilters />
 				{isSearch ? (
 					<div>
@@ -94,14 +71,14 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 							genre="боевик"
 							title="Боевики:"
 						/>
-						<MoviesByGenre
+						{/* <MoviesByGenre
 							genre="триллер"
 							title="Триллеры:"
 						/>
 						<MoviesByGenre
 							genre="ужасы"
 							title="Ужасы:"
-						/>
+						/> */}
 					</div>
 				)}
 			</Page>

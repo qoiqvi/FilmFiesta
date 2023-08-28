@@ -9,6 +9,7 @@ const initialState: MovieSearchSchema = {
 	isLoading: false,
 	error: undefined,
 	hasMore: true,
+	page: 1,
 }
 
 export const MovieSearchSlice = createSlice({
@@ -21,10 +22,11 @@ export const MovieSearchSlice = createSlice({
 				state.error = undefined
 				state.isLoading = true
 			})
-			.addCase(fetchMoviesByParams.fulfilled, (state, action) => {
+			.addCase(fetchMoviesByParams.fulfilled, (state, action: PayloadAction<Data<Movie>>) => {
 				state.isLoading = false
 				state.movies = action.payload
 				state.hasMore = action.payload.page < action.payload.pages
+				state.page = action.payload.page
 			})
 			.addCase(fetchMoviesByParams.rejected, (state, action) => {
 				state.isLoading = false

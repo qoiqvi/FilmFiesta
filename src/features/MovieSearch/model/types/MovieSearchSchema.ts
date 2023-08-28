@@ -25,4 +25,5 @@ export interface MovieSearchSchema {
 	isLoading: boolean
 	error?: string
 	hasMore: boolean
+	page: number
 }

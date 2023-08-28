@@ -20,11 +20,11 @@ export interface SearchSelectProps<T extends string> {
 	onChange?: (value: string) => void
 	value?: T
 	width?: SearchSelectWidth
-	nullable?: boolean
+	placeholder?: string
 }
 
 export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>) => {
-	const { options, notFound, onChange, readonly, value, width = "medium" } = props
+	const { options, notFound, onChange, readonly, value, width = "medium", placeholder } = props
 	const [selected, setSelected] = useState("")
 	const [query, setQuery] = useState("")
 
@@ -34,6 +34,7 @@ export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>)
 	}
 	// @ts-ignore
 	useEffect(() => setSelected?.(options.find((elem) => elem.value.includes(value))), [value])
+
 	const filteredOptions =
 		query === ""
 			? options
@@ -53,6 +54,7 @@ export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>)
 						className={cls.comboboxInput}
 						displayValue={(option: SearchSelectOption<T>) => option?.content}
 						onChange={(event) => setQuery(event?.target?.value)}
+						placeholder={placeholder}
 					/>
 					<Combobox.Button className={cls.comboboxButton}>
 						<ChevronUpDownIcon

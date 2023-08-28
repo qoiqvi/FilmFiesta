@@ -6,6 +6,8 @@ import { years, ratings, allGenres, allCountries, allSortFields, allSortType } f
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
 import { useSearchParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { getMoviesDataByParamsPage } from "features/MovieSearch/model/selectors"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -14,6 +16,7 @@ export interface MovieFiltersProps {
 export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const { className } = props
 	const dispatch = useAppDispatch()
+	const page = useSelector(getMoviesDataByParamsPage)
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	useEffect(() => {
@@ -22,8 +25,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			param[1] === "" ? newSearchParams.delete(param[0]) : null
 		)
 		setSearchParams(newSearchParams.toString())
-		searchParams.append("limit", "42")
-		dispatch(fetchMoviesByParams(Object.fromEntries(searchParams)))
+		dispatch(fetchMoviesByParams({ params: Object.fromEntries(searchParams), limit: 42, page: 1 }))
 	}, [dispatch, searchParams])
 
 	const onChangeGenre = useCallback(
@@ -73,6 +75,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			<SearchSelect
 				notFound="Такого жанра нет"
 				options={allGenres}
+				placeholder="Жанр"
 				onChange={onChangeGenre}
 				width="small"
 				value={searchParams.get("genres.name") || ""}
@@ -80,12 +83,14 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			<SearchSelect
 				notFound="Не найдено"
 				options={years}
+				placeholder="Годы выхода"
 				onChange={onChangeYear}
 				width="small"
 				value={searchParams.get("year") || ""}
 			/>
 			<SearchSelect
 				notFound="Не найдено"
+				placeholder="Рейтинг"
 				options={ratings}
 				onChange={onChangeRating}
 				width="small"
@@ -93,6 +98,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			/>
 			<SearchSelect
 				notFound="Не найдено"
+				placeholder="Страна"
 				options={allCountries}
 				onChange={onChangeCountry}
 				width="small"
@@ -101,6 +107,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 			<div className={cls.sortContainer}>
 				<SearchSelect
 					notFound="Не найдено"
+					placeholder="Сортировать по"
 					options={allSortFields}
 					width="small"
 					onChange={onChangeSortField}
@@ -108,6 +115,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 				/>
 				<SearchSelect
 					notFound="Не найдено"
+					placeholder="Страна"
 					options={allSortType}
 					width="small"
 					onChange={onChangeSortType}
