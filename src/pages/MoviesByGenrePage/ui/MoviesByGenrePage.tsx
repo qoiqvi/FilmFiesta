@@ -20,7 +20,7 @@ const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
 		<Page className={classNames(cls.MoviesByGenrePage, {}, [className])}>
 			{genre && <Text title={genre[0].toUpperCase() + genre.slice(1) + ":"} />}
 			<MovieCardsList
-				movies={movies}
+				movies={movies?.docs}
 				isLoading={isLoading}
 			/>
 		</Page>

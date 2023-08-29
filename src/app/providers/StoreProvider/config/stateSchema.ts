@@ -1,7 +1,7 @@
 import type { ReducersMapObject, AnyAction, Reducer, CombinedState, EnhancedStore } from "@reduxjs/toolkit"
 import type { AxiosInstance } from "axios"
+import { MovieSearchSchema } from "features/MovieSearch/model/api/types/MovieSearchSchema"
 import type { MoviesByGenreSchema } from "features/MoviesByGenre"
-import type { MovieSearchSchema } from "features/MovieSearch"
 import { rtkApi } from "shared/api/rtkApi"
 import { SaveScrollSchema } from "widgets/Page"
 

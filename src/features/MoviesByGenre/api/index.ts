@@ -1,3 +1,4 @@
+import { Data, Movie } from "entities/Movie"
 import { rtkApi } from "shared/api/rtkApi"
 
 interface MoviesByGenreApiProps {
@@ -7,8 +8,8 @@ interface MoviesByGenreApiProps {
 
 const MoviesByGenreApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		fetchMoviesByGenre: build.query({
-			query: ({ limit, genre }: MoviesByGenreApiProps) => ({
+		fetchMoviesByGenre: build.query<Data<Movie>, MoviesByGenreApiProps>({
+			query: ({ limit, genre }) => ({
 				url: `/v1.3/movie?limit=${limit}&page=1&genres.name=${genre}`,
 			}),
 		}),

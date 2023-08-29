@@ -22,6 +22,7 @@ export interface QueryParams {
 
 export interface MovieSearchSchema {
 	movies: Movie[] | undefined
+	// movies: Data<Movie>
 	isLoading: boolean
 	error?: string
 	hasMore: boolean

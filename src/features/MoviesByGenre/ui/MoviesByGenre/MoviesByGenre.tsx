@@ -6,6 +6,7 @@ import { MovieCardsList } from "entities/Movie"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { useFetchMoviesByGenreQuery } from "features/MoviesByGenre/api"
+import { Skeleton } from "shared/ui/Skeleton"
 
 export interface MoviesByGenreProps {
 	className?: string
@@ -16,6 +17,13 @@ export interface MoviesByGenreProps {
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre, title } = props
 	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre, limit: 5 })
+	if (isLoading) {
+		return (
+			<div>
+				<Skeleton />
+			</div>
+		)
+	}
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${genre}`}>
@@ -25,7 +33,7 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 				/>
 			</Link>
 			<MovieCardsList
-				movies={movies}
+				movies={movies?.docs}
 				isLoading={false}
 			/>
 		</div>

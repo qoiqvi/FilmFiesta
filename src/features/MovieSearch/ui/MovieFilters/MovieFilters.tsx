@@ -2,12 +2,19 @@ import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MovieFilters.module.scss"
 import { memo, useCallback, useEffect } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
-import { years, ratings, allGenres, allCountries, allSortFields, allSortType } from "features/MovieSearch/model/config"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
-import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
 import { useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { getMoviesDataByParamsPage } from "features/MovieSearch/model/selectors"
+import {
+	allGenres,
+	years,
+	ratings,
+	allCountries,
+	allSortFields,
+	allSortType,
+} from "features/MovieSearch/model/api/config"
+import { getMoviesDataByParamsPage } from "features/MovieSearch/model/api/selectors"
+import { fetchMoviesByParams } from "features/MovieSearch/model/api/services/fetchMovieByParams"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -20,6 +27,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	useEffect(() => {
+		console.log("MovieFilters")
 		const newSearchParams = new URLSearchParams(searchParams)
 		Object.entries(Object.fromEntries(searchParams)).map((param) =>
 			param[1] === "" ? newSearchParams.delete(param[0]) : null
