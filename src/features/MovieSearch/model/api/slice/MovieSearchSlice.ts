@@ -24,11 +24,11 @@ export const MovieSearchSlice = createSlice({
 			})
 			.addCase(fetchMoviesByParams.fulfilled, (state, action: PayloadAction<Data<Movie>>) => {
 				state.isLoading = false
-				state.movies = action.payload.docs
+				// state.movies = action.payload.docs
 				// если не пофикситься, то попробую использовать entityAdapter,
 				// нужно перенести всю логику на уровень страницы
-				// state.movies = state.movies ? { ...state.movies, ...action.payload.docs } : action.payload.docs
-				state.hasMore = action.payload.page < action.payload.pages ? true : false
+				state.movies = state.movies ? { ...state.movies, ...action.payload.docs } : action.payload.docs
+				state.hasMore = action.payload.page < action.payload.pages
 				state.page = action.payload.page
 			})
 			.addCase(fetchMoviesByParams.rejected, (state, action) => {

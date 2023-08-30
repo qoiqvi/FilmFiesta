@@ -21,6 +21,7 @@ export const fetchNextMovies = createAsyncThunk<void, fetchNextMovies, ThunkConf
 
 			if (hasMore && !isLoading && page) {
 				dispatch(fetchMoviesByParams({ params, limit, page: page + 1 }))
+				console.log("dispatch(fetchMoviesByParams({ params, limit, page: page + 1 }))")
 			}
 		} catch (error) {
 			return rejectWithValue("error")
