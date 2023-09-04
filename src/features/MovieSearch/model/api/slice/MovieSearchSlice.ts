@@ -1,20 +1,34 @@
-import { type PayloadAction, createSlice, AnyAction } from "@reduxjs/toolkit"
-import { MovieSearchSchema } from "../types/MovieSearchSchema"
+import { type PayloadAction, createSlice, AnyAction, createEntityAdapter, EntityState } from "@reduxjs/toolkit"
 import { fetchMoviesByParams } from "../services/fetchMovieByParams"
 import { Movie } from "entities/Movie"
 import { Data } from "entities/Movie/model/types/Movie"
+import { StateSchema } from "app/providers/StoreProvider"
 
-const initialState: MovieSearchSchema = {
-	movies: undefined,
-	isLoading: false,
-	error: undefined,
-	hasMore: true,
-	page: 1,
+const moviesAdapter = createEntityAdapter<Movie>({
+	selectId: (movie) => movie.id,
+})
+
+export const getMovies = moviesAdapter.getSelectors<StateSchema>(
+	(state) => state.movieSearch || moviesAdapter.getInitialState()
+)
+
+interface MovieSearchSchema extends EntityState<Movie> {
+	isLoading: boolean
+	error?: string
+	hasMore: boolean
+	page: number
 }
 
 export const MovieSearchSlice = createSlice({
 	name: "MovieSearchSlice",
-	initialState,
+	initialState: moviesAdapter.getInitialState<MovieSearchSchema>({
+		hasMore: true,
+		isLoading: false,
+		page: 1,
+		error: undefined,
+		ids: [],
+		entities: {},
+	}),
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
@@ -22,12 +36,13 @@ export const MovieSearchSlice = createSlice({
 				state.error = undefined
 				state.isLoading = true
 			})
-			.addCase(fetchMoviesByParams.fulfilled, (state, action: PayloadAction<Data<Movie>>) => {
+			.addCase(fetchMoviesByParams.fulfilled, (state, action) => {
 				state.isLoading = false
-				// state.movies = action.payload.docs
-				// если не пофикситься, то попробую использовать entityAdapter,
-				// нужно перенести всю логику на уровень страницы
-				state.movies = state.movies ? { ...state.movies, ...action.payload.docs } : action.payload.docs
+				if (action.meta.arg.replace === false) {
+					moviesAdapter.addMany(state, action.payload.docs)
+				} else {
+					moviesAdapter.setAll(state, action.payload.docs)
+				}
 				state.hasMore = action.payload.page < action.payload.pages
 				state.page = action.payload.page
 			})

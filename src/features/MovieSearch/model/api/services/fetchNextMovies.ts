@@ -20,7 +20,7 @@ export const fetchNextMovies = createAsyncThunk<void, fetchNextMovies, ThunkConf
 			const hasMore = getMoviesDataByParamsHasMore(getState())
 
 			if (hasMore && !isLoading && page) {
-				dispatch(fetchMoviesByParams({ params, limit, page: page + 1 }))
+				dispatch(fetchMoviesByParams({ params, limit, page: page + 1, replace: false }))
 				console.log("dispatch(fetchMoviesByParams({ params, limit, page: page + 1 }))")
 			}
 		} catch (error) {

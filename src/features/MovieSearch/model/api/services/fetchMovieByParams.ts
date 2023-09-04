@@ -8,7 +8,38 @@ interface fetchMoviesByParamsProps {
 	params: QueryParams
 	limit: number
 	page?: number
+	replace?: boolean
 }
+
+export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByParamsProps, ThunkConfig<string>>(
+	"movieSearch/fetchMoviesByParams",
+	async ({ params, limit, page, replace = true }, { extra, rejectWithValue }) => {
+		console.log("FETCHING")
+		try {
+			const queryString: string[] = []
+
+			Object.entries(params).map(([query, value], index) => {
+				if (value !== undefined && value !== "") {
+					if (index === 0) {
+						queryString.push(`?${query}=${value}`, `&limit=${limit}`, `&page=${page}`)
+					} else {
+						queryString.push(`&${query}=${value}`)
+					}
+				}
+			})
+
+			const response = await extra.api<Data<Movie>>(`v1.3/movie${queryString.join("")}`)
+
+			if (!response.data) {
+				throw new Error()
+			}
+
+			return response.data
+		} catch (error) {
+			return rejectWithValue("error")
+		}
+	}
+)
 
 let a = {
 	limit: 1,
@@ -60,33 +91,3 @@ let a = {
 		},
 	],
 } as Data<Movie>
-
-export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByParamsProps, ThunkConfig<string>>(
-	"movieSearch/fetchMoviesByParams",
-	async ({ params, limit, page }, { extra, rejectWithValue }) => {
-		console.log("FETCHING")
-		try {
-			const queryString: string[] = []
-
-			Object.entries(params).map(([query, value], index) => {
-				if (value !== undefined && value !== "") {
-					if (index === 0) {
-						queryString.push(`?${query}=${value}`, `&limit=${limit}`, `&page=${page}`)
-					} else {
-						queryString.push(`&${query}=${value}`)
-					}
-				}
-			})
-
-			const response = await extra.api<Data<Movie>>(`v1.3/movie${queryString.join("")}`)
-
-			if (!response.data) {
-				throw new Error()
-			}
-
-			return response.data
-		} catch (error) {
-			return rejectWithValue("error")
-		}
-	}
-)

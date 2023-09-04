@@ -9,11 +9,11 @@ import { MovieCardsList } from "entities/Movie"
 import { useSelector } from "react-redux"
 import { MoviesByGenre } from "features/MoviesByGenre"
 import { SearchMoviePageTitle } from "./SearchMoviePageTitle/SearchMoviePageTitle"
-import { getMoviesDataByParams, getMoviesDataByParamsIsLoading } from "features/MovieSearch/model/api/selectors"
-import { MovieSearchSliceReducer } from "features/MovieSearch/model/api/slice/MovieSearchSlice"
+import { getMoviesDataByParamsIsLoading } from "features/MovieSearch/model/api/selectors"
 import { MovieFilters } from "features/MovieSearch"
 import { fetchMoviesByParams } from "features/MovieSearch/model/api/services/fetchMovieByParams"
 import { fetchNextMovies } from "features/MovieSearch/model/api/services/fetchNextMovies"
+import { MovieSearchSliceReducer, getMovies } from "features/MovieSearch/model/api/slice/MovieSearchSlice"
 
 export interface SearchMoviePageProps {
 	className?: string
@@ -28,7 +28,7 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [isSearch, setIsSearch] = useState(searchParams.size > 0)
 	const dispatch = useAppDispatch()
-	const movies = useSelector(getMoviesDataByParams)
+	const movies = useSelector(getMovies.selectAll)
 	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
 
 	useEffect(() => {
@@ -56,7 +56,8 @@ const SearchMoviePage = memo((props: SearchMoviePageProps) => {
 					<MovieFilters />
 					<div>
 						<MovieCardsList
-							isLoading={true}
+							className={cls.movies}
+							isLoading={isLoading}
 							movies={movies}
 						/>
 					</div>

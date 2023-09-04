@@ -1,3 +1,4 @@
+import { EntityState } from "@reduxjs/toolkit"
 import { Movie } from "entities/Movie"
 import { Data } from "entities/Movie/model/types/Movie"
 
@@ -20,9 +21,16 @@ export interface QueryParams {
 	top250?: "!null"
 }
 
-export interface MovieSearchSchema {
-	movies: Movie[] | undefined
-	// movies: Data<Movie>
+// export interface MovieSearchSchema {
+// 	movies: Movie[] | undefined
+// 	// movies: Data<Movie>
+// 	isLoading: boolean
+// 	error?: string
+// 	hasMore: boolean
+// 	page: number
+// }
+
+export interface MovieSearchSchema extends EntityState<Movie> {
 	isLoading: boolean
 	error?: string
 	hasMore: boolean

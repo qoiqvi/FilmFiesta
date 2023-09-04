@@ -3,14 +3,7 @@ import cls from "./MovieFilters.module.scss"
 import { memo, useCallback } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
 import { useSearchParams } from "react-router-dom"
-import {
-	allGenres,
-	years,
-	ratings,
-	allCountries,
-	allSortFields,
-	allSortType,
-} from "features/MovieSearch/model/api/config"
+import { allGenres, years, ratings, allCountries, allSortFields } from "features/MovieSearch/model/api/config"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -105,14 +98,14 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 					onChange={onChangeSortField}
 					value={searchParams.get("sortField") || ""}
 				/>
-				<SearchSelect
+				{/* <SearchSelect
 					notFound="Не найдено"
 					placeholder="Страна"
 					options={allSortType}
 					width="small"
 					onChange={onChangeSortType}
 					value={searchParams.get("sortType") || ""}
-				/>
+				/> */}
 			</div>
 		</div>
 	)
