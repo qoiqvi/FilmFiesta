@@ -1,20 +1,22 @@
 import { FilmByIdPage } from "pages/FilmByIdPage"
 import { FilmsPage } from "pages/FilmsPage"
-import { MainPage } from "pages/MainPage"
 import { MoviesByGenrePage } from "pages/MoviesByGenrePage"
 import { NotFoundPage } from "pages/NotFoundPage"
 import { PersonByIdPage } from "pages/PersonByIdPage"
 import { ProfilePage } from "pages/ProfilePage"
-import { SearchMoviePage } from "pages/SearchMoviePage"
+import { MoviesPage } from "pages/MoviesPage"
 import { RouteProps } from "react-router-dom"
+import { CartoonPage } from "pages/CartoonPage"
 
 export enum AppRoutes {
 	FILMS = "films",
 	FILM_BY_ID = "film_by_id",
 	PERSON_BY_ID = "person_by_id",
 	PROFILE = "profile",
-	SEARCH = "search",
+	MOVIES = "movies",
 	MOVIES_BY_GENRE = "movies_by_genre",
+	CARTOONS = "cartoons",
+	SERIES = "series",
 	NOT_FOUND = "not_found",
 }
 
@@ -27,7 +29,9 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.FILM_BY_ID]: "/film/",
 	[AppRoutes.PERSON_BY_ID]: "/person/",
 	[AppRoutes.PROFILE]: "/profile",
-	[AppRoutes.SEARCH]: "/search",
+	[AppRoutes.MOVIES]: "/movies/",
+	[AppRoutes.CARTOONS]: "/cartoons/",
+	[AppRoutes.SERIES]: "/series/",
 	[AppRoutes.MOVIES_BY_GENRE]: "/movies/",
 	[AppRoutes.NOT_FOUND]: "*",
 }
@@ -53,9 +57,19 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		path: RoutePath.profile,
 		authOnly: false,
 	},
-	[AppRoutes.SEARCH]: {
-		element: <SearchMoviePage />,
-		path: RoutePath.search,
+	[AppRoutes.MOVIES]: {
+		element: <MoviesPage />,
+		path: RoutePath.movies,
+		authOnly: false,
+	},
+	[AppRoutes.CARTOONS]: {
+		element: <CartoonPage />,
+		path: RoutePath.cartoons,
+		authOnly: false,
+	},
+	[AppRoutes.SERIES]: {
+		element: <MoviesPage />,
+		path: RoutePath.series,
 		authOnly: false,
 	},
 	[AppRoutes.MOVIES_BY_GENRE]: {

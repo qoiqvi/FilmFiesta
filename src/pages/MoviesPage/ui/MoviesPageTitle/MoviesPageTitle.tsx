@@ -1,14 +1,14 @@
 import { classNames } from "shared/lib/classNames/classNames"
-import cls from "./SearchMoviePageTitle.module.scss"
+import cls from "./MoviesPageTitle.module.scss"
 import { memo, useMemo, useState } from "react"
 import { Text } from "shared/ui/Text"
 
-export interface SearchMoviePageTitleProps {
+export interface MoviesPageTitleProps {
 	className?: string
 	searchParams: URLSearchParams
 }
 
-export const SearchMoviePageTitle = memo((props: SearchMoviePageTitleProps) => {
+export const MoviesPageTitle = memo((props: MoviesPageTitleProps) => {
 	const { className, searchParams } = props
 	const [collapsed, setCollapsed] = useState(true)
 
@@ -27,7 +27,7 @@ export const SearchMoviePageTitle = memo((props: SearchMoviePageTitleProps) => {
 	}, [searchParams])
 
 	return (
-		<div className={classNames(cls.SearchMoviePageTitle, {}, [className])}>
+		<div className={classNames(cls.MoviesPageTitle, {}, [className])}>
 			<Text title={title} />
 		</div>
 	)

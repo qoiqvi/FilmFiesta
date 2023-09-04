@@ -13,25 +13,57 @@ export const Navbar = memo((props: NavbarProps) => {
 	const [search, setSearch] = useState<string>("Человек паук")
 	return (
 		<nav className={classNames(cls.Navbar, {}, [className])}>
-			<h1 className={cls.title}>FILMFIESTA</h1>
-			<Input style={{ width: 500, marginRight: 180 }} width={500} type="tel" value={search} />
-			<Button className={cls.button} type="secondary" rounded container={<Link to="/films" />}>
+			<Link
+				to="/"
+				className={cls.title}
+			>
+				<h1>FILMFIESTA</h1>
+			</Link>
+			{/* <Input style={{ width: 500, marginRight: 180 }} width={500} type="tel" value={search} /> */}
+			<Button
+				className={cls.button}
+				type="secondary"
+				rounded
+				container={<Link to="/movies" />}
+			>
 				Фильмы
 			</Button>
-			<Button className={cls.button} type="secondary" rounded container={<Link to="/search" />}>
-				Поиск
+			<Button
+				className={cls.button}
+				type="secondary"
+				rounded
+				container={<Link to="/series" />}
+			>
+				Сериалы
 			</Button>
-			<Button className={cls.button} type="secondary" rounded container={<Link to="/" />}>
+			<Button
+				className={cls.button}
+				type="secondary"
+				rounded
+				container={<Link to="/cartoons" />}
+			>
+				Мультфильмы
+			</Button>
+			<Button
+				className={cls.button}
+				type="secondary"
+				rounded
+				container={<Link to="/" />}
+			>
 				Главная
 			</Button>
-			<Button className={cls.button} type="secondary" rounded>
-				<PersonIcon size={"large"} color="black" className={cls.icon} />
+			{/* <Button
+				className={cls.button}
+				type="secondary"
+				rounded
+			>
+				<PersonIcon
+					size={"large"}
+					color="black"
+					className={cls.icon}
+				/>
 				Войти
-			</Button>
+			</Button> */}
 		</nav>
 	)
 })
-
-{
-	/* <Button container={<Link to="/home" />}>Кнопка-ссылка</Button> */
-}

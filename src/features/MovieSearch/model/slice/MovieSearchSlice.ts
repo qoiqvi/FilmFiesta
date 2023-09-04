@@ -1,7 +1,6 @@
 import { type PayloadAction, createSlice, AnyAction, createEntityAdapter, EntityState } from "@reduxjs/toolkit"
 import { fetchMoviesByParams } from "../services/fetchMovieByParams"
 import { Movie } from "entities/Movie"
-import { Data } from "entities/Movie/model/types/Movie"
 import { StateSchema } from "app/providers/StoreProvider"
 
 const moviesAdapter = createEntityAdapter<Movie>({
