@@ -7,16 +7,22 @@ import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { useFetchMoviesByGenreQuery } from "features/MoviesByGenre/api"
 import { Skeleton } from "shared/ui/Skeleton"
+import { type } from "features/MovieSearch/model/types/MovieSearchSchema"
 
 export interface MoviesByGenreProps {
 	className?: string
 	genre: string
 	title?: string
+	type?: type
 }
 
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
-	const { className, genre, title } = props
-	const { isLoading, isError, data: movies } = useFetchMoviesByGenreQuery({ genre: genre, limit: 5 })
+	const { className, genre, title, type } = props
+	const {
+		isLoading,
+		isError,
+		data: movies,
+	} = useFetchMoviesByGenreQuery({ genre: genre, limit: 5, type: type }, { refetchOnMountOrArgChange: true })
 	if (isLoading) {
 		return (
 			<div>

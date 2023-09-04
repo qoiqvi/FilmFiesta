@@ -3,7 +3,7 @@ import { Movie } from "entities/Movie"
 
 export type SortBy = "year" | "rating.imdb" | "votes.kp"
 export type SortDirection = "1" | "-1"
-export type type = "movie" | "tv-series " | "cartoon" | "anime" | "animated-series " | "tv-show"
+export type type = "movie" | "tv-series" | "cartoon" | "anime" | "animated-series" | "tv-show"
 
 export interface QueryParams {
 	sortField?: SortBy
@@ -13,8 +13,6 @@ export interface QueryParams {
 	page?: number
 	limit?: number
 	"countries.name"?: string
-	ageRating?: string
-	movieLength?: number
 	"rating.imdb"?: string
 	year?: string
 	top250?: "!null"

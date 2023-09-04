@@ -3,7 +3,7 @@ import cls from "./MovieFilters.module.scss"
 import { memo, useCallback } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
 import { useSearchParams } from "react-router-dom"
-import { allGenres, years, ratings, allCountries, allSortFields } from "features/MovieSearch/model/config"
+import { allGenres, years, ratings, allCountries, allSortFields } from "../../model/config"
 
 export interface MovieFiltersProps {
 	className?: string
