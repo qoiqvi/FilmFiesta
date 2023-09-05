@@ -8,7 +8,7 @@ import { SaveScrollSchema } from "widgets/Page"
 export interface StateSchema {
 	saveScroll: SaveScrollSchema
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
-	getMovieByGenere?: MoviesByGenreSchema
+	MovieByGenere?: MoviesByGenreSchema
 	movieSearch?: MovieSearchSchema
 }
 

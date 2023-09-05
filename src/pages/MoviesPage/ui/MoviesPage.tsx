@@ -14,6 +14,7 @@ import { getMoviesDataByParamsIsLoading } from "features/MovieSearch/model/selec
 import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
 import { fetchNextMovies } from "features/MovieSearch/model/services/fetchNextMovies"
 import { MovieSearchSliceReducer, getMovies } from "features/MovieSearch/model/slice/MovieSearchSlice"
+import { MoviesByGenreReducer } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
 
 export interface MoviesPageProps {
 	className?: string
@@ -21,6 +22,7 @@ export interface MoviesPageProps {
 
 const reducer: ReducersList = {
 	movieSearch: MovieSearchSliceReducer,
+	MovieByGenere: MoviesByGenreReducer,
 }
 
 const MoviesPage = memo((props: MoviesPageProps) => {

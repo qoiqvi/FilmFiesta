@@ -5,6 +5,7 @@ import { DynamicModuleLoader, ReducersList } from "shared/lib/components/Dynamic
 import { Page } from "widgets/Page"
 import { MovieSearchSliceReducer } from "features/MovieSearch/model/slice/MovieSearchSlice"
 import { MoviesByGenre } from "features/MoviesByGenre"
+import { MoviesByGenreReducer } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
 
 export interface CartoonPageProps {
 	className?: string
@@ -12,37 +13,38 @@ export interface CartoonPageProps {
 
 const reducer: ReducersList = {
 	movieSearch: MovieSearchSliceReducer,
+	MovieByGenere: MoviesByGenreReducer,
 }
 
 const CartoonPage = memo((props: CartoonPageProps) => {
 	const { className } = props
 	return (
-		// <DynamicModuleLoader reducers={reducer}>
-		<div className={classNames(cls.CartoonPage, {}, [className])}>
-			<Page>
-				<MoviesByGenre
-					genre="фантастика"
-					title="Фантастика:"
-					type="cartoon"
-				/>
-				<MoviesByGenre
-					genre="вестерн"
-					title="Фантастика:"
-					type="cartoon"
-				/>
-				<MoviesByGenre
-					genre="ужасы"
-					title="Фантастика:"
-					type="cartoon"
-				/>
-				<MoviesByGenre
-					genre="триллер"
-					title="Фантастика:"
-					type="cartoon"
-				/>
-			</Page>
-		</div>
-		// </DynamicModuleLoader>
+		<DynamicModuleLoader reducers={reducer}>
+			<div className={classNames(cls.CartoonPage, {}, [className])}>
+				<Page>
+					<MoviesByGenre
+						genre="фантастика"
+						title="Фантастика:"
+						type="cartoon"
+					/>
+					<MoviesByGenre
+						genre="вестерн"
+						title="Вестерны:"
+						type="cartoon"
+					/>
+					<MoviesByGenre
+						genre="ужасы"
+						title="Ужасы:"
+						type="cartoon"
+					/>
+					<MoviesByGenre
+						genre="триллер"
+						title="Триллеры:"
+						type="cartoon"
+					/>
+				</Page>
+			</div>
+		</DynamicModuleLoader>
 	)
 })
 

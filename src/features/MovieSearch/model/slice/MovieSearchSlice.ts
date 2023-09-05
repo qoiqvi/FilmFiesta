@@ -2,6 +2,7 @@ import { type PayloadAction, createSlice, AnyAction, createEntityAdapter, Entity
 import { fetchMoviesByParams } from "../services/fetchMovieByParams"
 import { Movie } from "entities/Movie"
 import { StateSchema } from "app/providers/StoreProvider"
+import { MovieSearchSchema } from "../types/MovieSearchSchema"
 
 const moviesAdapter = createEntityAdapter<Movie>({
 	selectId: (movie) => movie.id,
@@ -10,13 +11,6 @@ const moviesAdapter = createEntityAdapter<Movie>({
 export const getMovies = moviesAdapter.getSelectors<StateSchema>(
 	(state) => state.movieSearch || moviesAdapter.getInitialState()
 )
-
-interface MovieSearchSchema extends EntityState<Movie> {
-	isLoading: boolean
-	error?: string
-	hasMore: boolean
-	page: number
-}
 
 export const MovieSearchSlice = createSlice({
 	name: "MovieSearchSlice",
