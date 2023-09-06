@@ -3,6 +3,7 @@ import cls from "./Navbar.module.scss"
 import { memo, useState } from "react"
 import { Button, Input, PersonIcon } from "rambler-ui"
 import { Link } from "react-router-dom"
+import { SearchSelect } from "shared/ui/SearchSelect"
 
 export interface NavbarProps {
 	className?: string
@@ -52,18 +53,6 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				Главная
 			</Button>
-			{/* <Button
-				className={cls.button}
-				type="secondary"
-				rounded
-			>
-				<PersonIcon
-					size={"large"}
-					color="black"
-					className={cls.icon}
-				/>
-				Войти
-			</Button> */}
 		</nav>
 	)
 })

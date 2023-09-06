@@ -78,16 +78,6 @@ export const SearchSelect = memo(<T extends string>(props: SearchSelectProps<T>)
 								className={({ active }) => (active ? cls.comboboxOptionActive : cls.comboboxOption)}
 								value={option}
 							>
-								{/* {({ selected }) =>
-										selected ? (
-											<div className={cls.comboboxSelectedOption}>
-												<CheckIcon className={cls.checkedIcon} />
-												<Text text={option?.content} />{" "}
-											</div>
-										) : (
-											<Text text={option?.content} />
-										)
-									} */}
 								<Text text={option?.content} />
 							</Combobox.Option>
 						))
