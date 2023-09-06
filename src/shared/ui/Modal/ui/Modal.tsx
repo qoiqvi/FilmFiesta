@@ -18,6 +18,7 @@ export const Modal = (props: ModalProps) => {
 	const [isClosing, setIsClosing] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
 	const closingRef = useRef<ReturnType<typeof setTimeout>>()
+
 	const mods: Mods = {
 		[cls.opened]: isOpen,
 		[cls.isClosing]: isClosing,
@@ -25,6 +26,7 @@ export const Modal = (props: ModalProps) => {
 	const onContentClick = (e: React.MouseEvent) => {
 		e.stopPropagation()
 	}
+
 	const closeHandler = useCallback(() => {
 		if (onClose) {
 			setIsClosing(true)

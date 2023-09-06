@@ -5,6 +5,7 @@ import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
 import { Input } from "shared/ui/Input"
 import { Modal } from "shared/ui/Modal"
+import { MovieSearchModal } from "features/MovieSearch"
 
 export interface NavbarProps {
 	className?: string
@@ -21,15 +22,7 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<h1>FILMFIESTA</h1>
 			</Link>
-			<Button onClick={() => setOpen(true)}>
-				<Modal
-					onClose={() => setOpen(false)}
-					isOpen={open}
-				>
-					mdinceniowencionecionweocnwencio
-				</Modal>
-				Поиск
-			</Button>
+			<MovieSearchModal />
 			<Button
 				className={cls.button}
 				type="secondary"
