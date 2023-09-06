@@ -4,6 +4,7 @@ import { memo, useState } from "react"
 import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
 import { Input } from "shared/ui/Input"
+import { BugButton } from "widgets/PageError/ui/BugButton"
 
 export interface NavbarProps {
 	className?: string
