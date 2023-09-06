@@ -1,34 +1,25 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MoviesByGenre.module.scss"
-import { memo, useEffect } from "react"
+import { memo } from "react"
 import { Text } from "shared/ui/Text"
 import { MovieCardsList } from "entities/Movie"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Skeleton } from "shared/ui/Skeleton"
-import { type } from "features/MovieSearch/model/types/MovieSearchSchema"
-import { useAppDispatch } from "shared/hooks/useAppDispatch"
-import { fetchMoviesByGenre } from "../../model/services/fetchMoviesByGenre"
-import { useSelector } from "react-redux"
-import { getMoviesByGenre } from "../../model/slice/MoviesByGenreSlice"
-import { getMoviesByGenreIsLoading } from "../../model/selectors"
+import { useMoviesByGenreQuery } from "../../model/api"
+import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
 
 export interface MoviesByGenreProps {
 	className?: string
 	genre: string
 	title?: string
-	type?: type
+	type?: MovieType
 }
 
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
-	const { className, genre, title, type = "movie" } = props
-	const dispatch = useAppDispatch()
-	const movies = useSelector(getMoviesByGenre.selectAll)
-	const isLoading = useSelector(getMoviesByGenreIsLoading)
+	const { className, genre = "ужасы", title, type = "movie" } = props
 
-	useEffect(() => {
-		dispatch(fetchMoviesByGenre({ genre: genre, limit: 5, type: type, page: 1 }))
-	}, [dispatch])
+	const { isLoading, isError, data: movies } = useMoviesByGenreQuery({ genre: genre, limit: 5, type: type })
 
 	if (isLoading) {
 		return (
@@ -37,16 +28,19 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 			</div>
 		)
 	}
+
+	console.log(`${RoutePath.movies_by_genre}/${type}/${genre}`)
+
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
-			<Link to={`${RoutePath.movies_by_genre}${genre}`}>
+			<Link to={`${RoutePath.movies_by_genre}${type}/${genre}`}>
 				<Text
 					title={title}
 					className={cls.title}
 				/>
 			</Link>
 			<MovieCardsList
-				movies={movies}
+				movies={movies?.docs}
 				isLoading={false}
 			/>
 		</div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
-import { type } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
 import {
 	getMoviesByGenreHasMore,
 	getMoviesByGenreIsLoading,
@@ -10,7 +10,7 @@ import { fetchMoviesByGenre } from "features/MoviesByGenre/model/services/fetchM
 
 interface fetchNextMoviesByGenreProps {
 	genre: string
-	type: type
+	type: MovieType
 	limit: number
 	replace?: boolean
 }

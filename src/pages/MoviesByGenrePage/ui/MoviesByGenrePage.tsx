@@ -1,6 +1,5 @@
-import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MoviesByGenrePage.module.scss"
-import { memo, useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { MovieCardsList } from "entities/Movie"
 import { Page } from "widgets/Page"
@@ -12,15 +11,11 @@ import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByGenre } from "features/MoviesByGenre/model/services/fetchMoviesByGenre"
 import { fetchNextMoviesByGenre } from "../model/services/fetchNextMoviesByGenre"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
+import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
 
-export interface MoviesByGenrePageProps {
-	className?: string
-}
-
-const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
-	const { className } = props
+const MoviesByGenrePage = () => {
 	const dispatch = useAppDispatch()
-	const { genre } = useParams<{ genre: string }>()
+	const { genre, movieType } = useParams<{ genre: string; movieType: MovieType }>()
 
 	const movies = useSelector(getMoviesByGenre.selectAll)
 	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
@@ -31,15 +26,15 @@ const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
 
 	useEffect(() => {
 		if (genre) {
-			dispatch(fetchMoviesByGenre({ genre: genre, limit: 5, page: 1, type: "movie" }))
+			dispatch(fetchMoviesByGenre({ genre: genre, limit: 50, page: 1, type: movieType ?? "movie" }))
 		}
 	}, [])
 
-	const fetchNextMovies = () => {
+	const fetchNextMovies = useCallback(() => {
 		if (genre) {
-			dispatch(fetchNextMoviesByGenre({ genre, limit: 40, type: "movie", replace: false }))
+			dispatch(fetchNextMoviesByGenre({ genre, limit: 40, type: movieType ?? "movie", replace: false }))
 		}
-	}
+	}, [dispatch, genre, movieType])
 
 	const reducer: ReducersList = {
 		MovieByGenere: MoviesByGenreReducer,
@@ -48,7 +43,7 @@ const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
 	return (
 		<DynamicModuleLoader reducers={reducer}>
 			<Page
-				className={classNames(cls.MoviesByGenrePage, {}, [className])}
+				className={cls.MoviesByGenrePage}
 				onScrollEnd={fetchNextMovies}
 			>
 				{genre && <Text title={genre[0].toUpperCase() + genre.slice(1) + ":"} />}
@@ -59,6 +54,6 @@ const MoviesByGenrePage = memo((props: MoviesByGenrePageProps) => {
 			</Page>
 		</DynamicModuleLoader>
 	)
-})
+}
 
 export default MoviesByGenrePage
