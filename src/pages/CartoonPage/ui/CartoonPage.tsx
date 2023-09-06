@@ -1,26 +1,18 @@
-import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./CartoonPage.module.scss"
-import { memo } from "react"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { Page } from "widgets/Page"
-import { MovieSearchSliceReducer } from "features/MovieSearch/model/slice/MovieSearchSlice"
-import { MoviesByGenre } from "features/MoviesByGenre"
-import { MoviesByGenreReducer } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
-
-export interface CartoonPageProps {
-	className?: string
-}
+import { MoviesByGenre, MoviesByGenreReducer } from "features/MoviesByGenre"
+import { MovieSearchSliceReducer } from "features/MovieSearch"
 
 const reducer: ReducersList = {
 	movieSearch: MovieSearchSliceReducer,
 	MovieByGenere: MoviesByGenreReducer,
 }
 
-const CartoonPage = memo((props: CartoonPageProps) => {
-	const { className } = props
+const CartoonPage = () => {
 	return (
 		<DynamicModuleLoader reducers={reducer}>
-			<div className={classNames(cls.CartoonPage, {}, [className])}>
+			<div className={cls.CartoonPage}>
 				<Page>
 					<MoviesByGenre
 						genre="фантастика"
@@ -46,6 +38,6 @@ const CartoonPage = memo((props: CartoonPageProps) => {
 			</div>
 		</DynamicModuleLoader>
 	)
-})
+}
 
 export default CartoonPage

@@ -1,4 +1,3 @@
-import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./FilmByIdPage.module.scss"
 import { useParams } from "react-router-dom"
 import { Text } from "shared/ui/Text"
@@ -9,17 +8,11 @@ import { PersonsList } from "features/PersonsList"
 import { Page } from "widgets/Page"
 import { FilmByIdMainBlock } from "./FilmByIdMainBlock/FilmByIdMainBlock"
 
-export interface FilmByIdPageProps {
-	className?: string
-}
-
-const FilmByIdPage = (props: FilmByIdPageProps) => {
-	const { className } = props
+const FilmByIdPage = () => {
 	const { id } = useParams<{ id: string }>()
 	const { isError, isLoading, data: movie } = useFilmByIdQuery(id)
-	console.log(movie?.videos)
 	return (
-		<Page className={classNames(cls.FilmByIdPage, {}, [className])}>
+		<Page className={cls.FilmByIdPage}>
 			<FilmByIdMainBlock movie={movie} />
 			<div className={cls.description}>
 				<Text text={movie?.description as string} />
@@ -29,7 +22,6 @@ const FilmByIdPage = (props: FilmByIdPageProps) => {
 				isLoading={isLoading}
 				similarMovies={movie?.similarMovies}
 			/>
-			<Watchability resources={movie?.watchability?.items} />
 		</Page>
 	)
 }

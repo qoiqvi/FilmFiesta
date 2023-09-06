@@ -1,9 +1,8 @@
-import { PayloadAction, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit"
 import { MoviesByGenreSchema } from "../types/moviesByGenreSchema"
-import { Data, Movie } from "entities/Movie"
+import { Movie } from "entities/Movie"
 import { StateSchema } from "app/providers/StoreProvider"
 import { fetchMoviesByGenre } from "../services/fetchMoviesByGenre"
-import { MovieSearchSchema } from "features/MovieSearch"
 
 const moviesByGenreAdapter = createEntityAdapter<Movie>({
 	selectId: (movie) => movie.id,
@@ -29,11 +28,9 @@ export const MoviesByGenreSlice = createSlice({
 			.addCase(fetchMoviesByGenre.pending, (state) => {
 				state.error = undefined
 				state.isLoading = true
-				console.log("isLoading")
 			})
 			.addCase(fetchMoviesByGenre.fulfilled, (state, action) => {
 				state.isLoading = false
-				console.log(action.payload.docs)
 				if (action.meta.arg.replace) {
 					moviesByGenreAdapter.setAll(state, action.payload.docs)
 				} else {
@@ -41,12 +38,10 @@ export const MoviesByGenreSlice = createSlice({
 				}
 				state.hasMore = action.payload.page < action.payload.pages
 				state.page = action.payload.page
-				console.log(action.payload)
 			})
 			.addCase(fetchMoviesByGenre.rejected, (state, action) => {
 				state.isLoading = false
 				state.error = action.payload
-				console.log(action.error)
 			})
 	},
 })

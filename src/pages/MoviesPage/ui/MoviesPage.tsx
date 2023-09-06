@@ -1,32 +1,28 @@
-import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MoviesPage.module.scss"
-import { memo, useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { Page } from "widgets/Page"
 import { useSearchParams } from "react-router-dom"
 import { MovieCardsList } from "entities/Movie"
 import { useSelector } from "react-redux"
-import { MoviesByGenre } from "features/MoviesByGenre"
 import { MoviesPageTitle } from "./MoviesPageTitle/MoviesPageTitle"
-import { MovieFilters } from "features/MovieSearch"
-import { getMoviesDataByParamsIsLoading } from "features/MovieSearch/model/selectors"
-import { fetchMoviesByParams } from "features/MovieSearch/model/services/fetchMovieByParams"
-import { fetchNextMovies } from "features/MovieSearch/model/services/fetchNextMovies"
-import { MovieSearchSliceReducer, getMovies } from "features/MovieSearch/model/slice/MovieSearchSlice"
-import { MoviesByGenreReducer } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
-
-export interface MoviesPageProps {
-	className?: string
-}
+import { MoviesByGenreReducer, MoviesByGenre } from "features/MoviesByGenre"
+import {
+	MovieFilters,
+	MovieSearchSliceReducer,
+	fetchMoviesByParams,
+	fetchNextMovies,
+	getMovies,
+	getMoviesDataByParamsIsLoading,
+} from "features/MovieSearch"
 
 const reducer: ReducersList = {
 	movieSearch: MovieSearchSliceReducer,
 	MovieByGenere: MoviesByGenreReducer,
 }
 
-const MoviesPage = memo((props: MoviesPageProps) => {
-	const { className } = props
+const MoviesPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [isSearch, setIsSearch] = useState(searchParams.size > 0)
 	const dispatch = useAppDispatch()
@@ -51,7 +47,7 @@ const MoviesPage = memo((props: MoviesPageProps) => {
 		<DynamicModuleLoader reducers={reducer}>
 			{isSearch ? (
 				<Page
-					className={classNames(cls.MoviesPage, {}, [className])}
+					className={cls.MoviesPage}
 					onScrollEnd={infiniteScrollFunc}
 				>
 					<MoviesPageTitle searchParams={searchParams} />
@@ -65,7 +61,7 @@ const MoviesPage = memo((props: MoviesPageProps) => {
 					</div>
 				</Page>
 			) : (
-				<Page className={classNames(cls.MoviesPage, {}, [className])}>
+				<Page className={cls.MoviesPage}>
 					<MoviesPageTitle searchParams={searchParams} />
 					<MovieFilters />
 					<div>
@@ -78,6 +74,6 @@ const MoviesPage = memo((props: MoviesPageProps) => {
 			)}
 		</DynamicModuleLoader>
 	)
-})
+}
 
 export default MoviesPage
