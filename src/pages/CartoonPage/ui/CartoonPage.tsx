@@ -2,10 +2,10 @@ import cls from "./CartoonPage.module.scss"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { Page } from "widgets/Page"
 import { MoviesByGenre, MoviesByGenreReducer } from "features/MoviesByGenre"
-import { MovieSearchSliceReducer } from "features/MovieSearch"
+import { MovieFilterSliceReducer } from "features/MovieFilter"
 
 const reducer: ReducersList = {
-	movieSearch: MovieSearchSliceReducer,
+	movieSearch: MovieFilterSliceReducer,
 	MovieByGenere: MoviesByGenreReducer,
 }
 

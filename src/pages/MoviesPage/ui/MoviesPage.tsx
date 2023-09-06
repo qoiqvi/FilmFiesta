@@ -10,15 +10,15 @@ import { MoviesPageTitle } from "./MoviesPageTitle/MoviesPageTitle"
 import { MoviesByGenreReducer, MoviesByGenre } from "features/MoviesByGenre"
 import {
 	MovieFilters,
-	MovieSearchSliceReducer,
+	MovieFilterSliceReducer,
 	fetchMoviesByParams,
 	fetchNextMovies,
 	getMovies,
 	getMoviesDataByParamsIsLoading,
-} from "features/MovieSearch"
+} from "features/MovieFilter"
 
 const reducer: ReducersList = {
-	movieSearch: MovieSearchSliceReducer,
+	movieSearch: MovieFilterSliceReducer,
 	MovieByGenere: MoviesByGenreReducer,
 }
 

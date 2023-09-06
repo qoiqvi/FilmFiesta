@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
 import { Movie } from "entities/Movie"
-import { QueryParams } from "../types/MovieSearchSchema"
+import { QueryParams } from "../types/MovieFilterSchema"
 import { Data } from "entities/Movie/model/types/Movie"
 
 interface fetchMoviesByParamsProps {
@@ -12,7 +12,7 @@ interface fetchMoviesByParamsProps {
 }
 
 export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByParamsProps, ThunkConfig<string>>(
-	"movieSearch/fetchMoviesByParams",
+	"movieFilter/fetchMoviesByParams",
 	async ({ params, limit, page, replace = true }, { extra, rejectWithValue }) => {
 		console.log("FETCHING")
 		try {

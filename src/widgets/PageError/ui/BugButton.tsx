@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AppButton } from "shared/ui/AppButton"
+import { Button } from "shared/ui/Button"
 
 export const BugButton = () => {
 	const [error, setError] = useState(false)
@@ -11,5 +11,5 @@ export const BugButton = () => {
 		if (error) throw new Error()
 	}, [error])
 
-	return <AppButton onClick={throwError}>Выбросить ошибку</AppButton>
+	return <Button onClick={throwError}>Выбросить ошибку</Button>
 }

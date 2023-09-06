@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Skeleton } from "shared/ui/Skeleton"
 import { useMoviesByGenreQuery } from "../../model/api"
-import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
 
 export interface MoviesByGenreProps {
 	className?: string

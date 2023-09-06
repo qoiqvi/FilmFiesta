@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
-import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
 import {
 	getMoviesByGenreHasMore,
 	getMoviesByGenreIsLoading,

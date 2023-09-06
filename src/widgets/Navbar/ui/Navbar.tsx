@@ -4,7 +4,7 @@ import { memo, useState } from "react"
 import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
 import { Input } from "shared/ui/Input"
-import { BugButton } from "widgets/PageError/ui/BugButton"
+import { Modal } from "shared/ui/Modal"
 
 export interface NavbarProps {
 	className?: string
@@ -12,7 +12,7 @@ export interface NavbarProps {
 
 export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props
-	const [search, setSearch] = useState<string>("Человек паук")
+	const [open, setOpen] = useState(false)
 	return (
 		<nav className={classNames(cls.Navbar, {}, [className])}>
 			<Link
@@ -21,11 +21,15 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<h1>FILMFIESTA</h1>
 			</Link>
-			<Input
-				value={search}
-				onChange={(value: string) => setSearch(value)}
-			/>
-			{/* <Input style={{ width: 500, marginRight: 180 }} width={500} type="tel" value={search} /> */}
+			<Button onClick={() => setOpen(true)}>
+				<Modal
+					onClose={() => setOpen(false)}
+					isOpen={open}
+				>
+					mdinceniowencionecionweocnwencio
+				</Modal>
+				Поиск
+			</Button>
 			<Button
 				className={cls.button}
 				type="secondary"

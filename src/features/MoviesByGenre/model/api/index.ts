@@ -1,5 +1,5 @@
 import { Data, Movie } from "entities/Movie"
-import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
 import { rtkApi } from "shared/api/rtkApi"
 
 interface MoviesByGenreApiProps {

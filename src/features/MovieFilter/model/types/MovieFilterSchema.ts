@@ -18,7 +18,7 @@ export interface QueryParams {
 	top250?: "!null"
 }
 
-export interface MovieSearchSchema extends EntityState<Movie> {
+export interface MovieFilterSchema extends EntityState<Movie> {
 	isLoading: boolean
 	error?: string
 	hasMore: boolean

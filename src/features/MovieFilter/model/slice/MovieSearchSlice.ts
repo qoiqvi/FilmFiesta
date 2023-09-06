@@ -1,8 +1,8 @@
-import { type PayloadAction, createSlice, AnyAction, createEntityAdapter, EntityState } from "@reduxjs/toolkit"
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 import { fetchMoviesByParams } from "../services/fetchMovieByParams"
 import { Movie } from "entities/Movie"
 import { StateSchema } from "app/providers/StoreProvider"
-import { MovieSearchSchema } from "../types/MovieSearchSchema"
+import { MovieFilterSchema } from "../types/MovieFilterSchema"
 
 const moviesAdapter = createEntityAdapter<Movie>({
 	selectId: (movie) => movie.id,
@@ -12,9 +12,9 @@ export const getMovies = moviesAdapter.getSelectors<StateSchema>(
 	(state) => state.movieSearch || moviesAdapter.getInitialState()
 )
 
-export const MovieSearchSlice = createSlice({
-	name: "MovieSearchSlice",
-	initialState: moviesAdapter.getInitialState<MovieSearchSchema>({
+export const MovieFilterSlice = createSlice({
+	name: "MovieFilterSlice",
+	initialState: moviesAdapter.getInitialState<MovieFilterSchema>({
 		hasMore: true,
 		isLoading: false,
 		page: 1,
@@ -46,5 +46,5 @@ export const MovieSearchSlice = createSlice({
 	},
 })
 
-export const { actions: MovieSearchSliceActions } = MovieSearchSlice
-export const { reducer: MovieSearchSliceReducer } = MovieSearchSlice
+export const { actions: MovieFilterSliceActions } = MovieFilterSlice
+export const { reducer: MovieFilterSliceReducer } = MovieFilterSlice

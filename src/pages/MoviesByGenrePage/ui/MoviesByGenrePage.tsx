@@ -6,12 +6,12 @@ import { Page } from "widgets/Page"
 import { Text } from "shared/ui/Text"
 import { useSelector } from "react-redux"
 import { MoviesByGenreReducer, getMoviesByGenre } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
-import { getMoviesDataByParamsIsLoading } from "features/MovieSearch/model/selectors"
+import { getMoviesDataByParamsIsLoading } from "features/MovieFilter/model/selectors"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByGenre } from "features/MoviesByGenre/model/services/fetchMoviesByGenre"
 import { fetchNextMoviesByGenre } from "../model/services/fetchNextMoviesByGenre"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
-import { MovieType } from "features/MovieSearch/model/types/MovieSearchSchema"
+import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
 
 const MoviesByGenrePage = () => {
 	const dispatch = useAppDispatch()
