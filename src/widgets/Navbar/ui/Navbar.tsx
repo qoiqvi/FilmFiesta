@@ -1,9 +1,9 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./Navbar.module.scss"
 import { memo, useState } from "react"
-import { Button, Input, PersonIcon } from "rambler-ui"
+import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
-import { SearchSelect } from "shared/ui/SearchSelect"
+import { Input } from "shared/ui/Input"
 
 export interface NavbarProps {
 	className?: string
@@ -20,6 +20,10 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<h1>FILMFIESTA</h1>
 			</Link>
+			<Input
+				value={search}
+				onChange={(value: string) => setSearch(value)}
+			/>
 			{/* <Input style={{ width: 500, marginRight: 180 }} width={500} type="tel" value={search} /> */}
 			<Button
 				className={cls.button}
