@@ -3,31 +3,38 @@ import cls from "./MovieSearchModal.module.scss"
 import { memo, useCallback, useEffect, useState } from "react"
 import { Modal } from "shared/ui/Modal"
 import { Input } from "shared/ui/Input"
-import { SearchMovieList } from "./SearchMovieList/SearchMovieList"
-import { useMovieSearchQuery } from "../model/api"
+import { useDebounce } from "shared/hooks/useDebounce/useDebounce"
+import { useMovieSearchQuery } from "features/MovieSearch/model/api"
 
 export interface MovieSearchModalProps {
 	className?: string
+	isOpen: boolean
+	setIsOpen: (arg: boolean) => void
 }
 
 export const MovieSearchModal = memo((props: MovieSearchModalProps) => {
-	const { className } = props
-	const [isOpen, setIsOpen] = useState(true)
+	const { className, isOpen, setIsOpen } = props
 	const [query, setQuery] = useState("")
-	const { data: movies, isLoading, refetch } = useMovieSearchQuery({ query })
+	const [debouncedQuery, setDebouncedQuery] = useState("")
 
-	//
+	const { data: movies, isLoading } = useMovieSearchQuery(
+		{ query: debouncedQuery },
+		{ refetchOnMountOrArgChange: true }
+	)
+
+	const onChangeDebouncedQuery = useCallback(() => {
+		setDebouncedQuery(query)
+	}, [query])
+
+	const debouncedFunc = useDebounce(onChangeDebouncedQuery, 300)
 
 	const onCloseModal = () => {
 		setIsOpen(false)
 	}
 
-	const onChangeQuery = useCallback((value: string) => {
+	const onChangeQuery = (value: string) => {
 		setQuery(value)
-	}, [])
-
-	if (!movies) {
-		return null
+		debouncedFunc()
 	}
 
 	return (
@@ -40,8 +47,8 @@ export const MovieSearchModal = memo((props: MovieSearchModalProps) => {
 				<Input
 					value={query}
 					onChange={onChangeQuery}
+					placeholder="Фильмы и сериалы"
 				/>
-				<SearchMovieList movies={movies.docs} />
 			</div>
 		</Modal>
 	)

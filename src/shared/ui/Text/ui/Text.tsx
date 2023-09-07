@@ -12,7 +12,7 @@ export type TextColor = "black" | "white" | "red"
 interface TextProps {
 	className?: string
 	title?: string
-	text?: string | number
+	text?: string | number | null
 	theme?: TextTheme
 	align?: TextAlign
 	size?: TextSize

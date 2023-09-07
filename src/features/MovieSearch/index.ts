@@ -1,1 +1,1 @@
-export { MovieSearchModal } from "./ui/MovieSearchModal"
+export { SearchMovieSelect } from "./ui/SearchMovieList/SearcMovieSelect/SearcMovieSelect"

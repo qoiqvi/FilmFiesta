@@ -49,22 +49,18 @@ export const Input = memo((props: InputProps) => {
 		[cls.readonly]: readonly,
 	}
 	return (
-		<div className={classNames(cls.InputWrapper, mods, [className])}>
-			{placeholder && <Text text={placeholder} />}
-			<div className={cls.caretWrapper}>
-				<input
-					ref={ref}
-					type={type}
-					value={value}
-					className={cls.input}
-					onChange={onChangeHandler}
-					onFocus={onFocus}
-					onBlur={onBlur}
-					autoFocus={focus}
-					readOnly={readonly}
-					{...otherProps}
-				/>
-			</div>
-		</div>
+		<input
+			ref={ref}
+			type={type}
+			value={value}
+			placeholder={placeholder}
+			className={classNames(cls.input, mods, [className])}
+			onChange={onChangeHandler}
+			onFocus={onFocus}
+			onBlur={onBlur}
+			autoFocus={focus}
+			readOnly={readonly}
+			{...otherProps}
+		/>
 	)
 })

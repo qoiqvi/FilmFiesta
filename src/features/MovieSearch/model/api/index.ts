@@ -9,14 +9,16 @@ interface MoviesSearchApiProps {
 const MoviesSearchApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		MovieSearch: build.query<Data<Movie>, MoviesSearchApiProps>({
-			query: ({ limit = 10, query = "человек паук" }) => ({
-				url: "/v1.3/movie",
-				params: {
-					limit: limit,
-					query: query,
-					page: 1,
-				},
-			}),
+			query: ({ limit = 10, query = "человек паук" }) => {
+				return {
+					url: "/v1.2/movie/search",
+					params: {
+						limit: limit,
+						query: query,
+						page: 1,
+					},
+				}
+			},
 		}),
 	}),
 })

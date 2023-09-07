@@ -3,9 +3,7 @@ import cls from "./Navbar.module.scss"
 import { memo, useState } from "react"
 import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
-import { Input } from "shared/ui/Input"
-import { Modal } from "shared/ui/Modal"
-import { MovieSearchModal } from "features/MovieSearch"
+import { SearchMovieSelect } from "features/MovieSearch"
 
 export interface NavbarProps {
 	className?: string
@@ -13,7 +11,6 @@ export interface NavbarProps {
 
 export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props
-	const [open, setOpen] = useState(false)
 	return (
 		<nav className={classNames(cls.Navbar, {}, [className])}>
 			<Link
@@ -22,7 +19,9 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<h1>FILMFIESTA</h1>
 			</Link>
-			<MovieSearchModal />
+
+			<SearchMovieSelect />
+
 			<Button
 				className={cls.button}
 				type="secondary"
