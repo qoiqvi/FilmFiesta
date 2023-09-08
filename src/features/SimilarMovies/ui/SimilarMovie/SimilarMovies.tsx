@@ -1,11 +1,9 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./SimilarMovies.module.scss"
 import { memo } from "react"
-import { SimilarMovieItem } from "../SimilarMovieItem/SimilarMovieItem"
 import { Text } from "shared/ui/Text"
-import { Skeleton } from "shared/ui/Skeleton"
 import { getSkeletonsArray } from "shared/lib/utils/getSkeletonsArray/getSkeletonsArray"
-import { Movie } from "entities/Movie"
+import { Movie, MovieCard } from "entities/Movie"
 import { Carousel } from "shared/ui/Carousel"
 
 export interface SimilarMoviesProps {
@@ -26,15 +24,15 @@ export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 	return (
 		<>
 			<Text
-				title={`С фильмом «${movie.name}» смотрят `}
+				title={`С фильмом «${movie.name}» смотрят`}
 				className={cls.title}
 			/>
 			<Carousel>
 				<div className={classNames(cls.SimilarMovies, {}, [className])}>
 					{movie.similarMovies?.map((movie) => (
-						<SimilarMovieItem
-							movie={movie}
-							key={movie.id}
+						<MovieCard
+							movie={movie as Movie}
+							rating={false}
 						/>
 					))}
 				</div>

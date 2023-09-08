@@ -23,10 +23,26 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 
 	const { isLoading, isError, data: movies } = useMoviesByGenreQuery({ genre: genre, limit: 10, type: type })
 
+	const getSkeletons = () =>
+		new Array(7).fill(1).map((_, index) => (
+			<Skeleton
+				key={index}
+				height={300}
+				width={200}
+			/>
+		))
+
 	if (isLoading) {
 		return (
-			<div>
-				<Skeleton />
+			<div className={classNames(cls.MovieByGenre, {}, [className])}>
+				<Skeleton
+					className={cls.title}
+					height={30}
+					width={150}
+				/>
+				<Carousel>
+					<div className={cls.container}>{getSkeletons()}</div>
+				</Carousel>
 			</div>
 		)
 	}

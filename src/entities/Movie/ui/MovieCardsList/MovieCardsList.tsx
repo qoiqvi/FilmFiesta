@@ -15,10 +15,10 @@ export const MovieCardsList = memo((props: MovieCardsListProps) => {
 	const { className, isLoading, movies } = props
 
 	const getSkeletons = () =>
-		new Array(20).fill(0).map((_, index) => (
+		new Array(12).fill(0).map((_, index) => (
 			<Skeleton
 				key={index}
-				height={200}
+				height={300}
 				width={200}
 			/>
 		))

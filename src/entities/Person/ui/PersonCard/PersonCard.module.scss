@@ -1,5 +1,13 @@
+.personCard {
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	width: 130px;
+	height: 200px;
+}
 .personPhoto {
-	// border-radius: 30%;
-	width: 75px;
-	height: 75px;
+	width: 100%;
+	height: 100%;
 }

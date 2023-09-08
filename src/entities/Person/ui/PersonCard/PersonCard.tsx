@@ -18,10 +18,12 @@ export const PersonCard = memo((props: PersonCardProps) => {
 			to={RoutePath.person_by_id + person.id}
 			className={classNames(cls.PersonCard, {}, [className])}
 		>
-			<img
-				src={person.photo as string}
-				className={cls.personPhoto}
-			/>
+			<div className={cls.container}>
+				<img
+					src={person.photo as string}
+					className={cls.personPhoto}
+				/>
+			</div>
 			<Text text={person.name as string} />
 		</Link>
 	)
