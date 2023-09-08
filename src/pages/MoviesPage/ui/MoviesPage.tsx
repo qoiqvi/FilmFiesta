@@ -79,32 +79,32 @@ const MoviesPage = () => {
 					<div>
 						<MoviesByGenre
 							genre="боевик"
-							title="Боевики:"
+							title="Боевики"
 							type={movieType}
 						/>
 						<MoviesByGenre
 							genre="комедия"
-							title="Комедия:"
+							title="Комедия"
 							type={movieType}
 						/>
 						<MoviesByGenre
 							genre="вестерн"
-							title="Вестерн:"
+							title="Вестерн"
 							type={movieType}
 						/>
 						<MoviesByGenre
 							genre="фантастика"
-							title="Фантастика:"
+							title="Фантастика"
 							type={movieType}
 						/>
 						<MoviesByGenre
 							genre="ужасы"
-							title="Ужасы:"
+							title="Ужасы"
 							type={movieType}
 						/>
 						<MoviesByGenre
 							genre="биография"
-							title="Биография:"
+							title="Биография"
 							type={movieType}
 						/>
 					</div>

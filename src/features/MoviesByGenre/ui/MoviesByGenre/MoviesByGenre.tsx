@@ -33,7 +33,7 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${type}/${genre}`}>
 				<Text
-					title={title}
+					title={`${title}>`}
 					className={cls.title}
 				/>
 			</Link>

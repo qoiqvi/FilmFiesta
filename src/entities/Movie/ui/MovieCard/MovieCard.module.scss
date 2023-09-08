@@ -7,14 +7,13 @@
 	transform: scale(1.03);
 }
 
-.hovered {
-	.rating {
-		position: absolute;
-		left: 10px;
-		top: 5px;
-		background: var(--accent-green);
-		color: white;
-	}
+.rating {
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .gray {

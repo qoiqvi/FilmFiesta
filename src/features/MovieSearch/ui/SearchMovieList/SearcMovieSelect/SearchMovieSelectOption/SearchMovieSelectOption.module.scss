@@ -1,6 +1,7 @@
 .container {
 	display: flex;
 	overflow: hidden;
+	max-height: 100px;
 }
 
 .poster {
@@ -11,8 +12,19 @@
 
 .content {
 	margin-left: 10px;
-	// display: flex;
+	gap: 10px;
 }
 
-.title {
+.rating {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.watch {
+	margin-left: auto;
+	height: 26px;
+	width: 86px;
+	// padding: 5px;
+	background: #f50;
 }

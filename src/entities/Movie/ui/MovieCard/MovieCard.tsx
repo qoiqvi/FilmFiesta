@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { RoutePath, routeConfig } from "shared/config/routeConfig/routeConfig"
 import { useHover } from "shared/hooks/useHover/useHover"
 import { Text } from "shared/ui/Text"
+import { MovieCardRating } from "entities/Rating"
 
 export interface MovieCardProps {
 	className?: string
@@ -22,27 +23,6 @@ export const MovieCard = memo((props: MovieCardProps) => {
 		[cls["hovered"]]: isHover,
 	}
 
-	// let ratingColor: RatingColor
-	// if (movie.rating?.kp !== null && movie.rating?.kp !== undefined) {
-	// 	ratingColor = movie.rating.kp > 7 ? "green" : "red"
-	// }
-
-	let ratingColor: RatingColor = "gray"
-	const rating = movie.rating?.kp
-	if (rating !== null && rating !== undefined) {
-		switch (true) {
-			case rating > 7:
-				ratingColor = "green"
-				break
-			case rating > 5:
-				ratingColor = "gray"
-				break
-			default:
-				ratingColor = "red"
-				break
-		}
-	}
-
 	return (
 		<Link
 			to={`${RoutePath.film_by_id}${movie.id}`}
@@ -55,14 +35,11 @@ export const MovieCard = memo((props: MovieCardProps) => {
 					src={movie.poster?.previewUrl as string}
 					className={cls.poster}
 				/>
-				{isHover && (
-					<Text
-						color="white"
-						align="center"
-						className={classNames(cls.rating, {}, [cls[ratingColor]])}
-						text={movie.rating?.kp?.toFixed(1)}
-					/>
-				)}
+				<MovieCardRating
+					className={cls.rating}
+					// @ts-ignore
+					rating={movie.rating?.kp?.toFixed(1) || movie.rating?.toFixed(1) || movie.rating?.tmdb?.toFixed(1)}
+				/>
 			</div>
 		</Link>
 	)
