@@ -1,6 +1,26 @@
 .MovieByGenre {
 	margin-bottom: 15px;
 }
+
+.titleContainer {
+	display: flex;
+	gap: 2px;
+}
+
+.icon {
+	transition: opacity 0.5s;
+	opacity: 0;
+	margin-bottom: 6px;
+	color: #315efb;
+}
+
+.MovieByGenre:hover {
+	.icon {
+		display: block;
+		opacity: 1;
+	}
+}
+
 .title {
 	margin-bottom: 10px;
 }

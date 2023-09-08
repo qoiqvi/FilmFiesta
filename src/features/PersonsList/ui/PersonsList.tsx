@@ -22,12 +22,14 @@ export const PersonsList = memo((props: PersonsListProps) => {
 			/>
 			<Carousel>
 				<div className={classNames(cls.PersonsList, {}, [className])}>
-					{persons?.map((person) => (
-						<PersonCard
-							person={person}
-							key={person.id}
-						/>
-					))}
+					{persons?.map((person, i) =>
+						i < 9 ? (
+							<PersonCard
+								person={person}
+								key={person.id}
+							/>
+						) : null
+					)}
 				</div>
 			</Carousel>
 		</>

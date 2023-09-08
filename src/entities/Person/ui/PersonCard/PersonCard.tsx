@@ -2,9 +2,9 @@ import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./PersonCard.module.scss"
 import { memo } from "react"
 import { Text } from "shared/ui/Text"
-import { PersonInMovie } from "entities/Movie/model/types/Movie"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
+import { PersonInMovie } from "../../model/types/Person"
 
 export interface PersonCardProps {
 	className?: string

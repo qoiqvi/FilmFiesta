@@ -5,9 +5,16 @@
 
 .container {
 	width: 130px;
+
 	height: 200px;
 }
 .personPhoto {
 	width: 100%;
+	transition: transform 0.3s;
+
 	height: 100%;
+}
+
+.personPhoto:hover {
+	transform: scale(1.03);
 }
