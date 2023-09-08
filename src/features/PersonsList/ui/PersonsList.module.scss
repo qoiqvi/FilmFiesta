@@ -1,9 +1,22 @@
 .PersonsList {
 	display: flex;
 	gap: 20px;
-	overflow: auto;
+	overflow-x: auto;
 }
+.carousel {
+	position: relative;
+	::-webkit-scrollbar {
+		width: 0; /* Ширина скролл бара */
+	}
 
+	::-webkit-scrollbar-thumb {
+		background: transparent; /* Фон ползунка */
+	}
+
+	* {
+		scrollbar-width: none; /* Скрываем скролл бар */
+	}
+}
 .title {
 	margin: 20px 0;
 }

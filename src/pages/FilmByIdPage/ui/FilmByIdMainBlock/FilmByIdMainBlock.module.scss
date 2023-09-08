@@ -15,27 +15,14 @@
 	gap: 5px;
 }
 
-// .block > * {
-// word-spacing: 0rem;
-// }
-
 .info {
-	// margin-left: 20px;
 	margin: auto 20px;
-}
-
-.mainRating {
-	display: flex;
-	gap: 7px;
-}
-
-.mainRating > * {
-	justify-content: center;
 }
 
 .ratingBlock {
 	display: flex;
 	align-items: center;
+	gap: 7px;
 }
 
 .ratingBlock > div {
@@ -48,4 +35,8 @@
 	display: flex;
 	gap: 15px;
 	align-items: flex-end;
+}
+
+.description {
+	margin-top: 10px;
 }

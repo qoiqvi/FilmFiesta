@@ -30,8 +30,6 @@ export const MovieCard = memo((props: MovieCardProps) => {
 		>
 			<div className={classNames(cls.MovieCard, mods, [className])}>
 				<img
-					width={200}
-					height={200}
 					src={movie.poster?.previewUrl as string}
 					className={cls.poster}
 				/>

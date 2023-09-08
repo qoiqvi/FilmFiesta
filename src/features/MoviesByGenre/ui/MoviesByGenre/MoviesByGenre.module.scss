@@ -4,3 +4,11 @@
 .title {
 	margin-bottom: 10px;
 }
+
+.container {
+	position: relative;
+	overflow-x: auto;
+	display: flex;
+	gap: 15px;
+	overflow-y: hidden;
+}

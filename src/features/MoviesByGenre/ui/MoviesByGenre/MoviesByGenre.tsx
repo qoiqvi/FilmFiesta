@@ -2,12 +2,13 @@ import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./MoviesByGenre.module.scss"
 import { memo } from "react"
 import { Text } from "shared/ui/Text"
-import { MovieCardsList } from "entities/Movie"
+import { MovieCard, MovieCardsList } from "entities/Movie"
 import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Skeleton } from "shared/ui/Skeleton"
 import { useMoviesByGenreQuery } from "../../model/api"
 import { MovieType } from "features/MovieFilter"
+import { Carousel } from "shared/ui/Carousel"
 
 export interface MoviesByGenreProps {
 	className?: string
@@ -19,7 +20,7 @@ export interface MoviesByGenreProps {
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre = "ужасы", title, type = "movie" } = props
 
-	const { isLoading, isError, data: movies } = useMoviesByGenreQuery({ genre: genre, limit: 5, type: type })
+	const { isLoading, isError, data: movies } = useMoviesByGenreQuery({ genre: genre, limit: 10, type: type })
 
 	if (isLoading) {
 		return (
@@ -37,10 +38,16 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 					className={cls.title}
 				/>
 			</Link>
-			<MovieCardsList
-				movies={movies?.docs}
-				isLoading={false}
-			/>
+			<Carousel>
+				<div className={cls.container}>
+					{movies?.docs.map((movie) => (
+						<MovieCard
+							movie={movie}
+							key={movie.id}
+						/>
+					))}
+				</div>
+			</Carousel>
 		</div>
 	)
 })

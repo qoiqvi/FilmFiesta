@@ -1,0 +1,14 @@
+.Carousel {
+	position: relative;
+	::-webkit-scrollbar {
+		width: 0;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: transparent;
+	}
+
+	* {
+		scrollbar-width: none;
+	}
+}
