@@ -8,7 +8,7 @@ import { createMoviePageTitle } from "../../model/utils/createMoviePageTitle"
 export interface MoviesPageTitleProps {
 	className?: string
 	searchParams: URLSearchParams
-	type?: MovieType
+	type: MovieType
 }
 
 export const MoviesPageTitle = memo((props: MoviesPageTitleProps) => {

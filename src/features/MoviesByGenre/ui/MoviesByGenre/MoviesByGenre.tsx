@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
 import { Skeleton } from "shared/ui/Skeleton"
 import { useMoviesByGenreQuery } from "../../model/api"
-import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
+import { MovieType } from "features/MovieFilter"
 
 export interface MoviesByGenreProps {
 	className?: string
@@ -28,8 +28,6 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 			</div>
 		)
 	}
-
-	console.log(`${RoutePath.movies_by_genre}/${type}/${genre}`)
 
 	return (
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>

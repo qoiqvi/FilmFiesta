@@ -17,6 +17,7 @@ import {
 	getMoviesDataByParamsIsLoading,
 	MovieType,
 } from "features/MovieFilter"
+import { NotFoundPage } from "pages/NotFoundPage"
 
 const reducer: ReducersList = {
 	movieSearch: MovieFilterSliceReducer,
@@ -25,7 +26,7 @@ const reducer: ReducersList = {
 
 const MoviesPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const { movieType } = useParams<{ movieType: MovieType }>() // мы получаем тип искомой категории, и должны прокинуть ее по всем компонентам с запросами
+	const { movieType } = useParams<{ movieType: MovieType }>()
 	const [isSearch, setIsSearch] = useState(searchParams.size > 0)
 	const dispatch = useAppDispatch()
 	const movies = useSelector(getMovies.selectAll)
@@ -43,6 +44,10 @@ const MoviesPage = () => {
 	const infiniteScrollFunc = useCallback(() => {
 		dispatch(fetchNextMovies({ params: Object.fromEntries(searchParams), limit: 42, type: movieType }))
 	}, [searchParams, dispatch])
+
+	if (!movieType) {
+		return <NotFoundPage />
+	}
 
 	return (
 		<DynamicModuleLoader reducers={reducer}>
@@ -66,12 +71,40 @@ const MoviesPage = () => {
 				</Page>
 			) : (
 				<Page className={cls.MoviesPage}>
-					<MoviesPageTitle searchParams={searchParams} />
+					<MoviesPageTitle
+						searchParams={searchParams}
+						type={movieType}
+					/>
 					<MovieFilters />
 					<div>
 						<MoviesByGenre
 							genre="боевик"
 							title="Боевики:"
+							type={movieType}
+						/>
+						<MoviesByGenre
+							genre="комедия"
+							title="Комедия:"
+							type={movieType}
+						/>
+						<MoviesByGenre
+							genre="вестерн"
+							title="Вестерн:"
+							type={movieType}
+						/>
+						<MoviesByGenre
+							genre="фантастика"
+							title="Фантастика:"
+							type={movieType}
+						/>
+						<MoviesByGenre
+							genre="ужасы"
+							title="Ужасы:"
+							type={movieType}
+						/>
+						<MoviesByGenre
+							genre="биография"
+							title="Биография:"
 							type={movieType}
 						/>
 					</div>
