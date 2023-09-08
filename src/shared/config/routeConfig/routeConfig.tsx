@@ -13,7 +13,7 @@ export enum AppRoutes {
 	FILM_BY_ID = "film_by_id",
 	PERSON_BY_ID = "person_by_id",
 	PROFILE = "profile",
-	MOVIES = "movies",
+	MOVIES_CATALOG = "catalog",
 	MOVIES_BY_GENRE = "movies_by_genre",
 	CARTOONS = "cartoons",
 	SERIES = "series",
@@ -29,7 +29,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.FILM_BY_ID]: "/film/",
 	[AppRoutes.PERSON_BY_ID]: "/person/",
 	[AppRoutes.PROFILE]: "/profile",
-	[AppRoutes.MOVIES]: "/movies/",
+	[AppRoutes.MOVIES_CATALOG]: "/catalog/",
 	[AppRoutes.CARTOONS]: "/cartoons/",
 	[AppRoutes.SERIES]: "/series/",
 	[AppRoutes.MOVIES_BY_GENRE]: "/byGenre/",
@@ -57,9 +57,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		path: RoutePath.profile,
 		authOnly: false,
 	},
-	[AppRoutes.MOVIES]: {
+	[AppRoutes.MOVIES_CATALOG]: {
 		element: <MoviesPage />,
-		path: RoutePath.movies,
+		path: RoutePath.catalog + ":movieType",
 		authOnly: false,
 	},
 	[AppRoutes.CARTOONS]: {

@@ -1,19 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/providers/StoreProvider"
 import { Movie } from "entities/Movie"
-import { QueryParams } from "../types/MovieFilterSchema"
+import { MovieType, QueryParams } from "../types/MovieFilterSchema"
 import { Data } from "entities/Movie/model/types/Movie"
 
 interface fetchMoviesByParamsProps {
 	params: QueryParams
 	limit: number
 	page?: number
+	type?: MovieType
 	replace?: boolean
 }
 
 export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByParamsProps, ThunkConfig<string>>(
 	"movieFilter/fetchMoviesByParams",
-	async ({ params, limit, page, replace = true }, { extra, rejectWithValue }) => {
+	async ({ params, limit, page, type = "movie", replace = true }, { extra, rejectWithValue }) => {
 		console.log("FETCHING")
 		try {
 			const queryString: string[] = []
@@ -21,7 +22,7 @@ export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByPa
 			Object.entries(params).map(([query, value], index) => {
 				if (value !== undefined && value !== "") {
 					if (index === 0) {
-						queryString.push(`?${query}=${value}`, `&limit=${limit}`, `&page=${page}`)
+						queryString.push(`?${query}=${value}`, `&limit=${limit}`, `&page=${page}`, `&type=${type}`)
 					} else {
 						queryString.push(`&${query}=${value}`)
 					}

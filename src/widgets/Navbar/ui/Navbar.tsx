@@ -4,6 +4,7 @@ import { memo, useState } from "react"
 import { Button } from "rambler-ui"
 import { Link } from "react-router-dom"
 import { SearchMovieSelect } from "features/MovieSearch"
+import { RoutePath } from "shared/config/routeConfig/routeConfig"
 
 export interface NavbarProps {
 	className?: string
@@ -26,7 +27,7 @@ export const Navbar = memo((props: NavbarProps) => {
 				className={cls.button}
 				type="secondary"
 				rounded
-				container={<Link to="/movies" />}
+				container={<Link to={`${RoutePath.catalog}movie`} />}
 			>
 				Фильмы
 			</Button>
@@ -34,7 +35,7 @@ export const Navbar = memo((props: NavbarProps) => {
 				className={cls.button}
 				type="secondary"
 				rounded
-				container={<Link to="/series" />}
+				container={<Link to={`${RoutePath.catalog}tv-series`} />}
 			>
 				Сериалы
 			</Button>
@@ -42,7 +43,7 @@ export const Navbar = memo((props: NavbarProps) => {
 				className={cls.button}
 				type="secondary"
 				rounded
-				container={<Link to="/cartoons" />}
+				container={<Link to={`${RoutePath.catalog}cartoon`} />}
 			>
 				Мультфильмы
 			</Button>
