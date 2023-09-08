@@ -4,6 +4,7 @@ import { memo } from "react"
 import { PersonInMovie } from "entities/Movie/model/types/Movie"
 import { PersonCard } from "entities/Person"
 import { Text } from "shared/ui/Text"
+import { Carousel } from "shared/ui/Carousel"
 
 export interface PersonsListProps {
 	className?: string
@@ -19,7 +20,7 @@ export const PersonsList = memo((props: PersonsListProps) => {
 				title="Актеры и создатели"
 				className={cls.title}
 			/>
-			<div className={cls.carousel}>
+			<Carousel>
 				<div className={classNames(cls.PersonsList, {}, [className])}>
 					{persons?.map((person) => (
 						<PersonCard
@@ -28,7 +29,7 @@ export const PersonsList = memo((props: PersonsListProps) => {
 						/>
 					))}
 				</div>
-			</div>
+			</Carousel>
 		</>
 	)
 })

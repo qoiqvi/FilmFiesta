@@ -16,10 +16,12 @@ export type ButtonTheme = "clear" | "outlined" | "outlined_red" | "background" |
 
 export const Button = memo((props: ButtonProps) => {
 	const { className, square, size = "size_m", children, theme = "outlined", disabled, ...otherProps } = props
+
 	const mods: Mods = {
 		[cls.square]: square,
 		[cls.disabled]: disabled,
 	}
+
 	return (
 		<button
 			{...otherProps}

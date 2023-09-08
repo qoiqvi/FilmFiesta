@@ -9,6 +9,7 @@ import { Skeleton } from "shared/ui/Skeleton"
 import { useMoviesByGenreQuery } from "../../model/api"
 import { MovieType } from "features/MovieFilter"
 import { Carousel } from "shared/ui/Carousel"
+import { ShowAllCard } from "./ShowAllCard/ShowAllCard"
 
 export interface MoviesByGenreProps {
 	className?: string
@@ -46,6 +47,11 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 							key={movie.id}
 						/>
 					))}
+					<ShowAllCard
+						type={type}
+						isLoading={isLoading}
+						genre={genre}
+					/>
 				</div>
 			</Carousel>
 		</div>
