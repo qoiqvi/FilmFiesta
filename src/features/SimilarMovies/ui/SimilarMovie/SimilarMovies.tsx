@@ -10,10 +10,11 @@ export interface SimilarMoviesProps {
 	className?: string
 	isLoading: boolean
 	movie: Movie
+	isSeries: boolean
 }
 
 export const SimilarMovies = memo((props: SimilarMoviesProps) => {
-	const { className, movie, isLoading } = props
+	const { className, movie, isLoading, isSeries } = props
 	if (isLoading) {
 		return (
 			<div className={cls.SimilarMovies}>
@@ -30,7 +31,7 @@ export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 	return (
 		<>
 			<Text
-				title={`С фильмом «${movie.name}» смотрят`}
+				title={`С ${isSeries ? "сериалом" : "фильмом"} «${movie.name}» смотрят`}
 				className={cls.title}
 			/>
 			<Carousel>

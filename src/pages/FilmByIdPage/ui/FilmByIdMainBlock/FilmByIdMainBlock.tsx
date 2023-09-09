@@ -11,10 +11,11 @@ export interface FilmByIdMainBlockProps {
 	className?: string
 	movie: Movie
 	isLoading: boolean
+	isSeries: boolean
 }
 
 export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
-	const { className, movie, isLoading } = props
+	const { className, movie, isLoading, isSeries } = props
 
 	if (isLoading) {
 		return (
@@ -115,7 +116,11 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 					<div className={cls.block}>
 						<Text
 							size="size_m"
-							text={`${movie?.year}  |  ${movie?.movieLength} мин  |  ${genres?.[0]?.key}, ${
+							text={`${
+								isSeries
+									? `${movie?.releaseYears?.[0].start} - ${movie?.releaseYears?.[0].end}`
+									: movie.year
+							}  |  ${isSeries ? movie.seriesLength : movie?.movieLength} мин  |  ${genres?.[0]?.key}, ${
 								genres?.[1]?.key
 							}, ${genres?.[2]?.key}  |  ${countries?.[0]?.key}, ${countries?.[1]?.key || ""}  |  ${
 								movie.ageRating

@@ -11,6 +11,8 @@ const FilmByIdPage = () => {
 	const { id } = useParams<{ id: string }>()
 	const { isError, isLoading, data: movie } = useFilmByIdQuery(id)
 
+	const isSeries = movie?.isSeries ?? false
+
 	if (!movie) {
 		return null
 	}
@@ -18,6 +20,7 @@ const FilmByIdPage = () => {
 	return (
 		<Page className={cls.FilmByIdPage}>
 			<FilmByIdMainBlock
+				isSeries={isSeries}
 				movie={movie}
 				isLoading={isLoading}
 			/>
@@ -27,6 +30,7 @@ const FilmByIdPage = () => {
 			/>
 			<FactsList facts={movie.facts} />
 			<SimilarMovies
+				isSeries={isSeries}
 				isLoading={isLoading}
 				movie={movie}
 			/>

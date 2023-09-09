@@ -26,7 +26,7 @@ export const FactsList = memo((props: FactsListProps) => {
 					theme="clear"
 					onClick={() => setCollapsed(!collapsed)}
 				>
-					<span className={cls.btn}>{collapsed ? "Развернуть" : "Свернуть"}</span>
+					<span className={cls.btn}>{collapsed ? `Развернуть (${facts.length})` : "Свернуть"}</span>
 				</Button>
 			</div>
 			<ul className={classNames(cls.FactsList, {}, [className])}>
