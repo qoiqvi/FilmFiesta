@@ -1,9 +1,16 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./PersonByIdPage.module.scss"
-import { useParams } from "react-router-dom"
-import { usePersonByIdQuery } from "../api"
+import { Link, useParams } from "react-router-dom"
+import { usePersonByIdQuery } from "../model/api"
 import { Text } from "shared/ui/Text"
 import { Page } from "widgets/Page"
+import { NotFoundPage } from "pages/NotFoundPage"
+import { Spinner } from "shared/ui/Spinner"
+import { FactsList } from "entities/Facts"
+import { Movie } from "entities/Movie"
+import { PersonMovieListItem } from "./PersonMovieListItem/PersonMovieListItem"
+import { RoutePath } from "shared/config/routeConfig/routeConfig"
+import { MovieCardRating } from "entities/Rating"
 
 export interface PersonByIdPageProps {
 	className?: string
@@ -13,16 +20,44 @@ const PersonByIdPage = (props: PersonByIdPageProps) => {
 	const { className } = props
 	const { id } = useParams<{ id: string }>()
 	const { isError, isLoading, data: person } = usePersonByIdQuery(id)
-	if (!person) null
+	console.log(person)
+
+	if (isLoading) {
+		return <Spinner />
+	}
+
+	if (!person) {
+		return <NotFoundPage />
+	}
+
 	return (
 		<Page className={classNames(cls.PersonByIdPage, {}, [className])}>
-			<div>
-				<img src={person?.photo as string} />
-				{person?.facts?.map((fact) => (
-					// <h1>{fact.value}</h1>
-					<Text text={fact.value} />
+			<div className={cls.mainCont}>
+				<img
+					src={person?.photo as string}
+					className={cls.photo}
+				/>
+				{person.name && <Text title={person.name} />}
+				{person.name && <Text text={person.enName} />}
+				{person.facts?.length ? <FactsList facts={person.facts} /> : null}
+				<Text title="Фильмы"></Text>
+				{person.movies?.map((movie) => (
+					<div
+						key={movie.id}
+						className={cls.cont}
+					>
+						<Link
+							to={`${RoutePath.film_by_id}${movie.id}`}
+							className={cls.item}
+						>
+							<Text text={movie.name || movie.alternativeName} />
+							<MovieCardRating
+								className={cls.rating}
+								rating={Number(movie.rating?.toFixed(1)) || undefined}
+							/>
+						</Link>
+					</div>
 				))}
-				{person?.movies && person?.movies.map((movie) => <Text text={movie.name} />)}
 			</div>
 		</Page>
 	)

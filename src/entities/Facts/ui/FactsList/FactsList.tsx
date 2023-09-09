@@ -1,14 +1,14 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./FactsList.module.scss"
 import { memo, useState } from "react"
-import { FactInMovie } from "../../model/types"
+import { FactInMovie, FactInPerson } from "../../model/types"
 import { FactsItem } from "../FactsItem/FactsItem"
 import { Button } from "shared/ui/Button"
 import { Text } from "shared/ui/Text"
 
 export interface FactsListProps {
 	className?: string
-	facts: FactInMovie[]
+	facts: FactInMovie[] | FactInPerson[]
 }
 
 export const FactsList = memo((props: FactsListProps) => {
@@ -33,7 +33,7 @@ export const FactsList = memo((props: FactsListProps) => {
 				<>
 					{collapsedFacts.map((fact) => (
 						<FactsItem
-							key={fact.type}
+							key={fact.value}
 							fact={fact}
 						/>
 					))}

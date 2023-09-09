@@ -1,5 +1,7 @@
 import { FactInMovie } from "entities/Facts"
+import { FactInPerson } from "entities/Facts/model/types"
 import { PersonInMovie } from "entities/Person"
+import { MovieInPerson } from "pages/PersonByIdPage/model/types"
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -490,20 +492,6 @@ export interface Spouses {
 
 export interface Profession {
 	value?: string
-}
-
-export interface FactInPerson {
-	value?: string
-}
-
-export interface MovieInPerson {
-	id: number
-	name?: string | null
-	alternativeName?: string | null
-	rating?: number | null
-	general?: boolean | null
-	description?: string | null
-	enProfession?: string | null
 }
 
 export interface Person {

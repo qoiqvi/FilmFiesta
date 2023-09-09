@@ -20,6 +20,7 @@ export const ShowAllCard = memo((props: ShowAllCardProps) => {
 	if (isLoading) {
 		return null
 	}
+
 	return (
 		<div className={classNames(cls.ShowAllCard, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${type}/${genre}`}>

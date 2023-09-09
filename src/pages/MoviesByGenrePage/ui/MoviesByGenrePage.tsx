@@ -12,6 +12,7 @@ import { fetchMoviesByGenre } from "features/MoviesByGenre/model/services/fetchM
 import { fetchNextMoviesByGenre } from "../model/services/fetchNextMoviesByGenre"
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
 import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
+import { Spinner } from "rambler-ui"
 
 const MoviesByGenrePage = () => {
 	const dispatch = useAppDispatch()
@@ -21,7 +22,7 @@ const MoviesByGenrePage = () => {
 	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
 
 	if (isLoading) {
-		return <div>LOADING</div>
+		return <Spinner />
 	}
 
 	useEffect(() => {

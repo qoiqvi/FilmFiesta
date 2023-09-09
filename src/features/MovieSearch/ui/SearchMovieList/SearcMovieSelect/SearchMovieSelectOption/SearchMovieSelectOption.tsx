@@ -14,7 +14,7 @@ export interface SearchMovieSelectOptionProps {
 
 export const SearchMovieSelectOption = memo((props: SearchMovieSelectOptionProps) => {
 	const { className, movie } = props
-	console.log(movie)
+	const isMovie = !movie.isSeries
 	return (
 		<Link
 			to={`${RoutePath.film_by_id}${movie.id}`}
@@ -26,7 +26,9 @@ export const SearchMovieSelectOption = memo((props: SearchMovieSelectOptionProps
 			/>
 			<div className={cls.content}>
 				<Text
-					text={`${movie.name || movie.alternativeName || movie.enName}, ${movie.year}`}
+					text={`${movie.name || movie.alternativeName || movie.enName}, ${
+						isMovie ? movie.year : movie.releaseYears?.[0].start + "-" + movie.releaseYears?.[0].end
+					}`}
 					className={cls.title}
 				/>
 				<MovieCardRating
@@ -39,7 +41,6 @@ export const SearchMovieSelectOption = memo((props: SearchMovieSelectOptionProps
 				<Text
 					size="size_m"
 					text={"Смотреть"}
-					// align="center"
 					color="white"
 				/>
 			</div>

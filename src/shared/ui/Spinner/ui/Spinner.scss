@@ -127,7 +127,7 @@
 	height: 200px;
 	display: inline-block;
 	overflow: hidden;
-	background: #f1f2f3;
+	background: #ffffff;
 }
 .ldio-gi8gkqmuuhv {
 	width: 100%;
@@ -139,4 +139,10 @@
 }
 .ldio-gi8gkqmuuhv div {
 	box-sizing: content-box;
+}
+
+.spinnerContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

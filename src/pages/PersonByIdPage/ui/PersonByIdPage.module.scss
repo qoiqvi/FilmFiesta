@@ -1,0 +1,30 @@
+.PersonByIdPage {
+	display: flex;
+	justify-content: center;
+}
+
+.mainCont {
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+	align-items: center;
+}
+
+.photo {
+	width: 200px;
+	height: 300px;
+	border-radius: 7px;
+	margin-bottom: 15px;
+}
+
+.cont {
+	display: flex;
+	height: 100px;
+	width: 100%;
+	border-bottom: 1px solid var(--primary-color);
+}
+
+.item {
+	padding: 5px;
+	display: flex;
+}

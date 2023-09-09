@@ -3,3 +3,7 @@ export interface FactInMovie {
 	type: string
 	spoiler: boolean
 }
+
+export interface FactInPerson {
+	value?: string
+}

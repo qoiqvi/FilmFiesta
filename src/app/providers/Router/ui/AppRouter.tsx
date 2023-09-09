@@ -1,11 +1,12 @@
 import { useCallback, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import { AppRoutesProps, routeConfig } from "shared/config/routeConfig/routeConfig"
+import { Spinner } from "shared/ui/Spinner"
 
 const AppRouter = () => {
 	const renderWithWrapper = useCallback((route: AppRoutesProps) => {
 		const element = (
-			<Suspense fallback={<h1>Loading</h1>}>
+			<Suspense fallback={<Spinner />}>
 				<>{route.element}</>
 			</Suspense>
 		)
