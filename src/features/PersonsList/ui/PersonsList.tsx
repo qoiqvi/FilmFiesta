@@ -1,10 +1,10 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./PersonsList.module.scss"
 import { memo } from "react"
-import { PersonInMovie } from "entities/Movie/model/types/Movie"
-import { PersonCard } from "entities/Person"
+import { PersonCard, PersonInMovie } from "entities/Person"
 import { Text } from "shared/ui/Text"
 import { Carousel } from "shared/ui/Carousel"
+import { Skeleton } from "shared/ui/Skeleton"
 
 export interface PersonsListProps {
 	className?: string
@@ -14,6 +14,21 @@ export interface PersonsListProps {
 
 export const PersonsList = memo((props: PersonsListProps) => {
 	const { className, persons, isLoading } = props
+	if (isLoading) {
+		return (
+			<Carousel>
+				<div className={cls.PersonsList}>
+					{new Array(9).fill(1).map((elem, i) => (
+						<Skeleton
+							height={200}
+							width={150}
+							key={i}
+						/>
+					))}
+				</div>
+			</Carousel>
+		)
+	}
 	return (
 		<>
 			<Text

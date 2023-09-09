@@ -5,12 +5,18 @@ import { PageLayout } from "widgets/PageLayout/ui/PageLayout"
 
 const renderWithWrapper = (route: AppRoutesProps) => {
 	const element = (
-		<Suspense fallback={<h1>Loading...</h1>}>
+		<Suspense fallback={""}>
 			<>{route.element}</>
 		</Suspense>
 	)
 
-	return <Route element={element} key={route.path} path={route.path} />
+	return (
+		<Route
+			element={element}
+			key={route.path}
+			path={route.path}
+		/>
+	)
 }
 
 export const router = createBrowserRouter(

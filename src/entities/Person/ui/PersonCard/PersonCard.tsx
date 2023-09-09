@@ -24,7 +24,10 @@ export const PersonCard = memo((props: PersonCardProps) => {
 					className={cls.personPhoto}
 				/>
 			</div>
-			<Text text={person.name as string} />
+			<Text
+				text={person.name || person.enName || "Имя Фамилия"}
+				className={cls.personName}
+			/>
 		</Link>
 	)
 })

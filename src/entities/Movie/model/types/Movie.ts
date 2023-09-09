@@ -1,83 +1,5 @@
-// export interface ExternalId {
-// 	kpHD: string
-// 	imdb: string
-// 	tmdb: number
-// }
-
-// export interface Rating {
-// 	kp: number
-// 	imdb: number
-// 	filmCritics: number
-// 	russianFilmCritics: number
-// 	await: null | number
-// }
-
-// export interface Votes {
-// 	kp: number
-// 	imdb: number
-// 	filmCritics: number
-// 	russianFilmCritics: number
-// 	await: null | number
-// }
-
-// export interface Poster {
-// 	url: string
-// 	previewUrl: string
-// }
-
-// export interface Genre {
-// 	name: string
-// }
-
-// export interface Country {
-// 	name: string
-// }
-
-// export interface Name {
-// 	name: string
-// 	language: string | null
-// 	type: string | null
-// }
-
-// export interface WatchabilityItem {
-// 	name: string
-// 	logo: {
-// 		url: string
-// 	}
-// 	url: string
-// }
-
-// export interface Movie {
-// 	docs: {
-// 		externalId: ExternalId
-// 		rating: Rating
-// 		votes: Votes
-// 		movieLength: number
-// 		id: number
-// 		type: string
-// 		name: string
-// 		description: string
-// 		year: number
-// 		poster: Poster
-// 		genres: Genre[]
-// 		countries: Country[]
-// 		alternativeName: string
-// 		enName: string | null
-// 		names: Name[]
-// 		shortDescription: string
-// 		logo: {
-// 			url: string
-// 		}
-// 		watchability: {
-// 			items: WatchabilityItem[]
-// 		}
-// 	}[]
-// 	total: number
-// 	limit: number
-// 	page: number
-// 	pages: number
-// }
-
+import { FactInMovie } from "entities/Facts"
+import { PersonInMovie } from "entities/Person"
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -210,23 +132,6 @@ export interface ItemName {
 	name?: string
 }
 
-export interface PersonInMovie {
-	/**
-	 * Id персоны с кинопоиска
-	 * @example 6317
-	 */
-	id?: number | null
-	/** @example "https://st.kp.yandex.net/images/actor_iphone/iphone360_6317.jpg" */
-	photo?: string | null
-	/** @example "Пол Уокер" */
-	name?: string | null
-	/** @example "Paul Walker" */
-	enName?: string | null
-	description: string
-	profession: string
-	enProfession: string
-}
-
 export interface ReviewInfo {
 	count?: number | null
 	positiveCount?: number | null
@@ -326,12 +231,6 @@ export interface Audience {
 	 * @example "Россия"
 	 */
 	country: string
-}
-
-export interface FactInMovie {
-	value: string
-	type: string
-	spoiler: boolean
 }
 
 export interface Images {

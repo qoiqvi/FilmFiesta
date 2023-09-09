@@ -2,9 +2,10 @@ import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./FilmByIdMainBlock.module.scss"
 import { memo, useMemo } from "react"
 import { Movie } from "entities/Movie"
-import { StarIcon, Button } from "rambler-ui"
+import { StarIcon } from "rambler-ui"
 import { Text } from "shared/ui/Text"
 import { Skeleton } from "shared/ui/Skeleton"
+import { Button } from "shared/ui/Button"
 
 export interface FilmByIdMainBlockProps {
 	className?: string
@@ -14,7 +15,6 @@ export interface FilmByIdMainBlockProps {
 
 export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 	const { className, movie, isLoading } = props
-	console.log(movie)
 
 	if (isLoading) {
 		return (
@@ -56,24 +56,9 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 							/>
 						</div>
 						<div className={cls.btnContainer}>
-							<Button
-								disabled
-								type="primary"
-							>
-								Смотреть
-							</Button>
-							<Button
-								disabled
-								type="primary"
-							>
-								Избранное
-							</Button>
-							<Button
-								disabled
-								type="primary"
-							>
-								Оценить
-							</Button>
+							<Button disabled>Смотреть</Button>
+							<Button disabled>Избранное</Button>
+							<Button disabled>Оценить</Button>
 						</div>
 					</div>
 				</div>
@@ -91,7 +76,7 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 		() =>
 			movie?.countries?.map((country) => (
 				<Text
-					key={country.name}
+					key={country?.name}
 					text={country.name}
 				/>
 			)),
@@ -102,7 +87,7 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 		() =>
 			movie?.genres?.map((genre) => (
 				<Text
-					key={genre.name}
+					key={genre?.name}
 					text={genre.name}
 				/>
 			)),
@@ -118,21 +103,24 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 				/>
 				<div className={cls.info}>
 					<Text
-						size="size_l"
-						title={movie?.name as string}
+						size="size_m"
+						title={movie?.name || movie.alternativeName || movie.enName || "<Название отсутствует>"}
 					></Text>
-					{movie?.enName && (
+					{movie?.slogan && (
 						<Text
 							size="size_m"
-							title={movie?.enName as string}
+							text={movie.slogan}
 						></Text>
 					)}
 					<div className={cls.block}>
-						{movie?.year && <Text text={String(movie?.year)} />}
-						{movie?.movieLength && <Text text={String(movie?.movieLength + " " + "мин")} />}
-						{movie?.genres && genres}
-						{movie?.countries && countries}
-						{movie?.ageRating && <Text text={`${String(movie?.ageRating)}+`} />}
+						<Text
+							size="size_m"
+							text={`${movie?.year}  |  ${movie?.movieLength} мин  |  ${genres?.[0]?.key}, ${
+								genres?.[1]?.key
+							}, ${genres?.[2]?.key}  |  ${countries?.[0]?.key}, ${countries?.[1]?.key || ""}  |  ${
+								movie.ageRating
+							}+`}
+						/>
 					</div>
 					<div className={cls.ratingBlock}>
 						<div className={cls.mainRating}>
@@ -142,20 +130,20 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 								size={30}
 							/>
 							<Text title={String(movie?.rating?.kp?.toFixed(1))} />
-							{/* {movie?.rating?.imdb && <Text text={`imdb: ${movie.rating.imdb.toFixed(1)}`} />} */}
-							{/* {movie?.rating?.tmdb && <Text text={`imdb: ${movie.rating.tmdb.toFixed(1)}`} />} */}
 						</div>
 					</div>
 					<div className={cls.btnContainer}>
-						<Button type="primary">Смотреть</Button>
-						<Button type="primary">Избранное</Button>
-						<Button type="primary">Оценить</Button>
+						<Button>Смотреть</Button>
+						<Button>Избранное</Button>
+						<Button>Оценить</Button>
 					</div>
 				</div>
 			</div>
-			<div className={cls.description}>
-				<Text text={movie?.description as string} />
-			</div>
+			<Text
+				title="Описание:"
+				className={cls.description}
+			/>
+			<Text text={movie.description} />
 		</>
 	)
 })

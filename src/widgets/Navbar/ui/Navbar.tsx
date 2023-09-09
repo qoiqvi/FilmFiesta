@@ -1,6 +1,6 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./Navbar.module.scss"
-import { memo, useState } from "react"
+import { memo } from "react"
 import { Link } from "react-router-dom"
 import { SearchMovieSelect } from "features/MovieSearch"
 import { RoutePath } from "shared/config/routeConfig/routeConfig"
@@ -28,7 +28,7 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<Link to={`${RoutePath.catalog}tv-series`}>
 					<Text
-						text={"Сериалы"}
+						text="Сериалы"
 						color="white"
 						size="size_l"
 					/>
@@ -40,7 +40,7 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<Link to={`${RoutePath.catalog}movie`}>
 					<Text
-						text={"Фильмы"}
+						text="Фильмы"
 						color="white"
 						size="size_l"
 					/>
@@ -52,7 +52,19 @@ export const Navbar = memo((props: NavbarProps) => {
 			>
 				<Link to={`${RoutePath.catalog}cartoon`}>
 					<Text
-						text={"Мультфильмы"}
+						text="Мультфильмы"
+						color="white"
+						size="size_l"
+					/>
+				</Link>
+			</Button>
+			<Button
+				theme="clear"
+				className={cls.button}
+			>
+				<Link to={`${RoutePath.catalog}anime`}>
+					<Text
+						text="Аниме"
 						color="white"
 						size="size_l"
 					/>

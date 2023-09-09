@@ -1,0 +1,8 @@
+.FactsItem {
+	border-bottom: 1px solid blue;
+	padding: 10px;
+}
+
+.FactsItem:last-child {
+	border: none;
+}

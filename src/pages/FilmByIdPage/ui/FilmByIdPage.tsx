@@ -5,6 +5,7 @@ import { useFilmByIdQuery } from "../api"
 import { PersonsList } from "features/PersonsList"
 import { Page } from "widgets/Page"
 import { FilmByIdMainBlock } from "./FilmByIdMainBlock/FilmByIdMainBlock"
+import { FactsList } from "entities/Facts"
 
 const FilmByIdPage = () => {
 	const { id } = useParams<{ id: string }>()
@@ -24,6 +25,7 @@ const FilmByIdPage = () => {
 				persons={movie?.persons}
 				isLoading={isLoading}
 			/>
+			<FactsList facts={movie.facts} />
 			<SimilarMovies
 				isLoading={isLoading}
 				movie={movie}
