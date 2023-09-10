@@ -21,10 +21,7 @@ export const Select = memo((props: ListboxProps) => {
 
 	return (
 		<div className={classNames(cls.Listbox, {}, [className])}>
-			<Listbox
-				value={selectedPerson}
-				onChange={setSelectedPerson}
-			>
+			<Listbox value={selectedPerson} onChange={setSelectedPerson}>
 				{/* Стили для кнопки */}
 				<Listbox.Button className={cls["Listbox-button"]}>
 					{selectedPerson.name}

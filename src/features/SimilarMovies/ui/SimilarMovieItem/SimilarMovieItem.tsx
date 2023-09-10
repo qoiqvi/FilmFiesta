@@ -19,14 +19,8 @@ export const SimilarMovieItem = memo((props: SimilarMovieItemProps) => {
 			to={`${RoutePath.film_by_id}${movie.id}`}
 			className={classNames(cls.SimilarMovieItem, {}, [className])}
 		>
-			<div
-				className={cls.MovieCard}
-				{...bind}
-			>
-				<img
-					src={movie.poster.url as string}
-					className={cls.poster}
-				/>
+			<div className={cls.MovieCard} {...bind}>
+				<img src={movie.poster.url as string} className={cls.poster} />
 			</div>
 		</Link>
 	)

@@ -15,7 +15,11 @@ interface fetchNextMoviesByGenreProps {
 	replace?: boolean
 }
 
-export const fetchNextMoviesByGenre = createAsyncThunk<void, fetchNextMoviesByGenreProps, ThunkConfig<string>>(
+export const fetchNextMoviesByGenre = createAsyncThunk<
+	void,
+	fetchNextMoviesByGenreProps,
+	ThunkConfig<string>
+>(
 	"movieByGenrePage/fetchNextMoviesByGenre",
 	({ limit, genre, type, replace = true }, { dispatch, getState }) => {
 		console.log("fetchNEXTMoviesByGenre")
@@ -25,8 +29,18 @@ export const fetchNextMoviesByGenre = createAsyncThunk<void, fetchNextMoviesByGe
 		const hasMore = getMoviesByGenreHasMore(getState())
 
 		if (hasMore && !isLoading && page) {
-			dispatch(fetchMoviesByGenre({ limit, page: page + 1, genre, type, replace: false }))
-			console.log("dispatch(fetchMoviesByGenre({ limit, page: page + 1, genre, type, replace: false }))")
+			dispatch(
+				fetchMoviesByGenre({
+					limit,
+					page: page + 1,
+					genre,
+					type,
+					replace: false,
+				}),
+			)
+			console.log(
+				"dispatch(fetchMoviesByGenre({ limit, page: page + 1, genre, type, replace: false }))",
+			)
 		}
-	}
+	},
 )

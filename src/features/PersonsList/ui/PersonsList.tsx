@@ -19,11 +19,7 @@ export const PersonsList = memo((props: PersonsListProps) => {
 			<Carousel>
 				<div className={cls.PersonsList}>
 					{new Array(9).fill(1).map((elem, i) => (
-						<Skeleton
-							height={200}
-							width={150}
-							key={i}
-						/>
+						<Skeleton height={200} width={150} key={i} />
 					))}
 				</div>
 			</Carousel>
@@ -31,19 +27,13 @@ export const PersonsList = memo((props: PersonsListProps) => {
 	}
 	return (
 		<>
-			<Text
-				title="Актеры и создатели"
-				className={cls.title}
-			/>
+			<Text title="Актеры и создатели" className={cls.title} />
 			<Carousel>
 				<div className={classNames(cls.PersonsList, {}, [className])}>
 					{persons?.map((person, i) =>
 						i < 9 ? (
-							<PersonCard
-								person={person}
-								key={person.id}
-							/>
-						) : null
+							<PersonCard person={person} key={person.id} />
+						) : null,
 					)}
 				</div>
 			</Carousel>

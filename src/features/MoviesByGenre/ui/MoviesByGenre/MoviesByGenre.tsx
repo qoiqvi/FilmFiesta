@@ -22,25 +22,23 @@ export interface MoviesByGenreProps {
 export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	const { className, genre = "ужасы", title, type = "movie" } = props
 
-	const { isLoading, data: movies } = useMoviesByGenreQuery({ genre: genre, limit: 10, type: type })
+	const { isLoading, data: movies } = useMoviesByGenreQuery({
+		genre: genre,
+		limit: 10,
+		type: type,
+	})
 
 	const getSkeletons = () =>
-		new Array(7).fill(1).map((_, index) => (
-			<Skeleton
-				key={index}
-				height={300}
-				width={200}
-			/>
-		))
+		new Array(7)
+			.fill(1)
+			.map((_, index) => (
+				<Skeleton key={index} height={300} width={200} />
+			))
 
 	if (isLoading) {
 		return (
 			<div className={classNames(cls.MovieByGenre, {}, [className])}>
-				<Skeleton
-					className={cls.title}
-					height={30}
-					width={150}
-				/>
+				<Skeleton className={cls.title} height={30} width={150} />
 				<Carousel>
 					<div className={cls.container}>{getSkeletons()}</div>
 				</Carousel>
@@ -52,10 +50,7 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 		<div className={classNames(cls.MovieByGenre, {}, [className])}>
 			<Link to={`${RoutePath.movies_by_genre}${type}/${genre}`}>
 				<span className={cls.titleContainer}>
-					<Text
-						title={title}
-						className={cls.title}
-					/>
+					<Text title={title} className={cls.title} />
 					<ChevronRightIcon
 						className={cls.icon}
 						height={25}
@@ -66,10 +61,7 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 			<Carousel>
 				<div className={cls.container}>
 					{movies?.docs.map((movie) => (
-						<MovieCard
-							movie={movie}
-							key={movie.id}
-						/>
+						<MovieCard movie={movie} key={movie.id} />
 					))}
 					<ShowAllCard
 						type={type}

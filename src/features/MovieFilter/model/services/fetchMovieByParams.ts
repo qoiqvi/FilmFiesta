@@ -12,9 +12,16 @@ interface fetchMoviesByParamsProps {
 	replace?: boolean
 }
 
-export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByParamsProps, ThunkConfig<string>>(
+export const fetchMoviesByParams = createAsyncThunk<
+	Data<Movie>,
+	fetchMoviesByParamsProps,
+	ThunkConfig<string>
+>(
 	"movieFilter/fetchMoviesByParams",
-	async ({ params, limit, page, type = "movie", replace = true }, { extra, rejectWithValue }) => {
+	async (
+		{ params, limit, page, type = "movie", replace = true },
+		{ extra, rejectWithValue },
+	) => {
 		console.log("FETCHING")
 		try {
 			const queryString: string[] = []
@@ -22,14 +29,21 @@ export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByPa
 			Object.entries(params).map(([query, value], index) => {
 				if (value !== undefined && value !== "") {
 					if (index === 0) {
-						queryString.push(`?${query}=${value}`, `&limit=${limit}`, `&page=${page}`, `&type=${type}`)
+						queryString.push(
+							`?${query}=${value}`,
+							`&limit=${limit}`,
+							`&page=${page}`,
+							`&type=${type}`,
+						)
 					} else {
 						queryString.push(`&${query}=${value}`)
 					}
 				}
 			})
 
-			const response = await extra.api<Data<Movie>>(`v1.3/movie${queryString.join("")}`)
+			const response = await extra.api<Data<Movie>>(
+				`v1.3/movie${queryString.join("")}`,
+			)
 
 			if (!response.data) {
 				throw new Error()
@@ -39,7 +53,7 @@ export const fetchMoviesByParams = createAsyncThunk<Data<Movie>, fetchMoviesByPa
 		} catch (error) {
 			return rejectWithValue("error")
 		}
-	}
+	},
 )
 
 let a = {
@@ -66,9 +80,14 @@ let a = {
 			year: 2011,
 			poster: {
 				url: "https://st.kp.yandex.net/images/film_big/535341.jpg",
-				previewUrl: "https://st.kp.yandex.net/images/film_iphone/iphone360_535341.jpg",
+				previewUrl:
+					"https://st.kp.yandex.net/images/film_iphone/iphone360_535341.jpg",
 			},
-			genres: [{ name: "драма" }, { name: "комедия" }, { name: "биография" }],
+			genres: [
+				{ name: "драма" },
+				{ name: "комедия" },
+				{ name: "биография" },
+			],
 			countries: [{ name: "Франция" }],
 			alternativeName: "Intouchables",
 			enName: null,

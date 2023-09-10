@@ -19,10 +19,7 @@ export const PersonCard = memo((props: PersonCardProps) => {
 			className={classNames(cls.PersonCard, {}, [className])}
 		>
 			<div className={cls.container}>
-				<img
-					src={person.photo as string}
-					className={cls.personPhoto}
-				/>
+				<img src={person.photo as string} className={cls.personPhoto} />
 			</div>
 			<Text
 				text={person.name || person.enName || "Имя Фамилия"}

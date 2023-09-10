@@ -9,7 +9,7 @@ const moviesByGenreAdapter = createEntityAdapter<Movie>({
 })
 
 export const getMoviesByGenre = moviesByGenreAdapter.getSelectors<StateSchema>(
-	(state) => state.MovieByGenere || moviesByGenreAdapter.getInitialState()
+	(state) => state.MovieByGenere || moviesByGenreAdapter.getInitialState(),
 )
 
 export const MoviesByGenreSlice = createSlice({

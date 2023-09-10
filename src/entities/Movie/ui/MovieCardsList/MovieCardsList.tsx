@@ -15,25 +15,24 @@ export const MovieCardsList = memo((props: MovieCardsListProps) => {
 	const { className, isLoading, movies } = props
 
 	const getSkeletons = () =>
-		new Array(12).fill(0).map((_, index) => (
-			<Skeleton
-				key={index}
-				height={300}
-				width={200}
-			/>
-		))
+		new Array(12)
+			.fill(0)
+			.map((_, index) => (
+				<Skeleton key={index} height={300} width={200} />
+			))
 
 	if (isLoading) {
-		return <div className={classNames(cls.MovieCardsList, {}, [className])}>{getSkeletons()}</div>
+		return (
+			<div className={classNames(cls.MovieCardsList, {}, [className])}>
+				{getSkeletons()}
+			</div>
+		)
 	}
 	return (
 		<div className={classNames(cls.MovieCardsList, {}, [className])}>
 			{movies &&
 				movies.map((movie) => (
-					<MovieCard
-						movie={movie}
-						key={movie.id}
-					/>
+					<MovieCard movie={movie} key={movie.id} />
 				))}
 		</div>
 	)

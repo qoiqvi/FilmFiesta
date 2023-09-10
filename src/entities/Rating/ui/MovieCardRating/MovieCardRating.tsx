@@ -5,28 +5,32 @@ import { Text } from "shared/ui/Text"
 
 export interface MovieCardRatingProps {
 	className?: string
-	rating: number | undefined
+	rating: string
 }
 
 export const MovieCardRating = memo((props: MovieCardRatingProps) => {
-	const { className, rating } = props
+	const { className, rating: rate } = props
 	let movieRate: MovieRate = "medium"
 	type MovieRate = "low" | "medium" | "high"
 
+	const rating = Number(rate)
+
 	if (rating) {
-		movieRate = rating > 7 ? "high" : rating > 5 ? "medium" : "low"
+		movieRate = rating > 6.9 ? "high" : rating > 5 ? "medium" : "low"
 	}
 
 	return (
-		<>
+		<div>
 			{rating ? (
-				<div className={classNames(cls.MovieCardRating, {}, [className, cls[movieRate]])}>
-					<Text
-						text={rating.toString()}
-						color="white"
-					/>
+				<div
+					className={classNames(cls.MovieCardRating, {}, [
+						className,
+						cls[movieRate],
+					])}
+				>
+					<Text text={rating.toFixed(1)} color="white" />
 				</div>
 			) : null}
-		</>
+		</div>
 	)
 })

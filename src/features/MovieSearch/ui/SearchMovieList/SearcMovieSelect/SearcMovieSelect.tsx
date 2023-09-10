@@ -15,7 +15,7 @@ export const SearchMovieSelect = memo(() => {
 
 	const { data: movies, isLoading } = useMovieSearchQuery(
 		{ query: debouncedQuery },
-		{ refetchOnMountOrArgChange: true }
+		{ refetchOnMountOrArgChange: true },
 	)
 
 	const onChangeDebouncedQuery = useCallback(() => {
@@ -36,12 +36,15 @@ export const SearchMovieSelect = memo(() => {
 		<div className={cls.comboboxContainer}>
 			<Combobox>
 				<div>
-					<Combobox.Input
-						className={cls.comboboxInput}
-						value={query}
-						onChange={(event) => onChangeQuery(event.target.value)}
-						placeholder="Фильмы и сериалы"
-					/>
+					<Combobox.Button className={cls.comboboxInput}>
+						<Combobox.Input
+							value={query}
+							onChange={(event) =>
+								onChangeQuery(event.target.value)
+							}
+							placeholder="Фильмы и сериалы"
+						/>
+					</Combobox.Button>
 					<Combobox.Button className={cls.comboboxButton}>
 						<MagnifyingGlassIcon
 							className={cls.icon}
@@ -68,10 +71,14 @@ export const SearchMovieSelect = memo(() => {
 											value={""}
 											key={movie?.id}
 											className={({ active }) =>
-												active ? cls.comboboxOptionActive : cls.comboboxOption
+												active
+													? cls.comboboxOptionActive
+													: cls.comboboxOption
 											}
 										>
-											<SearchMovieSelectOption movie={movie} />
+											<SearchMovieSelectOption
+												movie={movie}
+											/>
 										</Combobox.Option>
 									))}
 								</>

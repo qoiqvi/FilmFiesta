@@ -3,7 +3,13 @@ import cls from "./MovieFilters.module.scss"
 import { memo, useCallback } from "react"
 import { SearchSelect } from "shared/ui/SearchSelect"
 import { useSearchParams } from "react-router-dom"
-import { allGenres, years, ratings, allCountries, allSortFields } from "../../model/config"
+import {
+	allGenres,
+	years,
+	ratings,
+	allCountries,
+	allSortFields,
+} from "../../model/config"
 
 export interface MovieFiltersProps {
 	className?: string
@@ -15,44 +21,62 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 
 	const onChangeGenre = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "genres.name": value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				"genres.name": value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	const onChangeYear = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), year: value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				year: value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	const onChangeRating = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "rating.kp": value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				"rating.kp": value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	const onChangeCountry = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), "countries.name": value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				"countries.name": value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	const onChangeSortType = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), sortType: value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				sortType: value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	const onChangeSortField = useCallback(
 		(value: string) => {
-			setSearchParams((prev) => ({ ...Object.fromEntries(prev), sortField: value }))
+			setSearchParams((prev) => ({
+				...Object.fromEntries(prev),
+				sortField: value,
+			}))
 		},
-		[searchParams]
+		[searchParams],
 	)
 
 	return (

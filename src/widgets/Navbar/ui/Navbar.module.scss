@@ -27,3 +27,64 @@
 	margin-right: 15px;
 	font-family: "Bebas Neue", sans-serif;
 }
+
+// @media (max-width: 768px) {
+// 	.Navbar {
+// 		flex-direction: column; /* Столбцовый макет для мобильных экранов */
+// 		align-items: flex-start; /* Выравнивание элементов слева */
+// 	}
+
+// 	.title {
+// 		font-size: 30px; /* Уменьшение размера текста */
+// 		margin: 15px 0; /* Отступы сверху и снизу */
+// 	}
+
+// 	.button {
+// 		margin-right: 0; /* Уберем правый отступ */
+// 		margin-top: 10px; /* Добавим отступ сверху между кнопками */
+// 	}
+// }
+/* Основные стили для .Navbar */
+// .Navbar {
+// 	height: var(--navbar-height);
+// 	width: 100%;
+// 	background: var(--primary-color);
+// 	display: flex;
+// 	gap: 15px;
+// 	align-items: center;
+// 	margin: 0;
+// 	flex-wrap: wrap; /* Добавляем перенос элементов на маленьких экранах */
+//   }
+
+//   .title {
+// 	color: var(--bg-color);
+// 	font-size: 50px;
+// 	margin-right: auto;
+// 	letter-spacing: 2px;
+// 	font-family: "Bebas Neue", sans-serif;
+// 	line-height: 60px;
+// 	flex: 1; /* Занимает оставшееся доступное пространство по горизонтали */
+//   }
+
+//   .icon {
+// 	margin-right: 5px;
+//   }
+
+//   .button {
+// 	margin-right: 15px;
+// 	font-family: "Bebas Neue", sans-serif;
+//   }
+
+//   /* Медиазапрос для экранов шириной менее 768px */
+//   @media (max-width: 768px) {
+// 	.title {
+// 	  font-size: 30px;
+// 	  margin: 10px 0;
+// 	  line-height: 40px; /* Уменьшение высоты строки */
+// 	}
+
+// 	.button {
+// 	  margin-right: 0;
+// 	  margin-top: 10px;
+// 	}
+//   }

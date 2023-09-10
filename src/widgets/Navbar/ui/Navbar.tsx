@@ -15,59 +15,28 @@ export const Navbar = memo((props: NavbarProps) => {
 	const { className } = props
 	return (
 		<nav className={classNames(cls.Navbar, {}, [className])}>
-			<Link
-				to="/"
-				className={cls.title}
-			>
+			<Link to="/" className={cls.title}>
 				<h1>FILMFIESTA</h1>
 			</Link>
 			<SearchMovieSelect />
-			<Button
-				theme="clear"
-				className={cls.button}
-			>
+			<Button theme="clear" className={cls.button}>
 				<Link to={`${RoutePath.catalog}tv-series`}>
-					<Text
-						text="Сериалы"
-						color="white"
-						size="size_l"
-					/>
+					<Text text="Сериалы" color="white" size="size_l" />
 				</Link>
 			</Button>
-			<Button
-				theme="clear"
-				className={cls.button}
-			>
+			<Button theme="clear" className={cls.button}>
 				<Link to={`${RoutePath.catalog}movie`}>
-					<Text
-						text="Фильмы"
-						color="white"
-						size="size_l"
-					/>
+					<Text text="Фильмы" color="white" size="size_l" />
 				</Link>
 			</Button>
-			<Button
-				theme="clear"
-				className={cls.button}
-			>
+			<Button theme="clear" className={cls.button}>
 				<Link to={`${RoutePath.catalog}cartoon`}>
-					<Text
-						text="Мультфильмы"
-						color="white"
-						size="size_l"
-					/>
+					<Text text="Мультфильмы" color="white" size="size_l" />
 				</Link>
 			</Button>
-			<Button
-				theme="clear"
-				className={cls.button}
-			>
+			<Button theme="clear" className={cls.button}>
 				<Link to={`${RoutePath.catalog}anime`}>
-					<Text
-						text="Аниме"
-						color="white"
-						size="size_l"
-					/>
+					<Text text="Аниме" color="white" size="size_l" />
 				</Link>
 			</Button>
 		</nav>

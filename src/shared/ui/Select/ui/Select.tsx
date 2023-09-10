@@ -37,7 +37,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
 					{opt.content}
 				</option>
 			)),
-		[options]
+		[options],
 	)
 
 	const mods: Mods = {}

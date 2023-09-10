@@ -12,9 +12,16 @@ interface fetchMoviesByGenreProps {
 	replace?: boolean
 }
 
-export const fetchMoviesByGenre = createAsyncThunk<Data<Movie>, fetchMoviesByGenreProps, ThunkConfig<string>>(
+export const fetchMoviesByGenre = createAsyncThunk<
+	Data<Movie>,
+	fetchMoviesByGenreProps,
+	ThunkConfig<string>
+>(
 	"movieByGenre/fetchMoviesByGenre",
-	async ({ limit, page, genre, type, replace = true }, { extra, rejectWithValue }) => {
+	async (
+		{ limit, page, genre, type, replace = true },
+		{ extra, rejectWithValue },
+	) => {
 		console.log("fetchMoviesByGenre", { limit, page, genre, type, replace })
 		try {
 			const response = await extra.api<Data<Movie>>("v1.3/movie", {
@@ -34,5 +41,5 @@ export const fetchMoviesByGenre = createAsyncThunk<Data<Movie>, fetchMoviesByGen
 		} catch (error) {
 			return rejectWithValue("error")
 		}
-	}
+	},
 )

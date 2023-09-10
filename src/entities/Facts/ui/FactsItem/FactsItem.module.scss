@@ -1,6 +1,16 @@
 .FactsItem {
 	border-bottom: 1px solid blue;
 	padding: 10px;
+	font: var(--font-m);
+	a {
+		position: relative;
+		display: inline-block;
+		font-weight: 400;
+		&:hover,
+		&:focus-within {
+			opacity: 0.7;
+		}
+	}
 }
 
 .FactsItem:last-child {

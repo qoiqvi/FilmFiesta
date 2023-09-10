@@ -19,11 +19,7 @@ export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 		return (
 			<div className={cls.SimilarMovies}>
 				{new Array(9).fill(1).map((elem, i) => (
-					<Skeleton
-						height={300}
-						width={200}
-						key={i}
-					/>
+					<Skeleton height={300} width={200} key={i} />
 				))}
 			</div>
 		)
@@ -31,27 +27,27 @@ export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 	return (
 		<>
 			<Text
-				title={`С ${isSeries ? "сериалом" : "фильмом"} «${movie.name}» смотрят`}
+				title={`С ${isSeries ? "сериалом" : "фильмом"} «${
+					movie.name
+				}» смотрят`}
 				className={cls.title}
 			/>
 			<Carousel>
 				<div className={classNames(cls.SimilarMovies, {}, [className])}>
 					{movie.similarMovies?.map((movie) => (
-						<MovieCard
-							movie={movie as Movie}
-							rating={false}
-						/>
+						<MovieCard movie={movie as Movie} rating={false} />
 					))}
 				</div>
 			</Carousel>
 			{movie.sequelsAndPrequels?.length ? (
 				<>
-					<Text
-						title={`Сиквелы и приквелы `}
-						className={cls.title}
-					/>
+					<Text title={`Сиквелы и приквелы `} className={cls.title} />
 					<Carousel>
-						<div className={classNames(cls.SimilarMovies, {}, [className])}>
+						<div
+							className={classNames(cls.SimilarMovies, {}, [
+								className,
+							])}
+						>
 							{movie.sequelsAndPrequels?.map((movie) => (
 								<MovieCard
 									movie={movie as Movie}

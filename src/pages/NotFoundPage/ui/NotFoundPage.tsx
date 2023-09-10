@@ -20,10 +20,7 @@ export const NotFoundPage = (props: NotFoundPageProps) => {
 				text={"Страница не найдена, не балуйтесь со строкой поиска!"}
 				align="center"
 			/>
-			<Button
-				theme="clear"
-				onClick={reloadPage}
-			>
+			<Button theme="clear" onClick={reloadPage}>
 				Обновить страницу
 			</Button>
 		</div>

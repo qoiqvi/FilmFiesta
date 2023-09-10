@@ -22,10 +22,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 	}
 
 	return (
-		<Link
-			to={`${RoutePath.film_by_id}${movie.id}`}
-			{...binds}
-		>
+		<Link to={`${RoutePath.film_by_id}${movie.id}`} {...binds}>
 			<div className={classNames(cls.MovieCard, mods, [className])}>
 				<img
 					src={movie.poster?.previewUrl as string}
@@ -35,8 +32,11 @@ export const MovieCard = memo((props: MovieCardProps) => {
 					<MovieCardRating
 						className={cls.rating}
 						rating={
-							// @ts-ignore
-							movie.rating?.kp?.toFixed(1) || movie.rating?.toFixed(1) || movie.rating?.tmdb?.toFixed(1)
+							movie.rating?.kp?.toFixed(1) ||
+							movie.rating?.tmdb?.toFixed(1) ||
+							//@ts-ignore
+							movie.rating?.toFixed(1) ||
+							"5.0"
 						}
 					/>
 				)}

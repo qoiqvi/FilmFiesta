@@ -23,7 +23,9 @@ export const Page = memo((props: PageProps) => {
 	const triggerRef = useRef() as MutableRefObject<HTMLDivElement>
 	const dispatch = useAppDispatch()
 	const { pathname } = useLocation()
-	const scrollPosition = useSelector((state: StateSchema) => getScroll(state, pathname))
+	const scrollPosition = useSelector((state: StateSchema) =>
+		getScroll(state, pathname),
+	)
 
 	useInitialEffect(() => {
 		wrapperRef.current.scrollTop = scrollPosition
@@ -40,7 +42,7 @@ export const Page = memo((props: PageProps) => {
 			SaveScrollSliceActions.setScrollPosition({
 				path: pathname,
 				position: e.currentTarget.scrollTop,
-			})
+			}),
 		)
 	}, 500)
 
@@ -52,10 +54,7 @@ export const Page = memo((props: PageProps) => {
 		>
 			{children}
 			{onScrollEnd ? (
-				<div
-					ref={triggerRef}
-					className={cls.trigger}
-				/>
+				<div ref={triggerRef} className={cls.trigger} />
 			) : null}
 		</section>
 	)

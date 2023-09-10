@@ -1,6 +1,9 @@
 import { MutableRefObject, useCallback, useRef } from "react"
 
-export function useDebounce(callback: (...args: any[]) => void, timeout: number) {
+export function useDebounce(
+	callback: (...args: any[]) => void,
+	timeout: number,
+) {
 	const timer = useRef() as MutableRefObject<any>
 	return useCallback(
 		(...args: any[]) => {
@@ -11,6 +14,6 @@ export function useDebounce(callback: (...args: any[]) => void, timeout: number)
 				callback(...args)
 			}, timeout)
 		},
-		[callback, timeout]
+		[callback, timeout],
 	)
 }

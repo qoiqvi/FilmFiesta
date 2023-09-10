@@ -14,31 +14,32 @@ export interface FactsListProps {
 export const FactsList = memo((props: FactsListProps) => {
 	const { className, facts } = props
 	const [collapsed, setCollapsed] = useState(true)
+	if (!facts?.length) {
+		return null
+	}
 	const collapsedFacts = collapsed ? facts.slice(0, 3) : facts
+
 	return (
 		<>
 			<div className={cls.headerCont}>
-				<Text
-					title="Интересные факты"
-					className={cls.title}
-				/>
-				<Button
-					theme="clear"
-					onClick={() => setCollapsed(!collapsed)}
-				>
-					<span className={cls.btn}>{collapsed ? `Развернуть (${facts.length})` : "Свернуть"}</span>
-				</Button>
+				<Text title="Интересные факты" className={cls.title} />
 			</div>
 			<ul className={classNames(cls.FactsList, {}, [className])}>
 				<>
 					{collapsedFacts.map((fact) => (
-						<FactsItem
-							key={fact.value}
-							fact={fact}
-						/>
+						<FactsItem key={fact.value} fact={fact} />
 					))}
 				</>
 			</ul>
+			{facts.length > 3 ? (
+				<Button theme="clear" onClick={() => setCollapsed(!collapsed)}>
+					<span className={cls.btn}>
+						{collapsed
+							? `Развернуть (${facts.length})`
+							: "Свернуть"}
+					</span>
+				</Button>
+			) : null}
 		</>
 	)
 })

@@ -12,6 +12,7 @@
 		"build:prod": "webpack --env mode=production",
 		"build:dev": "webpack --env mode=development",
 		"lint:ts": "eslint \"**/*.{ts, tsx}\"",
+		"format": "prettier ./.prettierrc.json --write ./src",
 		"lint:ts:fix": "eslint \"**/*.{ts, tsx}\" --fix",
 		"lint:css": "npx stylelint \"**/*.scss\"",
 		"lint:css:fix": "npx stylelint \"**/*.scss\" --fix"
@@ -59,7 +60,7 @@
 		"@heroicons/react": "^2.0.18",
 		"@reduxjs/toolkit": "^1.9.5",
 		"axios": "^1.4.0",
-		"rambler-ui": "^5.14.17",
+		"prettier": "^3.0.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-redux": "^8.1.1",

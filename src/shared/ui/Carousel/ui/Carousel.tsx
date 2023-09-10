@@ -9,5 +9,9 @@ export interface CarouselProps {
 
 export const Carousel = memo((props: CarouselProps) => {
 	const { className, children } = props
-	return <div className={classNames(cls.Carousel, {}, [className])}>{children}</div>
+	return (
+		<div className={classNames(cls.Carousel, {}, [className])}>
+			{children}
+		</div>
+	)
 })

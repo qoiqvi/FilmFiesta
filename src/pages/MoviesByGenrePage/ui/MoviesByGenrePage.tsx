@@ -5,35 +5,54 @@ import { MovieCardsList } from "entities/Movie"
 import { Page } from "widgets/Page"
 import { Text } from "shared/ui/Text"
 import { useSelector } from "react-redux"
-import { MoviesByGenreReducer, getMoviesByGenre } from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
+import {
+	MoviesByGenreReducer,
+	getMoviesByGenre,
+} from "features/MoviesByGenre/model/slice/MoviesByGenreSlice"
 import { getMoviesDataByParamsIsLoading } from "features/MovieFilter/model/selectors"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { fetchMoviesByGenre } from "features/MoviesByGenre/model/services/fetchMoviesByGenre"
 import { fetchNextMoviesByGenre } from "../model/services/fetchNextMoviesByGenre"
-import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
+import {
+	DynamicModuleLoader,
+	ReducersList,
+} from "shared/lib/components/DynamicModuleLoader"
 import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
 import { Spinner } from "rambler-ui"
 
 const MoviesByGenrePage = () => {
 	const dispatch = useAppDispatch()
-	const { genre, movieType } = useParams<{ genre: string; movieType: MovieType }>()
+	const { genre, movieType } = useParams<{
+		genre: string
+		movieType: MovieType
+	}>()
 
 	const movies = useSelector(getMoviesByGenre.selectAll)
 	const isLoading = useSelector(getMoviesDataByParamsIsLoading)
 
-	if (isLoading) {
-		return <Spinner />
-	}
-
 	useEffect(() => {
 		if (genre) {
-			dispatch(fetchMoviesByGenre({ genre: genre, limit: 50, page: 1, type: movieType ?? "movie" }))
+			dispatch(
+				fetchMoviesByGenre({
+					genre: genre,
+					limit: 50,
+					page: 1,
+					type: movieType ?? "movie",
+				}),
+			)
 		}
 	}, [])
 
 	const fetchNextMovies = useCallback(() => {
 		if (genre) {
-			dispatch(fetchNextMoviesByGenre({ genre, limit: 40, type: movieType ?? "movie", replace: false }))
+			dispatch(
+				fetchNextMoviesByGenre({
+					genre,
+					limit: 40,
+					type: movieType ?? "movie",
+					replace: false,
+				}),
+			)
 		}
 	}, [dispatch, genre, movieType])
 
@@ -47,11 +66,12 @@ const MoviesByGenrePage = () => {
 				className={cls.MoviesByGenrePage}
 				onScrollEnd={fetchNextMovies}
 			>
-				{genre && <Text title={genre[0].toUpperCase() + genre.slice(1) + ":"} />}
-				<MovieCardsList
-					movies={movies}
-					isLoading={isLoading}
-				/>
+				{genre && (
+					<Text
+						title={genre[0].toUpperCase() + genre.slice(1) + ":"}
+					/>
+				)}
+				<MovieCardsList movies={movies} isLoading={isLoading} />
 			</Page>
 		</DynamicModuleLoader>
 	)

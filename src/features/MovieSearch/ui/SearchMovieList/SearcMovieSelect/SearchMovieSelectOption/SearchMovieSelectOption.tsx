@@ -12,38 +12,42 @@ export interface SearchMovieSelectOptionProps {
 	movie: Movie
 }
 
-export const SearchMovieSelectOption = memo((props: SearchMovieSelectOptionProps) => {
-	const { className, movie } = props
-	const isMovie = !movie.isSeries
-	return (
-		<Link
-			to={`${RoutePath.film_by_id}${movie.id}`}
-			className={classNames(cls.container, {}, [className])}
-		>
-			<img
-				src={movie.poster as string}
-				className={cls.poster}
-			/>
-			<div className={cls.content}>
-				<Text
-					text={`${movie.name || movie.alternativeName || movie.enName}, ${
-						isMovie ? movie.year : movie.releaseYears?.[0].start + "-" + movie.releaseYears?.[0].end
-					}`}
-					className={cls.title}
-				/>
+export const SearchMovieSelectOption = memo(
+	(props: SearchMovieSelectOptionProps) => {
+		const { className, movie } = props
+		const isMovie = !movie.isSeries
+		return (
+			<Link
+				to={`${RoutePath.film_by_id}${movie.id}`}
+				className={classNames(cls.container, {}, [className])}
+			>
+				<img src={movie.poster as string} className={cls.poster} />
+				<div className={cls.content}>
+					<Text
+						text={`${
+							movie.name || movie.alternativeName || movie.enName
+						}, ${
+							isMovie
+								? movie.year
+								: movie.releaseYears?.[0].start +
+								  "-" +
+								  movie.releaseYears?.[0].end
+						}`}
+						className={cls.title}
+					/>
+					<Text text={movie.isSeries ? "Сериал" : "Фильм"} />
+				</div>
+
 				<MovieCardRating
 					className={cls.rating}
-					//@ts-ignore
-					rating={movie.rating?.kp?.toFixed(1) || movie.rating?.toFixed(1) || movie.rating?.tmdb?.toFixed(1)}
+					rating={
+						movie.rating?.kp?.toFixed(1) ||
+						Number(movie.rating)?.toFixed(1) ||
+						movie.rating?.tmdb?.toFixed(1) ||
+						"5"
+					}
 				/>
-			</div>
-			<div className={cls.watch}>
-				<Text
-					size="size_m"
-					text={"Смотреть"}
-					color="white"
-				/>
-			</div>
-		</Link>
-	)
-})
+			</Link>
+		)
+	},
+)

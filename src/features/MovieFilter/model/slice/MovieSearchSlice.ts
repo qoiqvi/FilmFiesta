@@ -9,7 +9,7 @@ const moviesAdapter = createEntityAdapter<Movie>({
 })
 
 export const getMovies = moviesAdapter.getSelectors<StateSchema>(
-	(state) => state.movieSearch || moviesAdapter.getInitialState()
+	(state) => state.movieSearch || moviesAdapter.getInitialState(),
 )
 
 export const MovieFilterSlice = createSlice({

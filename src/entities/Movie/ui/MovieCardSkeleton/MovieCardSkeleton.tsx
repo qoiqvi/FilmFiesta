@@ -9,5 +9,9 @@ export interface MovieCardSkeletonProps {
 
 export const MovieCardSkeleton = memo((props: MovieCardSkeletonProps) => {
 	const { className } = props
-	return <div className={classNames(cls.MovieCardSkeleton, {}, [className])}>{/* <Skeleton height={} /> */}</div>
+	return (
+		<div className={classNames(cls.MovieCardSkeleton, {}, [className])}>
+			{/* <Skeleton height={} /> */}
+		</div>
+	)
 })

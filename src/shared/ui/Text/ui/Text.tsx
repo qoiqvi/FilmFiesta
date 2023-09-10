@@ -28,8 +28,22 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 }
 
 export const Text = (props: TextProps) => {
-	const { className, text, title, theme = "primary", align = "left", size = "size_m", color = "black" } = props
-	const additional = [className, cls[theme], cls[align], cls[size], cls[color]]
+	const {
+		className,
+		text,
+		title,
+		theme = "primary",
+		align = "left",
+		size = "size_m",
+		color = "black",
+	} = props
+	const additional = [
+		className,
+		cls[theme],
+		cls[align],
+		cls[size],
+		cls[color],
+	]
 	const HeaderTag = mapSizeToHeaderTag[size]
 	return (
 		<div className={classNames(cls.Text, {}, additional)}>

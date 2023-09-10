@@ -22,7 +22,7 @@ export type AppRoutesProps = RouteProps & {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: "/",
 	[AppRoutes.FILM_BY_ID]: "/film/",
-	[AppRoutes.PERSON_BY_ID]: "/person/",
+	[AppRoutes.PERSON_BY_ID]: "/name/",
 	[AppRoutes.MOVIES_CATALOG]: "/catalog/",
 	[AppRoutes.MOVIES_BY_GENRE]: "/byGenre/",
 	[AppRoutes.NOT_FOUND]: "*",

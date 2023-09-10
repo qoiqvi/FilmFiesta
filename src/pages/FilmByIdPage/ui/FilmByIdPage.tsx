@@ -14,8 +14,11 @@ const FilmByIdPage = () => {
 
 	const isSeries = movie?.isSeries ?? false
 
+	// if (!movie) {
+	// 	return <NotFoundPage />
+	// }
 	if (!movie) {
-		return <NotFoundPage />
+		return null
 	}
 
 	return (
@@ -25,10 +28,7 @@ const FilmByIdPage = () => {
 				movie={movie}
 				isLoading={isLoading}
 			/>
-			<PersonsList
-				persons={movie?.persons}
-				isLoading={isLoading}
-			/>
+			<PersonsList persons={movie?.persons} isLoading={isLoading} />
 			<FactsList facts={movie.facts} />
 			<SimilarMovies
 				isSeries={isSeries}

@@ -19,7 +19,7 @@ export const MovieSearchModal = memo((props: MovieSearchModalProps) => {
 
 	const { data: movies, isLoading } = useMovieSearchQuery(
 		{ query: debouncedQuery },
-		{ refetchOnMountOrArgChange: true }
+		{ refetchOnMountOrArgChange: true },
 	)
 
 	const onChangeDebouncedQuery = useCallback(() => {
@@ -38,11 +38,7 @@ export const MovieSearchModal = memo((props: MovieSearchModalProps) => {
 	}
 
 	return (
-		<Modal
-			lazy={true}
-			isOpen={isOpen}
-			onClose={onCloseModal}
-		>
+		<Modal lazy={true} isOpen={isOpen} onClose={onCloseModal}>
 			<div className={classNames(cls.MovieSearchModal, {}, [className])}>
 				<Input
 					value={query}

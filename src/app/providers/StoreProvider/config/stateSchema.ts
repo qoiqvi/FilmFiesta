@@ -1,4 +1,10 @@
-import type { ReducersMapObject, AnyAction, Reducer, CombinedState, EnhancedStore } from "@reduxjs/toolkit"
+import type {
+	ReducersMapObject,
+	AnyAction,
+	Reducer,
+	CombinedState,
+	EnhancedStore,
+} from "@reduxjs/toolkit"
 import type { AxiosInstance } from "axios"
 import { MovieFilterSchema } from "features/MovieFilter"
 import type { MoviesByGenreSchema } from "features/MoviesByGenre"
@@ -18,7 +24,10 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>
 
 export interface reducerManager {
 	getReducerMap: () => ReducersMapObject<StateSchema>
-	reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>
+	reduce: (
+		state: StateSchema,
+		action: AnyAction,
+	) => CombinedState<StateSchema>
 	add: (state: StateSchemaKey, reducer: Reducer) => void
 	remove: (key: StateSchemaKey) => void
 	getMountedReducers: () => MountedReducers

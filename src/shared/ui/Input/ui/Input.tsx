@@ -11,7 +11,10 @@ import {
 } from "react"
 import { Text } from "shared/ui/Text"
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "readOnly">
+type HTMLInputProps = Omit<
+	InputHTMLAttributes<HTMLInputElement>,
+	"onChange" | "value" | "readOnly"
+>
 
 export interface InputProps extends HTMLInputProps {
 	className?: string
@@ -24,7 +27,16 @@ export interface InputProps extends HTMLInputProps {
 }
 
 export const Input = memo((props: InputProps) => {
-	const { className, autofocus, value, onChange, type = "text", placeholder, readonly = false, ...otherProps } = props
+	const {
+		className,
+		autofocus,
+		value,
+		onChange,
+		type = "text",
+		placeholder,
+		readonly = false,
+		...otherProps
+	} = props
 	const [focus, setFocus] = useState(false)
 	const ref = useRef() as MutableRefObject<HTMLInputElement>
 

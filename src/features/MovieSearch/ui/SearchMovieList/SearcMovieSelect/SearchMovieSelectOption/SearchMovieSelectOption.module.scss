@@ -2,6 +2,7 @@
 	display: flex;
 	overflow: hidden;
 	max-height: 100px;
+	position: relative;
 }
 
 .poster {
@@ -12,19 +13,10 @@
 
 .content {
 	margin-left: 10px;
-	gap: 10px;
 }
 
 .rating {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.watch {
-	margin-left: auto;
-	height: 26px;
-	width: 86px;
-	// padding: 5px;
-	background: #f50;
+	position: absolute;
+	right: 10px;
+	top: 15px;
 }

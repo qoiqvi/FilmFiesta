@@ -3,7 +3,13 @@ import { Movie } from "entities/Movie"
 
 export type SortBy = "year" | "rating.imdb" | "votes.kp"
 export type SortDirection = "1" | "-1"
-export type MovieType = "movie" | "tv-series" | "cartoon" | "anime" | "animated-series" | "tv-show"
+export type MovieType =
+	| "movie"
+	| "tv-series"
+	| "cartoon"
+	| "anime"
+	| "animated-series"
+	| "tv-show"
 
 export interface QueryParams {
 	sortField?: SortBy

@@ -1,6 +1,9 @@
 import cls from "./MoviesPage.module.scss"
 import { useCallback, useEffect, useState } from "react"
-import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader"
+import {
+	DynamicModuleLoader,
+	ReducersList,
+} from "shared/lib/components/DynamicModuleLoader"
 import { useAppDispatch } from "shared/hooks/useAppDispatch"
 import { Page } from "widgets/Page"
 import { useParams, useSearchParams } from "react-router-dom"
@@ -36,19 +39,36 @@ const MoviesPage = () => {
 		setIsSearch(Boolean(searchParams.size))
 		const newSearchParams = new URLSearchParams(searchParams)
 		const params = Object.fromEntries(searchParams)
-		Object.entries(params).map((param) => (param[1] === "" ? newSearchParams.delete(param[0]) : null))
+		Object.entries(params).map((param) =>
+			param[1] === "" ? newSearchParams.delete(param[0]) : null,
+		)
 		setSearchParams(newSearchParams.toString())
-		dispatch(fetchMoviesByParams({ params, limit: 42, page: 1, type: movieType }))
+		dispatch(
+			fetchMoviesByParams({
+				params,
+				limit: 42,
+				page: 1,
+				type: movieType,
+			}),
+		)
 	}, [searchParams])
 
 	const infiniteScrollFunc = useCallback(() => {
-		dispatch(fetchNextMovies({ params: Object.fromEntries(searchParams), limit: 42, type: movieType }))
+		dispatch(
+			fetchNextMovies({
+				params: Object.fromEntries(searchParams),
+				limit: 42,
+				type: movieType,
+			}),
+		)
 	}, [searchParams, dispatch])
 
+	// if (!movieType) {
+	// 	return <NotFoundPage />
+	// }
 	if (!movieType) {
-		return <NotFoundPage />
+		return null
 	}
-
 	return (
 		<DynamicModuleLoader reducers={reducer}>
 			{isSearch ? (
