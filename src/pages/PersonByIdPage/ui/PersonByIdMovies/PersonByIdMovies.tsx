@@ -16,21 +16,21 @@ export interface PersonByIdMoviesProps {
 export const PersonByIdMovies = memo((props: PersonByIdMoviesProps) => {
 	const { className, movies } = props
 	const [collapsed, setCollapsed] = useState(true)
+
 	if (!movies) {
 		return null
 	}
+
 	const collapsedMovies = collapsed ? movies.slice(0, 5) : movies
 
 	return (
 		<div className={classNames(cls.PersonByIdMovies, {}, [className])}>
 			<Text title="Фильмы"></Text>
 			{collapsedMovies?.map((movie) => (
-				<Link
-					to={`${RoutePath.film_by_id}${movie.id}`}
-					className={cls.cont}
-				>
+				<Link to={`${RoutePath.film_by_id}${movie.id}`}>
 					<div key={movie.id} className={cls.item}>
 						<Text text={movie.name || movie.alternativeName} />
+						{/* <Text text={movie?.enProfession} /> */}
 						<div className={cls.rating}>
 							<MovieCardRating
 								rating={movie.rating?.toFixed(1) || ""}
@@ -39,8 +39,12 @@ export const PersonByIdMovies = memo((props: PersonByIdMoviesProps) => {
 					</div>
 				</Link>
 			))}
-			{collapsedMovies.length > 3 ? (
-				<Button theme="clear" onClick={() => setCollapsed(!collapsed)}>
+			{movies.length > 5 ? (
+				<Button
+					theme="clear"
+					onClick={() => setCollapsed(!collapsed)}
+					className={cls.btn}
+				>
 					<span className={cls.btn}>
 						{collapsed
 							? `Развернуть (${movies.length})`

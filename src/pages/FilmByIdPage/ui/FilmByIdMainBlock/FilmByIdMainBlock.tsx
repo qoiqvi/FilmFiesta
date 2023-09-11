@@ -112,7 +112,7 @@ export const FilmByIdMainBlock = memo((props: FilmByIdMainBlockProps) => {
 									? movie.seriesLength
 									: movie?.movieLength
 							} мин  |  ${genres} |  ${countries} | ${
-								movie.ageRating
+								movie.ageRating || "6"
 							}+`}
 						/>
 					</div>

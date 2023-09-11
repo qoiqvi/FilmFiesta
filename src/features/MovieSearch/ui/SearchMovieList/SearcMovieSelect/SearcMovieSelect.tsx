@@ -36,8 +36,9 @@ export const SearchMovieSelect = memo(() => {
 		<div className={cls.comboboxContainer}>
 			<Combobox>
 				<div>
-					<Combobox.Button className={cls.comboboxInput}>
+					<Combobox.Button className={cls.btnWrapper}>
 						<Combobox.Input
+							className={cls.comboboxInput}
 							value={query}
 							onChange={(event) =>
 								onChangeQuery(event.target.value)

@@ -73,14 +73,18 @@ export const SearchSelect = memo(
 					onChange={(item) => onChangeHandler(item as any)}
 				>
 					<div>
-						<Combobox.Input
-							className={cls.comboboxInput}
-							displayValue={(option: SearchSelectOption<T>) =>
-								option?.content
-							}
-							onChange={(event) => setQuery(event?.target?.value)}
-							placeholder={placeholder}
-						/>
+						<Combobox.Button className={cls.comboboxWrapper}>
+							<Combobox.Input
+								className={cls.comboboxInput}
+								displayValue={(option: SearchSelectOption<T>) =>
+									option?.content
+								}
+								onChange={(event) =>
+									setQuery(event?.target?.value)
+								}
+								placeholder={placeholder}
+							/>
+						</Combobox.Button>
 						<Combobox.Button className={cls.comboboxButton}>
 							<ChevronUpDownIcon
 								className={cls.barsIcon}

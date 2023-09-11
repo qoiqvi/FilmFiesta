@@ -35,9 +35,7 @@ export const SearchMovieSelectOption = memo(
 						}`}
 						className={cls.title}
 					/>
-					<Text text={movie.isSeries ? "Сериал" : "Фильм"} />
 				</div>
-
 				<MovieCardRating
 					className={cls.rating}
 					rating={

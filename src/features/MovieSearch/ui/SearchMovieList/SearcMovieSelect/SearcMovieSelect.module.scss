@@ -28,7 +28,7 @@
 
 .comboboxButton {
 	display: flex;
-	align-items: center;
+	align-items: start;
 	margin-left: auto;
 	position: absolute;
 	z-index: 10;
@@ -78,4 +78,8 @@
 
 .comboboxOption:last-child {
 	border-bottom: none;
+}
+
+.btnWrapper {
+	width: 100%;
 }

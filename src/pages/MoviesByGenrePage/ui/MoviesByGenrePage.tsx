@@ -18,7 +18,10 @@ import {
 	ReducersList,
 } from "shared/lib/components/DynamicModuleLoader"
 import { MovieType } from "features/MovieFilter/model/types/MovieFilterSchema"
-import { Spinner } from "rambler-ui"
+
+const reducer: ReducersList = {
+	MovieByGenere: MoviesByGenreReducer,
+}
 
 const MoviesByGenrePage = () => {
 	const dispatch = useAppDispatch()
@@ -55,10 +58,6 @@ const MoviesByGenrePage = () => {
 			)
 		}
 	}, [dispatch, genre, movieType])
-
-	const reducer: ReducersList = {
-		MovieByGenere: MoviesByGenreReducer,
-	}
 
 	return (
 		<DynamicModuleLoader reducers={reducer}>

@@ -24,6 +24,9 @@ export const SimilarMovies = memo((props: SimilarMoviesProps) => {
 			</div>
 		)
 	}
+	if (!movie.sequelsAndPrequels?.length) {
+		return null
+	}
 	return (
 		<>
 			<Text

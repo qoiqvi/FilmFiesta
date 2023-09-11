@@ -1,18 +1,17 @@
-.cont {
-	display: flex;
-	height: 100px;
+.PersonByIdMovies {
+	width: 100%;
+}
+.item {
+	padding: 10px;
 	width: 100%;
 	border-bottom: 1px solid var(--primary-color);
-}
-
-.item {
-	padding: 5px;
-	width: 100%;
 	display: flex;
-	justify-content: space-between;
-	// justify-content: space-between;
 }
 
 .rating {
 	margin-left: auto;
+}
+
+.btn {
+	margin: 25px 0;
 }

@@ -1,13 +1,11 @@
 import { classNames } from "shared/lib/classNames/classNames"
 import cls from "./PersonByIdPage.module.scss"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { usePersonByIdQuery } from "../model/api"
 import { Text } from "shared/ui/Text"
 import { Page } from "widgets/Page"
 import { Spinner } from "shared/ui/Spinner"
 import { FactsList } from "entities/Facts"
-import { RoutePath } from "shared/config/routeConfig/routeConfig"
-import { MovieCardRating } from "entities/Rating"
 import { PersonByIdMovies } from "./PersonByIdMovies/PersonByIdMovies"
 
 export interface PersonByIdPageProps {
