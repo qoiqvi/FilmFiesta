@@ -25,6 +25,9 @@ export const PersonsList = memo((props: PersonsListProps) => {
 			</Carousel>
 		)
 	}
+	if (!persons?.length) {
+		return null
+	}
 	return (
 		<>
 			<Text title="Актеры и создатели" className={cls.title} />
