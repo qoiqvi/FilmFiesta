@@ -24,19 +24,19 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 		],
 	}
 
-	// const babelLoader = {
-	//   test: /\.(js|jsx|tsx)$/,
-	//   exclude: /node_modules/,
-	//   use: {
-	//     loader: "babel-loader",
-	//     options: {
-	//       presets: ['@babel/preset-env'],
-	//       plugins: [
-	//         [isDev && require.resolve("react-refresh/babel")].filter(Boolean)
-	//       ]
-	//     }
-	//   }
-	// }
+	const babelLoader = {
+		test: /\.(js|jsx|tsx)$/,
+		exclude: /node_modules/,
+		use: {
+			loader: "babel-loader",
+			options: {
+				presets: ["@babel/preset-env"],
+				//   plugins: [
+				//     [isDev && require.resolve("react-refresh/babel")].filter(Boolean)
+				//   ]
+			},
+		},
+	}
 
 	const cssLoader = {
 		test: /\.s[ac]ss$/i,
@@ -64,7 +64,7 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 	return [
 		fileLoader,
 		cssLoader,
-		// babelLoader,
+		babelLoader,
 		svgLoader, //
 		tsLoader,
 	]
