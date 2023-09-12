@@ -21,6 +21,7 @@ import {
 	MovieType,
 } from "features/MovieFilter"
 import { NotFoundPage } from "pages/NotFoundPage"
+import { Text } from "shared/ui/Text"
 
 const reducer: ReducersList = {
 	movieSearch: MovieFilterSliceReducer,
@@ -63,9 +64,6 @@ const MoviesPage = () => {
 		)
 	}, [searchParams, dispatch])
 
-	// if (!movieType) {
-	// 	return <NotFoundPage />
-	// }
 	if (!movieType) {
 		return null
 	}
@@ -81,13 +79,24 @@ const MoviesPage = () => {
 						type={movieType}
 					/>
 					<MovieFilters />
-					<div>
-						<MovieCardsList
-							className={cls.movies}
-							isLoading={isLoading}
-							movies={movies}
-						/>
-					</div>
+					{movies.length ? (
+						<div>
+							<MovieCardsList
+								className={cls.movies}
+								isLoading={isLoading}
+								movies={movies}
+							/>
+						</div>
+					) : (
+						<div>
+							<Text
+								className={cls.notFound}
+								size="size_l"
+								align="center"
+								title="Фильмы не найдены, попробуйте изменить фильтры"
+							/>
+						</div>
+					)}
 				</Page>
 			) : (
 				<Page className={cls.MoviesPage}>

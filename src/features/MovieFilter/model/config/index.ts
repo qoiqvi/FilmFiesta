@@ -325,10 +325,6 @@ export const allSortFields: SelectOption<string>[] = [
 		content: "По дате релиза",
 	},
 	{
-		value: "kp.rating",
-		content: "Рейтингу Кинопоиска",
-	},
-	{
 		value: "rating.filmCritics",
 		content: "Рейтингу критиков",
 	},

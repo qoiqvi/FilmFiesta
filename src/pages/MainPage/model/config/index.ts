@@ -20,7 +20,7 @@ export const moviesByGenreConfig: MovieGenre[] = [
 	{
 		genre: "фантастика",
 		title: "Мультфильмы на все времена",
-		type: "movie",
+		type: "cartoon",
 	},
 	{
 		genre: "триллер",

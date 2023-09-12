@@ -7,6 +7,7 @@ import { Page } from "widgets/Page"
 import { Spinner } from "shared/ui/Spinner"
 import { FactsList } from "entities/Facts"
 import { PersonByIdMovies } from "./PersonByIdMovies/PersonByIdMovies"
+import { NotFoundPage } from "pages/NotFoundPage"
 
 export interface PersonByIdPageProps {
 	className?: string
@@ -21,9 +22,9 @@ const PersonByIdPage = (props: PersonByIdPageProps) => {
 		return <Spinner />
 	}
 
-	// if (!person) {
-	// 	return <NotFoundPage />
-	// }
+	if (isError) {
+		return <NotFoundPage />
+	}
 
 	if (!person) {
 		return null

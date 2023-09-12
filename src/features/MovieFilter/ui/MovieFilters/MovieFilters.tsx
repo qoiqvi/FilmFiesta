@@ -113,7 +113,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 				width="small"
 				value={searchParams.get("countries.name") || ""}
 			/>
-			<div className={cls.sortContainer}>
+			{/* <div className={cls.sortContainer}>
 				<SearchSelect
 					notFound="Не найдено"
 					placeholder="Сортировать по"
@@ -121,8 +121,8 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 					width="small"
 					onChange={onChangeSortField}
 					value={searchParams.get("sortField") || ""}
-				/>
-				{/* <SearchSelect
+				/> */}
+			{/* <SearchSelect
 					notFound="Не найдено"
 					placeholder="Страна"
 					options={allSortType}
@@ -130,7 +130,7 @@ export const MovieFilters = memo((props: MovieFiltersProps) => {
 					onChange={onChangeSortType}
 					value={searchParams.get("sortType") || ""}
 				/> */}
-			</div>
+			{/* </div> */}
 		</div>
 	)
 })
