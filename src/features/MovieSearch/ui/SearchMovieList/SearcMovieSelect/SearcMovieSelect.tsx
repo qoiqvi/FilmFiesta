@@ -88,6 +88,7 @@ export const SearchMovieSelect = memo(() => {
 					)}
 				</Combobox.Options>
 			</Combobox>
+			<Combobox></Combobox>
 		</div>
 	)
 })

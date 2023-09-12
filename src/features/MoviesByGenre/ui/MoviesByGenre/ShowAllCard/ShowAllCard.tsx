@@ -29,11 +29,9 @@ export const ShowAllCard = memo((props: ShowAllCardProps) => {
 						<ArrowSmallRightIcon
 							className={cls.icon}
 							color="white"
-							// height={20}
-							// width={20}
 						/>
 					</div>
-					<Text text={"Показать все"} />
+					<Text className={cls.text} text={"Показать все"} />
 				</div>
 			</Link>
 		</div>

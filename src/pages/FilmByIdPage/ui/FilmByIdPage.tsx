@@ -11,7 +11,7 @@ import { NotFoundPage } from "pages/NotFoundPage"
 const FilmByIdPage = () => {
 	const { id } = useParams<{ id: string }>()
 	const { isError, isLoading, data: movie } = useFilmByIdQuery(id)
-
+	console.log(isLoading)
 	const isSeries = movie?.isSeries ?? false
 
 	// if (!movie) {

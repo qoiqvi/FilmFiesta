@@ -29,11 +29,16 @@ export const MoviesByGenre = memo((props: MoviesByGenreProps) => {
 	})
 
 	const getSkeletons = () =>
-		new Array(7)
-			.fill(1)
-			.map((_, index) => (
-				<Skeleton key={index} height={300} width={200} />
-			))
+		new Array(7).fill(1).map((_, index) => (
+			<div className={cls.MovieCard}>
+				<Skeleton
+					className={cls.skeleton}
+					key={index}
+					height={300}
+					width={200}
+				/>
+			</div>
+		))
 
 	if (isLoading) {
 		return (

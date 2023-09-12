@@ -37,3 +37,15 @@
 	display: flex;
 	gap: 15px;
 }
+
+.MovieCard {
+	position: relative;
+	transition: transform 0.3s;
+	height: 300px;
+	width: 200px;
+}
+
+.skeleton {
+	width: 100%;
+	height: 100%;
+}

@@ -6,12 +6,10 @@ import AppRouter from "./providers/Router/ui/AppRouter"
 export const App = () => {
 	return (
 		<div className={classNames("app", {}, [])}>
-			<Suspense fallback="">
-				<Navbar />
-				<div className="content-page">
-					<AppRouter />
-				</div>
-			</Suspense>
+			<Navbar />
+			<div className="content-page">
+				<AppRouter />
+			</div>
 		</div>
 	)
 }
