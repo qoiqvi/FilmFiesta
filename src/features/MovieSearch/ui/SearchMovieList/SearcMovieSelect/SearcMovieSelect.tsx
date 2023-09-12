@@ -71,6 +71,7 @@ export const SearchMovieSelect = memo(() => {
 										<Combobox.Option
 											value={""}
 											key={movie?.id}
+											onClick={() => setQuery("")}
 											className={({ active }) =>
 												active
 													? cls.comboboxOptionActive

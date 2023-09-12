@@ -1,21 +1,17 @@
-![logo](https://miro.medium.com/v2/resize:fit:800/1*x6EnTlBhjcyu605VPDysZQ.jpeg)
-## webpack_fsd_template
+## FilmFiesta
 
-Этот репозиторий представляет собой собранный с помощью webpack'a проект, со всеми подключеными лоадерами:
-- ts loader
-- file loader
-- svgr loader
-- css, sass, style loaders
+# Pet-проект сделанный на основне беслпатного api кинопоиска https://kinopoisk.dev/
 
-Также у проекта уже задана его основная структура. В папке src созданы все **slcies** согласно современной методологии FSD v.2 (Feature Slice Design). FSD - это подход к проектированию приложения, при котором каждая функциональность разбивается на срезы (slice) или части, которые могут быть разрабатываемыми и тестируемыми независимо от остального приложения. Для каждого слоя также установлены aliases
+Приложение представляет собой онлайн кинотеатр, без доступа к просмотру фильмов. Реализован поиск, фильтрация, бесконечная лента. Архитектура приложения построена исходя из методологии Feature-Slice-Design. Разворачивался проект на webpack с помощью моего собственного темплэйта.
 
 # Стек технологий
-- webpack 5v, webpack-dev-server
-- TypeScript
-- React
-- SCSS
-- EsLint, StyleLint (правила не заданы)
-- FSD
+
+-   webpack 5v, webpack-dev-server
+-   TypeScript
+-   React
+-   RTK Query
+-   SCSS
+-   FSD
 
 ## Как использовать
 
@@ -25,7 +21,7 @@
 git clone https://github.com/qoiqvi/webpack_fsd_template
 
 2. Перейдите в директорию проекта
-cd webpack_fsd_template
+cd ./filmFiesta
 
 3. Установите зависимости
 npm install
@@ -34,12 +30,3 @@ npm install
 npm start
 
 ```
-
-Вы должны увидеть div элемент с текстом App component
-
-Со всеми скриптами вы можете ознакомиться в package.json
-
-Приятной разработки!
-
-
-
