@@ -3,7 +3,6 @@ import {
 	Reducer,
 	ReducersMapObject,
 	combineReducers,
-	createStore,
 } from "@reduxjs/toolkit"
 import {
 	MountedReducers,
@@ -27,7 +26,7 @@ export function createReducerManager(
 		reduce: (state: StateSchema, action: AnyAction) => {
 			if (keysToRemove.length > 0) {
 				state = { ...state }
-				for (let key of keysToRemove) {
+				for (const key of keysToRemove) {
 					delete state[key]
 				}
 				keysToRemove = []

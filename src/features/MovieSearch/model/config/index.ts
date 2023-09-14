@@ -1,6 +1,5 @@
 import { Data, Movie } from "entities/Movie"
 
-//@ts-ignore
 export const TOP10KP = {
 	docs: [
 		{
